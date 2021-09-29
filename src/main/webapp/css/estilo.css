@@ -127,3 +127,10 @@ nav{
     font-size: 15px;
     font-weight: bolder;
 }
+
+
+.seccionEspecialidades{
+	height:auto;
+	width: 100%;
+	display:flex;
+}

@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -34,17 +35,12 @@
 
         <main>
 
-            <div class="inicioSesion">
-                
-                    <form action="registrarse" method="POST" class="formulario">
-                        <input type="text" name="usuario" id="usuario" placeholder="Ingrese Usuario" class="inicioSesion_inputs">
-                        <input type="password" name="clave" id="clave" placeholder="Ingrese Clave" class="inicioSesion_inputs">
-                        <input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Iniciar Sesion" >
-                        <button class="boton_unputs" style="background-color: rgb(231, 54, 0);"><a href="Registrarse" style="color: black; text-decoration: none;">Registrarse</a></button>
-                    </form>
+           Accedio exitosamente: 
+ 
+  <a href ="http://localhost:8080/proyecto-limpio-spring/especialidades"> Lista de especialidades</a>
+ 
 
 
-            </div>
         </main>
 
         <footer>
