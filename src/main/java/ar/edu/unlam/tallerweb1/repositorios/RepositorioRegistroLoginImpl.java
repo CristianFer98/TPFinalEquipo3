@@ -23,6 +23,7 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 		if (obtenerUsuarioPorEmail(usuario.getEmail()) != null) {
 			return false;
 		} else {
+			session.getCurrentSession().save(usuario);
 			return true;
 		}
 	}
