@@ -9,23 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 @Controller
-public class ControladorHome {
-	
-	
-	@RequestMapping(path="/", method = RequestMethod.GET)
-	public ModelAndView mostrarHome () {
-		
-	return new ModelAndView("index"); // simplemente muestro el index
-		
-	}
+public class ControladorLogin {
 	
 	
 	
-	@RequestMapping (path ="/registrarse", method = RequestMethod.POST)
-	public ModelAndView registrarse (@ModelAttribute ("datosRegistro") DatosRegistro datos) {
-		
-		return new ModelAndView("paginaPrincipal");
-	}
+	
 	
 	// metodo para registrar
 	
