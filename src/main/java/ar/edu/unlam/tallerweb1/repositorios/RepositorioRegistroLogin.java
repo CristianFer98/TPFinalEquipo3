@@ -7,5 +7,6 @@ public interface RepositorioRegistroLogin {
 	
 	boolean registrarUsuario(Usuario usuario);
 	Usuario obtenerUsuarioPorEmail(String email);
+	Usuario iniciarSesion(String email, String contra);
 
 }

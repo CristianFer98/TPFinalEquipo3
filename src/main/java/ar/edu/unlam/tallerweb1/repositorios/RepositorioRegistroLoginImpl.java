@@ -30,9 +30,15 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 
 	@Override
 	public Usuario obtenerUsuarioPorEmail(String email) {
-		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class)
-				.add(Restrictions.eq("email", email))
+		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("email", email))
 				.uniqueResult();
+	}
+
+	@Override
+	public Usuario iniciarSesion(String email, String contra) {
+		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("email", email))
+				.add(Restrictions.eq("contrasenia", contra)).uniqueResult();
+
 	}
 
 }

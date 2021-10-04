@@ -20,11 +20,7 @@ public class ControladorRegistro {
 		this.servicio = servicio;
 	}
 	
-	@RequestMapping(path="/", method = RequestMethod.GET) //incia el programa, muestro el index
-	public ModelAndView mostrarHome () {
-	return new ModelAndView("index"); // simplemente muestro el index
-		
-	}
+
 	
 	
 	@RequestMapping (path = "FormularioDeRegistro", method = RequestMethod.GET) //el boton registrarse del login dispara esta vista
@@ -32,7 +28,7 @@ public class ControladorRegistro {
 		return new ModelAndView ("paginaDeRegistro");
 		
 	}
-	
+	@RequestMapping (path = "Registrarse", method = RequestMethod.POST)
 	public ModelAndView registrarNuevoUsuario(DatosRegistroUsuarioComun datos) {
 		String mensaje = null;
 		ModelMap model = new ModelMap ();

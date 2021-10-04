@@ -10,6 +10,8 @@ import org.mockito.internal.util.MockUtil;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.datosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
 import static org.mockito.Mockito.doThrow;
@@ -17,9 +19,11 @@ import static org.mockito.Mockito.mock;
 
 public class ControladorRegistroLoginTest {
 
-	private ModelAndView mav;
+	private ModelAndView mav= new ModelAndView();
+;
 	private ServicioRegistroLogin servicioUsuario;
-	private ControladorRegistro controlador;
+	private ControladorRegistro controladorRegistro;
+	private ControladorLogin controladorLogin;
 
 	private String email = "Cris@gmail.com";
 	private String clave = "123456789";
@@ -27,16 +31,24 @@ public class ControladorRegistroLoginTest {
 	private String claveMal = "5555";
 	private String claveLongitudMenorAOcho = "1234";
 
-	private DatosRegistroUsuarioComun datosRegistroConContraDiferente = new DatosRegistroUsuarioComun(email, clave,claveMal);
-	private DatosRegistroUsuarioComun datosRegistroConLongitudIncorrecta = new DatosRegistroUsuarioComun(email,claveLongitudMenorAOcho, claveLongitudMenorAOcho);
-	private DatosRegistroUsuarioComun datosRegistroConDatosCorrectos = new DatosRegistroUsuarioComun(email,clave, repiteClave);
+	private DatosRegistroUsuarioComun datosRegistroConContraDiferente = new DatosRegistroUsuarioComun(email, clave,
+			claveMal);
+	private DatosRegistroUsuarioComun datosRegistroConLongitudIncorrecta = new DatosRegistroUsuarioComun(email,
+			claveLongitudMenorAOcho, claveLongitudMenorAOcho);
+	private DatosRegistroUsuarioComun datosRegistroConDatosCorrectos = new DatosRegistroUsuarioComun(email, clave,
+			repiteClave);
+	private datosDeInicioDeSesion datosLogin = new datosDeInicioDeSesion(email, clave);
+
+	private Usuario admin = new Usuario("Cristian@Hotmail.com", "123456789", 3);// simulo el usuario que me trae el
+																				// repo.
 
 	@Before
-	public void test() {// este before se hace despues de cada test
+	public void testQueSeHaceDespuesDeCadaTest() {// este before se hace despues de cada test
 
 		servicioUsuario = mock(ServicioRegistroLogin.class); // me crea un mokito que es un objeto para separar y probar
 																// individualmente las capas
-		controlador = new ControladorRegistro(servicioUsuario);
+		controladorRegistro = new ControladorRegistro(servicioUsuario);
+		controladorLogin = new ControladorLogin(servicioUsuario);
 
 	}
 
@@ -64,30 +76,100 @@ public class ControladorRegistroLoginTest {
 		thenElregistroFalla("Debe tener al menos 8 caracteres");
 
 	}
-	
-	@Test 
+
+	@Test
 	public void testQueMePermitaRegistrarExitosamenteUnUsuario() {
 		whenRegistroConContraseniaBien(datosRegistroConDatosCorrectos);
 		thenRegistroExitoso();
+
+	}
+
+	// los usuarios comunes pueden registrarse en un formulario comun. Sin embargo
+	// para el tipo de usuario medico
+	// solo se puede crear desde un admin. La manera de validarlos por ahora es si
+	// tienen un boolean de su tipo
+	// voy a hacer un controlador especial para las cosas que hace un admin con su
+	// test correspondiente.
+
+	@Test
+	public void testQueNoMePermiteIniciarSesionSiElUsuarioNoExiste() {
+
+		doThrow(UsuarioInexistenteException.class).when(servicioUsuario).iniciarSesion(datosLogin);
+		whenInicioSesionConUnUsuarioInexistente(datosLogin);
+		thenInicioSesionConUnUsuarioInexistente();
+	}
+
+	@Test
+	public void testQueMePermiteIniciarSesionConUsuarioComun() {//cuando este terminado va a funcionar. 
+		whenInicioSesionConUsuarioExistente(datosLogin);
+		thenInicioSesionConUsuarioExistenteComun();
+	}
+
+	@Test // los admin tienen tipoDeUsuario3 //cuando este terminado va a funcionar. 
+	public void testQuePermiteIniciarSesionAUnAdmin() {
+
+		whenInicioSesionConUsuarioExistente(datosLogin);
+		thenInicioSesionConUsuarioExistenteAdmin();
+
+	}
+
+	@Test // los admin tienen tipoDeUsuario3 //cuando este terminado va a funcionar. 
+	public void testQuePermiteIniciarSesionAUnMedico() {
+
+		whenInicioSesionConUsuarioExistente(datosLogin);
+		thenInicioSesionConUsuarioExistenteMedico();
+
+	}
+	private void thenInicioSesionConUsuarioExistenteAdmin() {
+		assertThat (mav.getViewName()).isEqualTo(("paginaPrincipalAdmin"));
 		
-		
+	}
+	
+	private void thenInicioSesionConUsuarioExistenteMedico() {
+		mav = controladorLogin.iniciarSesion(datosLogin);
+
+	}
+	
+	private void thenInicioSesionConUsuarioExistenteComun() {
+		assertThat(mav.getViewName()).isEqualTo(("paginaPrincipal"));
+	}
+
+
+	private void thenInicioSesionConUnUsuarioInexistente() {
+		assertThat(mav.getViewName()).isEqualTo(("index"));
+		assertThat(mav.getModel().get("error")).isEqualTo(("Usuario Inexistente"));
+
+	}
+
+	private void whenInicioSesionConUnUsuarioInexistente(datosDeInicioDeSesion datosLogin) {
+		mav = controladorLogin.iniciarSesion(datosLogin);
+
+	}
+
+
+
+	private void whenInicioSesionConUsuarioExistente(datosDeInicioDeSesion datosLogin2) {
+		mav = controladorLogin.iniciarSesion(datosLogin2);// el mav tiene la vista, con el mensaje de error si es
+															// necesario y el usuario
+
 	}
 
 	private void thenRegistroExitoso() {
-		assertThat(mav.getViewName().equals("paginaInicio"));
+        assertThat(mav.getViewName()).isEqualTo("paginaPrincipal");
 	}
 
 	private void whenRegistroConContraseniaBien(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos) {
-		
-		mav = controlador.registrarNuevoUsuario(datosRegistroConDatosCorrectos);
+
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConDatosCorrectos);
 	}
 
 	private void whenRegistroUnUsuarioConContraseniaCorta(DatosRegistroUsuarioComun datosRegistro2) {
-		mav = controlador.registrarNuevoUsuario(datosRegistro2);
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistro2);
 	}
 
-	private void whenRegistroUnUsuarioConContraseñaDiferente(DatosRegistroUsuarioComun datosRegistroConContraDiferente) {
-		mav = controlador.registrarNuevoUsuario(datosRegistroConContraDiferente); // esto me devuelve un MAV
+	private void whenRegistroUnUsuarioConContraseñaDiferente(
+			DatosRegistroUsuarioComun datosRegistroConContraDiferente) {
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConContraDiferente); // esto me devuelve un MAV
 
 	}
 

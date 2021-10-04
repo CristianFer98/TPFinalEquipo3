@@ -9,34 +9,36 @@ import javax.persistence.Id;
 @Entity
 public class Usuario {
 
-	//este va a ser el usuario que se registrara en el sistema
-	//va a ser de 3 tipos. cliente, medico y admin. Por el momento
-	//la forma de identificarlos va a ser con un valor booleano ya que no 
-	//sabemos como joinear tablas para traer su valor especifico. 
-	
-	
+	// este va a ser el usuario que se registrara en el sistema
+	// va a ser de 3 tipos. cliente, medico y admin. Por el momento
+	// la forma de identificarlos va a ser con un valor booleano ya que no
+	// sabemos como joinear tablas para traer su valor especifico.
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUsuario;
-	
-	@Column 
-	private String contrasenia;
-	
-	@Column 
-	private String email;
-	
 
 	@Column
-	private boolean isAdmin;
-	
+	private String contrasenia;
+
 	@Column
-	private boolean isCliente;
+	private String email;
+
 	
+
+	public Usuario(String contrasenia, String email, Integer numeroDeDeTipoDeUsuario) {
+		super();
+		this.contrasenia = contrasenia;
+		this.email = email;
+		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
+	}
+
+	// si es 1 = usuario comun. Si es 2 = medico. Si es 3 = admin.
 	@Column
-	private boolean isMedico;
-	
+	private Integer numeroDeDeTipoDeUsuario;
+
 	public Usuario() {
-		
+
 	}
 
 	public Integer getIdUsuario() {
@@ -55,30 +57,6 @@ public class Usuario {
 		this.contrasenia = contrasenia;
 	}
 
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
-	public boolean isCliente() {
-		return isCliente;
-	}
-
-	public void setCliente(boolean isCliente) {
-		this.isCliente = isCliente;
-	}
-
-	public boolean isMedico() {
-		return isMedico;
-	}
-
-	public void setMedico(boolean isMedico) {
-		this.isMedico = isMedico;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -87,6 +65,13 @@ public class Usuario {
 		this.email = email;
 	}
 	
-	
-	
+	public Integer getNumeroDeDeTipoDeUsuario() {
+		return numeroDeDeTipoDeUsuario;
+	}
+
+	public void setNumeroDeDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
+		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
+
+}
+
 }

@@ -1,6 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +8,8 @@ import org.junit.Test;
 import ar.edu.unlam.tallerweb1.controladores.ClavesCortasException;
 import ar.edu.unlam.tallerweb1.controladores.ClavesDistintasException;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.datosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import static org.mockito.Mockito.*;
 
@@ -22,14 +24,14 @@ public class ServicioRegistroLoginTest {
 	private DatosRegistroUsuarioComun datosRegistroConLongitudIncorrecta = new DatosRegistroUsuarioComun(email,claveLongitudMenorAOcho, claveLongitudMenorAOcho);
 	private DatosRegistroUsuarioComun datosRegistroConDatosCorrectos = new DatosRegistroUsuarioComun(email, clave,repiteClave);
 	private Boolean inscribio;
-	ServicioRegistroLoginImpl servicioRegistroLogin;
-	RepositorioRegistroLogin repositorioRegistroLogin;
+	private ServicioRegistroLoginImpl servicioRegistroLogin;
+	private RepositorioRegistroLogin repositorioRegistroLogin;
+	private datosDeInicioDeSesion datosLogin = new datosDeInicioDeSesion(email,clave);
 
 	@Before
 	public void test() {
-
-		servicioRegistroLogin = new ServicioRegistroLoginImpl(repositorioRegistroLogin);
 		repositorioRegistroLogin = mock(RepositorioRegistroLogin.class);
+		servicioRegistroLogin = new ServicioRegistroLoginImpl(repositorioRegistroLogin);
 		inscribio = false;
 	}
 
@@ -54,4 +56,42 @@ public class ServicioRegistroLoginTest {
 	private void whenRegistroConContraCorta(DatosRegistroUsuarioComun datosRegistroConLongitudIncorrecta) {
 		servicioRegistroLogin.registrarUsuario(datosRegistroConLongitudIncorrecta);//me tira la exception esperada
 	}
+	
+	@Test
+	public void testQueMeRegistraExitosamenteUnUsuarioComun() {
+		whenRegistroConDatosCorrectos(datosRegistroConDatosCorrectos);
+		thenRegistroConDatosCorrectos();
+		
+	}
+
+	private void thenRegistroConDatosCorrectos() {
+		assertThat(inscribio == true);
+	}
+
+	private void whenRegistroConDatosCorrectos(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
+	inscribio =	servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
+		
+	}
+	
+	@Test
+	public void testQueMePermiteIniciarSesionConUsuarioComun() {
+	givenTengoUnUsuarioRegistrado(datosRegistroConDatosCorrectos);
+	Usuario usuario = whenInicioSesionConUnUsuarioComun(datosLogin);
+	thenInicioSesionConUnUsuarioComun(usuario);
+	}
+
+	private void thenInicioSesionConUnUsuarioComun(Usuario usuario) {
+		assertThat(usuario != null);
+	}
+
+	private Usuario whenInicioSesionConUnUsuarioComun(datosDeInicioDeSesion datosLogin2) {
+		Usuario usuario = servicioRegistroLogin.iniciarSesion(datosLogin2);
+		return usuario;
+	}
+
+	private void givenTengoUnUsuarioRegistrado(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
+		servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
+		
+	}
+	
 }

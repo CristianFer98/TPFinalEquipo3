@@ -2,10 +2,11 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.datosDeInicioDeSesion;
 
 public interface ServicioRegistroLogin {
 	
-	boolean registrarUsuario(DatosRegistroUsuarioComun datos);
-	boolean iniciarSesion (String email, String contra);
+	boolean registrarUsuario(DatosRegistroUsuarioComun datosRegistro);
+	Usuario iniciarSesion (datosDeInicioDeSesion datosLogin);
 
 }
