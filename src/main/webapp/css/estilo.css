@@ -95,6 +95,17 @@ nav{
 
 }
 
+.registro{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-color: #dbe2ea;
+
+}
+
 .formulario{
     display: flex;
     flex-direction: column;

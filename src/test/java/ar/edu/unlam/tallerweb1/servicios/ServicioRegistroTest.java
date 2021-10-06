@@ -13,7 +13,7 @@ import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import static org.mockito.Mockito.*;
 
-public class ServicioRegistroLoginTest {
+public class ServicioRegistroTest {
 	private String email = "Cris@gmail.com";
 	private String clave = "123456789";
 	private String repiteClave = "123456789";
@@ -34,6 +34,8 @@ public class ServicioRegistroLoginTest {
 		servicioRegistroLogin = new ServicioRegistroLoginImpl(repositorioRegistroLogin);
 		inscribio = false;
 	}
+	
+//________________________________________________________________________________________________________________//	
 
 	@Test(expected = ClavesDistintasException.class)
 	public void testQueNoMePermitaRegistrarConContraseniaDiferente() {
@@ -47,6 +49,8 @@ public class ServicioRegistroLoginTest {
 		servicioRegistroLogin.registrarUsuario(datosRegistroConContraDiferente); //esto arroja la exception
 	}
 
+//________________________________________________________________________________________________________________//	
+
 	 @Test(expected = ClavesCortasException.class)
 	 public void testQueNoMePermitaRegistrarmeConUnaContraseniaCorta() {
 		 
@@ -57,6 +61,9 @@ public class ServicioRegistroLoginTest {
 		servicioRegistroLogin.registrarUsuario(datosRegistroConLongitudIncorrecta);//me tira la exception esperada
 	}
 	
+//________________________________________________________________________________________________________________//	
+
+	
 	@Test
 	public void testQueMeRegistraExitosamenteUnUsuarioComun() {
 		whenRegistroConDatosCorrectos(datosRegistroConDatosCorrectos);
@@ -64,34 +71,17 @@ public class ServicioRegistroLoginTest {
 		
 	}
 
+	private void whenRegistroConDatosCorrectos(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
+		 servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
+			
+		}
+		
 	private void thenRegistroConDatosCorrectos() {
 		assertThat(inscribio == true);
 	}
 
-	private void whenRegistroConDatosCorrectos(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
-	inscribio =	servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
-		
-	}
 	
-	@Test
-	public void testQueMePermiteIniciarSesionConUsuarioComun() {
-	givenTengoUnUsuarioRegistrado(datosRegistroConDatosCorrectos);
-	Usuario usuario = whenInicioSesionConUnUsuarioComun(datosLogin);
-	thenInicioSesionConUnUsuarioComun(usuario);
-	}
 
-	private void thenInicioSesionConUnUsuarioComun(Usuario usuario) {
-		assertThat(usuario != null);
-	}
-
-	private Usuario whenInicioSesionConUnUsuarioComun(DatosDeInicioDeSesion datosLogin2) {
-		Usuario usuario = servicioRegistroLogin.iniciarSesion(datosLogin2);
-		return usuario;
-	}
-
-	private void givenTengoUnUsuarioRegistrado(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
-		servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
-		
-	}
+	
 	
 }

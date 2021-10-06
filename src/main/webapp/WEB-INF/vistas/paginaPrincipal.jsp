@@ -35,9 +35,8 @@
 
         <main>
 
-           Accedio exitosamente: 
+        ${usuario.nombre}:   Bienvenido a la Pagina Principal de Pacientes.  
  
-  <a href ="http://localhost:8080/proyecto-limpio-spring/especialidades"> Lista de especialidades</a>
  
 
 

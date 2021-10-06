@@ -19,12 +19,13 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 	}
 
 	@Override
-	public boolean registrarUsuario(Usuario usuario) {//se registra el usuario, cualquiera sea.
+	public Integer registrarUsuario(Usuario usuario) throws emailExistenteException {//se registra el usuario, cualquiera sea.
 		if (obtenerUsuarioPorEmail(usuario.getEmail()) != null) {
-			return false;
+			throw new emailExistenteException();
 		} else {
-			session.getCurrentSession().save(usuario);
-			return true;
+			 session.getCurrentSession().save(usuario);
+			  Usuario usuario1 = obtenerUsuarioPorEmail(usuario.getEmail());
+			  return usuario1.getIdUsuario();
 		}
 	}
 
@@ -36,7 +37,7 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 
 	@Override
 	public Usuario iniciarSesion(String email, String contra) {
-		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("email", email))
+		return  (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("email", email))
 				.add(Restrictions.eq("contrasenia", contra)).uniqueResult();
 
 	}

@@ -20,6 +20,10 @@ public class Usuario {
 
 	@Column
 	private String contrasenia;
+	
+	@Column
+	private String nombre;
+
 
 	@Column
 	private String email;
@@ -77,5 +81,23 @@ public class Usuario {
 		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
 
 }
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Integer getEdad() {
+		return edad;
+	}
+
+	public void setEdad(Integer edad) {
+		this.edad = edad;
+	}
+	
+	
 
 }
