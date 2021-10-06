@@ -9,7 +9,7 @@ import ar.edu.unlam.tallerweb1.controladores.ClavesCortasException;
 import ar.edu.unlam.tallerweb1.controladores.ClavesDistintasException;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.datosDeInicioDeSesion;
+import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import static org.mockito.Mockito.*;
 
@@ -26,7 +26,7 @@ public class ServicioRegistroLoginTest {
 	private Boolean inscribio;
 	private ServicioRegistroLoginImpl servicioRegistroLogin;
 	private RepositorioRegistroLogin repositorioRegistroLogin;
-	private datosDeInicioDeSesion datosLogin = new datosDeInicioDeSesion(email,clave);
+	private DatosDeInicioDeSesion datosLogin = new DatosDeInicioDeSesion(email,clave);
 
 	@Before
 	public void test() {
@@ -84,7 +84,7 @@ public class ServicioRegistroLoginTest {
 		assertThat(usuario != null);
 	}
 
-	private Usuario whenInicioSesionConUnUsuarioComun(datosDeInicioDeSesion datosLogin2) {
+	private Usuario whenInicioSesionConUnUsuarioComun(DatosDeInicioDeSesion datosLogin2) {
 		Usuario usuario = servicioRegistroLogin.iniciarSesion(datosLogin2);
 		return usuario;
 	}

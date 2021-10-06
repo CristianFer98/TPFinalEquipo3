@@ -19,7 +19,7 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 	}
 
 	@Override
-	public boolean registrarUsuario(Usuario usuario) {
+	public boolean registrarUsuario(Usuario usuario) {//se registra el usuario, cualquiera sea.
 		if (obtenerUsuarioPorEmail(usuario.getEmail()) != null) {
 			return false;
 		} else {

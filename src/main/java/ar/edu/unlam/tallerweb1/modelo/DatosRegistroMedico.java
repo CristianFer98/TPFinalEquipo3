@@ -1,35 +1,32 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Column;
-
-public class DatosRegistroUsuarioComun {
-
+public class DatosRegistroMedico {
 	private String email;
 	
 	private String contrasenia1; //seria el clave
 	
 	private String contrasenia2; //y el repiteclave
-
-	private Integer numeroDeDeTipoDeUsuario = 1;
-
+	
 	//va a ser el admin quien pueda registrar en su cuenta nuevos medicos que accedan.
 	//el unico que va a registrarse como tal. es el usuario comun
 	
-
-	public String getEmail() {
-		return email;
-	}
+	private Integer numeroDeDeTipoDeUsuario;
 	
-	public DatosRegistroUsuarioComun() {
-		
-	}
 
-	public DatosRegistroUsuarioComun(String email, String contrasenia1, String contrasenia2) {
+	public DatosRegistroMedico(String email, String contrasenia1, String contrasenia2) {
 		super();
 		this.email = email;
 		this.contrasenia1 = contrasenia1;
 		this.contrasenia2 = contrasenia2;
 	}
+
+
+	public String getEmail() {
+		return email;
+	}
+	
+
+
 
 	public void setEmail(String email) {
 		this.email = email;
@@ -50,21 +47,21 @@ public class DatosRegistroUsuarioComun {
 	public void setContrasenia2(String contrasenia2) {
 		this.contrasenia2 = contrasenia2;
 	}
-
+	
 	public Integer getNumeroDeDeTipoDeUsuario() {
 		return numeroDeDeTipoDeUsuario;
 	}
 
+
 	public void setNumeroDeDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
 		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
 	}
-	
-	
-	
 
 
 	
 	
 	
 	
+
+
 }

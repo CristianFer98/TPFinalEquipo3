@@ -36,11 +36,11 @@
 
             <div class="inicioSesion">
                 
-                    <form action="registrarse" method="POST" class="formulario">
+                    <form action="loguearse" method="POST" class="formulario">
                         <input type="text" name="usuario" id="usuario" placeholder="Ingrese Usuario" class="inicioSesion_inputs">
                         <input type="password" name="clave" id="clave" placeholder="Ingrese Clave" class="inicioSesion_inputs">
                         <input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Iniciar Sesion" >
-                        <button class="boton_unputs" style="background-color: rgb(231, 54, 0);"><a href="Registrarse" style="color: black; text-decoration: none;">Registrarse</a></button>
+                        <a href="FormularioDeRegistro" style="color: black; text-decoration: none;">Registrarse</a>
                     </form>
 
 

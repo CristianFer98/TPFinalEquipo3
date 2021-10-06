@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.datosDeInicioDeSesion;
+import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
 @Controller
@@ -33,7 +33,7 @@ public class ControladorLogin {
 //lo unico que me va a impedir registrarme es si el usuario no existe. 
 //sin embargo el login es para doctores, admin y usuario comun. Tengo que validar estas posibilidades.
 	@RequestMapping(path = "loguearse", method = RequestMethod.POST)
-	public ModelAndView iniciarSesion(@ModelAttribute("datosDeInicioSesion") datosDeInicioDeSesion datos) {
+	public ModelAndView iniciarSesion(@ModelAttribute("datosDeInicioSesion") DatosDeInicioDeSesion datos) {
 		String mensaje;
 		ModelMap model = new ModelMap();
 		Usuario usuario;

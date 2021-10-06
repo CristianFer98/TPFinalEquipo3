@@ -1,11 +1,11 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-public class datosDeInicioDeSesion {
+public class DatosDeInicioDeSesion {
 
 	private String email;
 	private String contrasenia;
 
-	public datosDeInicioDeSesion(String email2, String clave) {
+	public DatosDeInicioDeSesion(String email2, String clave) {
 		this.email = email2;
 		this.contrasenia = clave;
 	}

@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.datosDeInicioDeSesion;
+import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
 import static org.mockito.Mockito.doThrow;
@@ -37,7 +37,7 @@ public class ControladorRegistroLoginTest {
 			claveLongitudMenorAOcho, claveLongitudMenorAOcho);
 	private DatosRegistroUsuarioComun datosRegistroConDatosCorrectos = new DatosRegistroUsuarioComun(email, clave,
 			repiteClave);
-	private datosDeInicioDeSesion datosLogin = new datosDeInicioDeSesion(email, clave);
+	private DatosDeInicioDeSesion datosLogin = new DatosDeInicioDeSesion(email, clave);
 
 	private Usuario admin = new Usuario("Cristian@Hotmail.com", "123456789", 3);// simulo el usuario que me trae el
 																				// repo.
@@ -121,13 +121,13 @@ public class ControladorRegistroLoginTest {
 
 	}
 	private void thenInicioSesionConUsuarioExistenteAdmin() {
-		assertThat (mav.getViewName()).isEqualTo(("paginaPrincipalAdmin"));
+		assertThat (mav.getViewName()).isEqualTo("paginaPrincipalAdmin");
 		
 	}
 	
 	private void thenInicioSesionConUsuarioExistenteMedico() {
-		mav = controladorLogin.iniciarSesion(datosLogin);
 
+		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalMedicos");
 	}
 	
 	private void thenInicioSesionConUsuarioExistenteComun() {
@@ -141,14 +141,14 @@ public class ControladorRegistroLoginTest {
 
 	}
 
-	private void whenInicioSesionConUnUsuarioInexistente(datosDeInicioDeSesion datosLogin) {
+	private void whenInicioSesionConUnUsuarioInexistente(DatosDeInicioDeSesion datosLogin) {
 		mav = controladorLogin.iniciarSesion(datosLogin);
 
 	}
 
 
 
-	private void whenInicioSesionConUsuarioExistente(datosDeInicioDeSesion datosLogin2) {
+	private void whenInicioSesionConUsuarioExistente(DatosDeInicioDeSesion datosLogin2) {
 		mav = controladorLogin.iniciarSesion(datosLogin2);// el mav tiene la vista, con el mensaje de error si es
 															// necesario y el usuario
 

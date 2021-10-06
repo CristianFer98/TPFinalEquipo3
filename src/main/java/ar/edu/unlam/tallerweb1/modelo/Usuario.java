@@ -23,8 +23,13 @@ public class Usuario {
 
 	@Column
 	private String email;
-
 	
+	@Column
+	private Integer edad;
+
+	@Column
+	private Integer numeroDeDeTipoDeUsuario;
+
 
 	public Usuario(String contrasenia, String email, Integer numeroDeDeTipoDeUsuario) {
 		super();
@@ -34,8 +39,7 @@ public class Usuario {
 	}
 
 	// si es 1 = usuario comun. Si es 2 = medico. Si es 3 = admin.
-	@Column
-	private Integer numeroDeDeTipoDeUsuario;
+	
 
 	public Usuario() {
 

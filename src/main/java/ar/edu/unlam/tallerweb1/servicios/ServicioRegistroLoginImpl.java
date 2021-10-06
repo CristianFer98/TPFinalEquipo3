@@ -8,7 +8,8 @@ import ar.edu.unlam.tallerweb1.controladores.ClavesCortasException;
 import ar.edu.unlam.tallerweb1.controladores.ClavesDistintasException;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.datosDeInicioDeSesion;
+import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
+import ar.edu.unlam.tallerweb1.modelo.DatosRegistroMedico;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 
 @Service
@@ -23,7 +24,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 	}
 	
 	@Override
-	public Usuario iniciarSesion(datosDeInicioDeSesion datosLogin) {
+	public Usuario iniciarSesion(DatosDeInicioDeSesion datosLogin) {
 		//el siguiente metodo puede arrojar una exception
 		Usuario usuario = repositorioRegistroLogin.iniciarSesion(datosLogin.getEmail(),datosLogin.getContrasenia());
 		return usuario;
@@ -31,30 +32,55 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 
 	@Override
 	public boolean registrarUsuario(DatosRegistroUsuarioComun datos) {
-		if (lasClavesSonDistintas(datos) == true) {
+		String clave = datos.getContrasenia1();
+		String repiteClave = datos.getContrasenia2();
+		
+		if (lasClavesSonDistintas(clave, repiteClave)) {
 			throw new ClavesDistintasException();
 		}
 
-		if (lasClavesSonDeMenorLongitud(datos) == true) {
+		if (lasClavesSonDeMenorLongitud(clave)) {
 			throw new ClavesCortasException();
 		}
 		
 		Usuario usuario = new Usuario();
 		usuario.setEmail(datos.getEmail());
 		usuario.setContrasenia(datos.getContrasenia1());
-		usuario.setNumeroDeDeTipoDeUsuario(1); //le asigno el tipo de usuario 1, usuario comun.
 		
 		return repositorioRegistroLogin.registrarUsuario(usuario);
 
 	}
+	
+	@Override
+	public boolean registrarUsuario(DatosRegistroMedico datos) {
+		String clave = datos.getContrasenia1();
+		String repiteClave = datos.getContrasenia2();
+		
+		if (lasClavesSonDistintas(clave, repiteClave)) {
+			throw new ClavesDistintasException();
+		}
 
-	private boolean lasClavesSonDistintas(DatosRegistroUsuarioComun datos) {
-		return !datos.getContrasenia1().equals(datos.getContrasenia2());
+		if (lasClavesSonDeMenorLongitud(clave)) {
+			throw new ClavesCortasException();
+		}
+		
+		Usuario usuario = new Usuario();
+		usuario.setEmail(datos.getEmail());
+		usuario.setContrasenia(datos.getContrasenia1());
+		
+		return repositorioRegistroLogin.registrarUsuario(usuario);
+		
+	}
+
+	private boolean lasClavesSonDistintas(String clave, String repiteclave) {
+		return clave.equals(repiteclave);
 
 	}
 	
-	private boolean lasClavesSonDeMenorLongitud(DatosRegistroUsuarioComun datos) {
-		return datos.getContrasenia1().length() < 8;
+	private boolean lasClavesSonDeMenorLongitud(String contrasenia) {
+		return contrasenia.length() < 8;
 	}
+
+
 
 }
