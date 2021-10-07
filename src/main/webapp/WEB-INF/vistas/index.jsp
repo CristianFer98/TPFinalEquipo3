@@ -8,6 +8,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estilo.css">
     <script src="https://kit.fontawesome.com/f44bbf66b4.js" crossorigin="anonymous"></script>
+    
+    <style>
+    	.btn-ambulancia a{
+    	border: none;
+   		background: tomato;
+    	padding: 15PX;
+    	margin: 5px;
+    	border-radius: 35px;
+    	margin-top: 40px;
+    	
+    	}
+    </style>
 
     <title>Document</title>
 </head>
@@ -34,18 +46,21 @@
 
         <main>
 
-            <div class="inicioSesion">
-                
+            <div class="inicioSesion">            
                     <form action="loguearse" method="POST" class="formulario">
                         <input type="text" name="usuario" id="usuario" placeholder="Ingrese Usuario" class="inicioSesion_inputs">
                         <input type="password" name="clave" id="clave" placeholder="Ingrese Clave" class="inicioSesion_inputs">
                         <input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Iniciar Sesion" >
                         <a href="FormularioDeRegistro" style="color: black; text-decoration: none;">Registrarse</a>
                     </form>
-
-
             </div>
         </main>
+        
+        <div class="btn-ambulancia">
+        	<a href="centralAmbulancia">SOLICITAR AMBULANCIA</a>
+        </div>
+        
+        
 
         <footer>
             

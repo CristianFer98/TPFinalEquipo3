@@ -27,13 +27,13 @@ public class ControladorMuestraHome {
 //	}
 	
 	
-
-	@RequestMapping(path="/", method = RequestMethod.GET)
-	public ModelAndView mostrarHome () {
-		
-	return new ModelAndView("index");		
-	}
-	
+//
+//	@RequestMapping(path="/")
+//	public ModelAndView mostrarHome () {
+//		
+//	return new ModelAndView("index");		
+//	}
+//	
 	@RequestMapping(path="/registrarse", method = RequestMethod.GET)
 	public ModelAndView mostrarRegistrarse () {
 	ModelMap modelo = new ModelMap(); 	
