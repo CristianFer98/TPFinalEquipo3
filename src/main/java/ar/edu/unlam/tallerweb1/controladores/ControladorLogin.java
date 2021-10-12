@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -39,7 +41,7 @@ public class ControladorLogin {
 //lo unico que me va a impedir registrarme es si el usuario no existe. 
 //sin embargo el login es para doctores, admin y usuario comun. Tengo que validar estas posibilidades.
 	@RequestMapping(path = "loguearse", method = RequestMethod.POST)
-	public ModelAndView iniciarSesion(@ModelAttribute("datosDeInicioSesion") DatosDeInicioDeSesion datos) {
+	public ModelAndView iniciarSesion(@ModelAttribute("datosDeInicioSesion") DatosDeInicioDeSesion datos, HttpServletRequest req) {
 		String mensaje;
 		ModelMap model = new ModelMap();
 		Usuario usuario = new Usuario();
@@ -53,13 +55,15 @@ public class ControladorLogin {
 			return new ModelAndView("index", model);
 		}
 
-		return  comprobarTipoUsuario(usuario);// devuelvo el modelAndView dependiendo el tipo de Usuario.
+		return  comprobarTipoUsuario(usuario, req);// devuelvo el modelAndView dependiendo el tipo de Usuario.
 
 	}
 
-	private ModelAndView comprobarTipoUsuario(Usuario usuario) {
+	private ModelAndView comprobarTipoUsuario(Usuario usuario, HttpServletRequest req) {
 		ModelMap model = new ModelMap();
 		if (usuario != null) {
+			req.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
+
 			if (usuario.getNumeroDeDeTipoDeUsuario() == 1) {
 				model.put("usuario", usuario);
 				return new ModelAndView("paginaPrincipal", model);
