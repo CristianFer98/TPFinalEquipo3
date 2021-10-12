@@ -9,6 +9,10 @@ public class DatosDeInicioDeSesion {
 		this.email = email2;
 		this.contrasenia = clave;
 	}
+	
+	public DatosDeInicioDeSesion() {
+		
+	}
 
 	public String getEmail() {
 		return email;

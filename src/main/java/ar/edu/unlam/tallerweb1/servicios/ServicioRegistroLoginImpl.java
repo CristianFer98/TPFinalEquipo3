@@ -6,81 +6,103 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.controladores.ClavesCortasException;
 import ar.edu.unlam.tallerweb1.controladores.ClavesDistintasException;
+import ar.edu.unlam.tallerweb1.controladores.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroMedico;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
+import ar.edu.unlam.tallerweb1.repositorios.emailExistenteException;
 
 @Service
 @Transactional
 public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 
 	RepositorioRegistroLogin repositorioRegistroLogin;
-	
+
 	@Autowired
 	public ServicioRegistroLoginImpl(RepositorioRegistroLogin repositorioRegistroLogin) {
 		this.repositorioRegistroLogin = repositorioRegistroLogin;
 	}
-	
+
 	@Override
 	public Usuario iniciarSesion(DatosDeInicioDeSesion datosLogin) {
-		//el siguiente metodo puede arrojar una exception
-		Usuario usuario = repositorioRegistroLogin.iniciarSesion(datosLogin.getEmail(),datosLogin.getContrasenia());
+		Usuario usuario;
+
+		if (repositorioRegistroLogin.iniciarSesion(datosLogin.getEmail(), datosLogin.getContrasenia()) == null) {// no encuentra ninguna
+			throw new UsuarioInexistenteException();
+		} else {
+			usuario = repositorioRegistroLogin.iniciarSesion(datosLogin.getEmail(), datosLogin.getContrasenia());
+		}
+
 		return usuario;
 	}
 
 	@Override
-	public boolean registrarUsuario(DatosRegistroUsuarioComun datos) {
+	public Integer registrarUsuario(DatosRegistroUsuarioComun datos) throws emailExistenteException {
 		String clave = datos.getContrasenia1();
 		String repiteClave = datos.getContrasenia2();
-		
-		if (lasClavesSonDistintas(clave, repiteClave)) {
+		Integer idRecibida;
+
+		if (lasClavesSonDistintas(clave, repiteClave) == true) {
 			throw new ClavesDistintasException();
 		}
 
-		if (lasClavesSonDeMenorLongitud(clave)) {
+		if (lasClavesSonDeMenorLongitud(clave) == true) {
 			throw new ClavesCortasException();
 		}
-		
+
 		Usuario usuario = new Usuario();
 		usuario.setEmail(datos.getEmail());
 		usuario.setContrasenia(datos.getContrasenia1());
-		
-		return repositorioRegistroLogin.registrarUsuario(usuario);
+		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeDeTipoDeUsuario());
+		usuario.setNombre(datos.getNombre());
+		usuario.setEdad(datos.getEdad());
+
+		idRecibida = repositorioRegistroLogin.registrarUsuario(usuario);
+		return idRecibida;
 
 	}
-	
+
 	@Override
-	public boolean registrarUsuario(DatosRegistroMedico datos) {
+	public Integer registrarUsuario(DatosRegistroMedico datos)throws emailExistenteException {
 		String clave = datos.getContrasenia1();
 		String repiteClave = datos.getContrasenia2();
-		
-		if (lasClavesSonDistintas(clave, repiteClave)) {
+		Integer idRecibida;
+
+		if (lasClavesSonDistintas(clave, repiteClave) == true) {
 			throw new ClavesDistintasException();
 		}
 
-		if (lasClavesSonDeMenorLongitud(clave)) {
+		if (lasClavesSonDeMenorLongitud(clave) == true) {
 			throw new ClavesCortasException();
 		}
-		
+
 		Usuario usuario = new Usuario();
 		usuario.setEmail(datos.getEmail());
 		usuario.setContrasenia(datos.getContrasenia1());
+		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeDeTipoDeUsuario());
+		usuario.setEdad(datos.getEdad());
+		usuario.setNombre(datos.getNombre());
 		
-		return repositorioRegistroLogin.registrarUsuario(usuario);
-		
+		idRecibida = repositorioRegistroLogin.registrarUsuario(usuario);
+		return idRecibida;
+
 	}
 
 	private boolean lasClavesSonDistintas(String clave, String repiteclave) {
-		return clave.equals(repiteclave);
+		if (!clave.equals(repiteclave)) {
+			return true;
+		}
+		return false;
 
 	}
-	
+
 	private boolean lasClavesSonDeMenorLongitud(String contrasenia) {
-		return contrasenia.length() < 8;
+		if (contrasenia.length() < 8) {
+			return true;
+		}
+		return false;
 	}
-
-
 
 }

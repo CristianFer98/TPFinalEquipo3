@@ -26,7 +26,7 @@
 <body>
         <header>
             <div class="header_titulo">
-            <img src="css/hospital.png" alt="logoHospital" id="logo"> Hospital Andres Borgeat
+            <img src="css/hospital.png" alt="logoHospital" id="logo"> Hospital Florencia Martin
             </div>
                     
             <div class="buscador">
@@ -46,12 +46,21 @@
 
         <main>
 
+<<<<<<< HEAD
             <div class="inicioSesion">            
                     <form action="loguearse" method="POST" class="formulario">
                         <input type="text" name="usuario" id="usuario" placeholder="Ingrese Usuario" class="inicioSesion_inputs">
                         <input type="password" name="clave" id="clave" placeholder="Ingrese Clave" class="inicioSesion_inputs">
+=======
+            <div class="inicioSesion">
+                
+                    <form action="loguearse" method="POST" class="formulario"  modelAttribute="datosDeInicioSesion">
+                        <input type="text" path="email" name="email" id="email" placeholder="Ingrese Usuario" class="inicioSesion_inputs" required>
+                        <input type="password" path ="contrasenia" name="contrasenia" id="contrasenia" placeholder="Ingrese Clave" class="inicioSesion_inputs" required>
+>>>>>>> main
                         <input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Iniciar Sesion" >
-                        <a href="FormularioDeRegistro" style="color: black; text-decoration: none;">Registrarse</a>
+                        <a href="registro" style="color: black; text-decoration: none;">Registrarse</a>
+                        ${error}
                     </form>
             </div>
         </main>

@@ -6,6 +6,10 @@ public class DatosRegistroUsuarioComun {
 
 	private String email;
 	
+	private String nombre; //y el repiteclave
+
+	private Integer edad;
+	
 	private String contrasenia1; //seria el clave
 	
 	private String contrasenia2; //y el repiteclave
@@ -58,6 +62,24 @@ public class DatosRegistroUsuarioComun {
 	public void setNumeroDeDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
 		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
 	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public Integer getEdad() {
+		return edad;
+	}
+
+	public void setEdad(Integer edad) {
+		this.edad = edad;
+	}
+	
+	
 	
 	
 	

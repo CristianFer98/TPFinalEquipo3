@@ -35,11 +35,11 @@
 
         <main>
 
-        ${usuario.nombre}:   Bienvenido a la Pagina Principal de Pacientes.  
+        ${usuario.nombre}: Bienvenido a la Pagina De Medicos
+ 		
  
  
-
-
+ 		
         </main>
 
         <footer>

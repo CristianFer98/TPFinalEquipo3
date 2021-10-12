@@ -29,6 +29,12 @@ public class ControladorLogin {
 		return new ModelAndView("index"); // simplemente muestro el index
 
 	}
+	
+	@RequestMapping(path = "/index", method = RequestMethod.GET)
+	public ModelAndView mostrarHome2() {
+		return new ModelAndView("index"); // simplemente muestro el index
+
+	}
 
 //lo unico que me va a impedir registrarme es si el usuario no existe. 
 //sin embargo el login es para doctores, admin y usuario comun. Tengo que validar estas posibilidades.
@@ -36,18 +42,18 @@ public class ControladorLogin {
 	public ModelAndView iniciarSesion(@ModelAttribute("datosDeInicioSesion") DatosDeInicioDeSesion datos) {
 		String mensaje;
 		ModelMap model = new ModelMap();
-		Usuario usuario;
+		Usuario usuario = new Usuario();
 		
 
 		try {
-			usuario = servicio.iniciarSesion(datos);// cuando inicio sesion traigo un usuario
+			 usuario = servicio.iniciarSesion(datos);// cuando inicio sesion traigo un usuario
 		} catch (UsuarioInexistenteException e) { // valido que exista
 			mensaje = "Usuario Inexistente";
 			model.put("error", mensaje);
 			return new ModelAndView("index", model);
 		}
 
-		return comprobarTipoUsuario(usuario);// devuelvo el modelAndView dependiendo el tipo de Usuario.
+		return  comprobarTipoUsuario(usuario);// devuelvo el modelAndView dependiendo el tipo de Usuario.
 
 	}
 
@@ -59,7 +65,7 @@ public class ControladorLogin {
 				return new ModelAndView("paginaPrincipal", model);
 			} else if (usuario.getNumeroDeDeTipoDeUsuario() == 2) {
 				model.put("usuario", usuario);
-
+				
 				return new ModelAndView("paginaPrincipalMedicos", model);
 			} else if (usuario.getNumeroDeDeTipoDeUsuario() == 3) {
 				model.put("usuario", usuario);

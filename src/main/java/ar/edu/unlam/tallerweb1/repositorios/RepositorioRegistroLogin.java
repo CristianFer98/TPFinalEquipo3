@@ -5,7 +5,7 @@ import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface RepositorioRegistroLogin {
 	
-	boolean registrarUsuario(Usuario usuario);
+	Integer registrarUsuario(Usuario usuario);
 	Usuario obtenerUsuarioPorEmail(String email);
 	Usuario iniciarSesion(String email, String contra);
 
