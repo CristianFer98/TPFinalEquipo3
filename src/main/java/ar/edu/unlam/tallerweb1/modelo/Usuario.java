@@ -13,6 +13,8 @@ public class Usuario {
 	// va a ser de 3 tipos. cliente, medico y admin. Por el momento
 	// la forma de identificarlos va a ser con un valor booleano ya que no
 	// sabemos como joinear tablas para traer su valor especifico.
+	// hay campos compartidos, la foto, la especialidad, etc. Son campos que solo los medicos
+	// van a ocupar. Vi innesesario hacer un mapeo entre tablas para esto.
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +25,18 @@ public class Usuario {
 	
 	@Column
 	private String nombre;
+	
+	@Column
+	private String especialidad;
+	
+	@Column 
+	private String telefono;
+	
+	@Column
+	private String foto;
+	
+	@Column
+	private String paginaPersonal;
 
 
 	@Column
@@ -97,6 +111,39 @@ public class Usuario {
 	public void setEdad(Integer edad) {
 		this.edad = edad;
 	}
+
+	public String getEspecialidad() {
+		return especialidad;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public String getTelefono() {
+		return telefono;
+	}
+
+	public void setTelefono(String telefono) {
+		this.telefono = telefono;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
+	public String getPaginaPersonal() {
+		return paginaPersonal;
+	}
+
+	public void setPaginaPersonal(String paginaPersonal) {
+		this.paginaPersonal = paginaPersonal;
+	}
+	
 	
 	
 
