@@ -3,7 +3,7 @@
 
         <main>
 
-        ${usuario.nombre}: Bienvenido a la Pagina Administradora
+        ${sessionScope.get("nombre")}: Bienvenido a la Pagina Administradora
  		
  		<div class="registro">
                 

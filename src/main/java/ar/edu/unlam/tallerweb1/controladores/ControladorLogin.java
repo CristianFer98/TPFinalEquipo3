@@ -63,6 +63,7 @@ public class ControladorLogin {
 		ModelMap model = new ModelMap();
 		if (usuario != null) {
 			req.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
+			req.getSession().setAttribute("nombre", usuario.getNombre());
 
 			if (usuario.getNumeroDeDeTipoDeUsuario() == 1) {
 				model.put("usuario", usuario);

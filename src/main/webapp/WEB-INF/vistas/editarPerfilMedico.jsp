@@ -17,8 +17,7 @@
 						<input type="text" path="paginaPersonal" name="paginaPersonal" id="PaginaPersonal" placeholder="Ingrese su sitio web" class="inicioSesion_inputs">
 						<input type="file" path="foto" name="foto" id="foto" class="inicioSesion_inputs">         
 						<input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Cargar datos" >
-						<img style='display:block; width:100px;height:100px;' id='base64image'                 
-						 src='data:image/jpeg;base64, ${exito}' />						  
+											  
 						<a href="MyPerfil">Ir a mi perfil</a>                 	
                     	
                     </form>
