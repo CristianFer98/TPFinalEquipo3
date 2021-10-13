@@ -32,8 +32,8 @@ public class ControladorAmbulancias {
 		Ambulancia am2= new Ambulancia("CCC222",true);
 		
 		
-		servicioAmbulacia.agregarAmbulancia(am1);
-		servicioAmbulacia.agregarAmbulancia(am2);
+//		servicioAmbulacia.agregarAmbulancia(am1);
+//		servicioAmbulacia.agregarAmbulancia(am2);
 		
 		List <Ambulancia> listaAmbulancias= servicioAmbulacia.obtenerAmbulanciasDisponibles();
 		int cantidad= listaAmbulancias.size();

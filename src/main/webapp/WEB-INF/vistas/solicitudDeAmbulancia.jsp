@@ -76,7 +76,11 @@
             	<span>Asegurate que sea la ambulancia correcta para evitar incidentes</span>
         	</div>
         	<div class="soli-btns">
-        		<button class="btn-canelar">CANCELAR</button>
+        	
+        	<form action="canceloAmbulancia">
+        		<input type="submit" value="CANCELAR">
+        	</form>
+        		
         	</div>
             
         </div>
