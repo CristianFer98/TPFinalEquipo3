@@ -72,14 +72,19 @@
         <div class="solicitud-container">
         	<div class="soli-info">
         		<span>Tu ambulancia llegara lo mas pronto posible</span>
-            	<span>LA PATENTE DE SU AMBULANCIA ES= <span id="patente"> ${amb.getPatenteAmbulancia()} </span></span>
+        		<span>Nombre: ${soli.getUser().getNombre()} </span>
+        		<span>Direccion: ${soli.getDireccion()}</span>
+            	<span>LA PATENTE DE SU AMBULANCIA ES= <span id="patente"> ${soli.getAmbulancia().getPatenteAmbulancia()} </span></span>
             	<span>Asegurate que sea la ambulancia correcta para evitar incidentes</span>
         	</div>
         	<div class="soli-btns">
         	
         	<form action="canceloAmbulancia">
-        		<input type="submit" value="CANCELAR">
+        	 	<input type="text" name="ambulanciaCancelada" value="${soli.getAmbulancia().getPatenteAmbulancia()}" style="display:none">
+        		<button type="submit">CANCELAR</button>
         	</form>
+        	
+        	
         		
         	</div>
             

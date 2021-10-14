@@ -18,9 +18,6 @@
             </div>
         </main>
         
-        <div class="btn-ambulancia">
-        	<a href="centralAmbulancia">SOLICITAR AMBULANCIA</a>
-        </div>
         
         
 

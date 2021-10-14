@@ -2,18 +2,12 @@ package ar.edu.unlam.tallerweb1.modelo;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Ambulancia {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idAmbulacia;
-	
-	@Column
 	private String patenteAmbulancia;
 	
 	@Column
@@ -29,13 +23,7 @@ public class Ambulancia {
 		this.disponible = disponible;
 	}
 
-	public Integer getIdAmbulacia() {
-		return idAmbulacia;
-	}
 
-	public void setIdAmbulacia(Integer idAmbulacia) {
-		this.idAmbulacia = idAmbulacia;
-	}
 
 	public String getPatenteAmbulancia() {
 		return patenteAmbulancia;

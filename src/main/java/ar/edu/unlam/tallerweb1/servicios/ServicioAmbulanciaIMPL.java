@@ -6,7 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
-import ar.edu.unlam.tallerweb1.repositorio.RepositorioAmbulancia;
+import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
+import ar.edu.unlam.tallerweb1.repositorios.RepositorioAmbulancia;
 
 @Service()
 public class ServicioAmbulanciaIMPL implements ServicioAmbulancia {
@@ -37,6 +38,23 @@ public class ServicioAmbulanciaIMPL implements ServicioAmbulancia {
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public Ambulancia obtenerAmbulanciaPorPatente(String patenteAmbulancia) {
+		return repositorioAmbulancia.buscarAmbulancia(patenteAmbulancia);	
+	}
+
+	@Override
+	public void guardarRegistroSolicitudAmbulancia(SolicitudUsuarioAmbulancia soli) {
+		repositorioAmbulancia.guardarRegistro(soli);
+		
+	}
+
+	@Override
+	public void cambiarEstadoAmbulancia(Ambulancia amb, Boolean bol) {
+		repositorioAmbulancia.actualizarEstadoAmbulancia(amb, bol);
+		
 	}
 	
 	

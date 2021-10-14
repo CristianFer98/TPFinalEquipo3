@@ -1,12 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="../../css/estilosSolicitud.css">
-<title>Central Ambulancia</title>
-</head>
+
 
 <style>
 	*{
@@ -48,24 +40,21 @@
 
 
 
-
 <body>
      
      <div class="info-amb">
      	<span class="info-content">LA CANTIDAD DE AMBULANCIAS EN EL HOSPITAL ES DE:  <span>${cantidad}</span> </span> 
      	
-     	<form action="solicitudPagina">   	
+     	<form action="solicitudPagina" modelAttribute="datosSolicitudAmbulancia">
+     	
+     		<div>
+     		Su direccion:<input type="text" path="direccion" name="direccion" required>	
+     		</div>
+     	   	
      	   <button Type="Submit"/> ${key} </button>
         </form>
 	
      </div>
-     
-     
-     
-     
-     
-     
-     
-
 </body>
-</html>
+
+

@@ -19,8 +19,14 @@
                         <h4 style="color:green">${mensaje}</h4> 
                        
                     </form>
-                  
-
+            </div>
+            
+            <div class="ambulancias-control">
+            		<form action="registrarAmbulancia">
+            		 Patente: <input type="text" name="patente">
+            		 <input type="submit" value="DAR DE ALTA AMBULANCIA">
+            		</form>                 
+                   ${msj}   
             </div>
  
  		

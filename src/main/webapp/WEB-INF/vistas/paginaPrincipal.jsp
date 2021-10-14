@@ -5,7 +5,8 @@
 
         ${usuario.nombre}:   Bienvenido a la Pagina Principal de Pacientes.  
  
- 
+ 		
+ 		<a href="centralAmbulancia">SOLICITAR AMBULANCIA</a>
 
 
         </main>
