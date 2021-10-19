@@ -19,19 +19,24 @@ import ar.edu.unlam.tallerweb1.modelo.DatosSolicitudAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAmbulancia;
+import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
 @Controller
 public class ControladorAmbulancias {
 	private ServicioAmbulancia servicioAmbulacia;
+	private ServicioRegistroLogin servicioRegistroLogin;
+	
+	
 
 	@Autowired
-	public ControladorAmbulancias(ServicioAmbulancia servicioAmb) {
+	public ControladorAmbulancias(ServicioAmbulancia servicioAmb, ServicioRegistroLogin servicioRegistroLogin ) {
 		this.servicioAmbulacia = servicioAmb;
+		this.servicioRegistroLogin = servicioRegistroLogin;
 	}	
 	
 
 	
-	@RequestMapping(path = "/centralAmbulancia")
+	@RequestMapping(path = "centralAmbulancia")
 	public ModelAndView mostrarListaAmbulancias() {
 		ModelMap modelo = new ModelMap();
 		
@@ -40,7 +45,7 @@ public class ControladorAmbulancias {
 		
 		if (cantidad == 0) {
 			modelo.put("cantidad", " No hay ambulancias disponibles por el momento");
-			return new ModelAndView("cancelacionAmbulancia", modelo);
+			//return new ModelAndView("cancelacionAmbulancia", modelo);
 		}else {
 			modelo.put("cantidad", cantidad);
 			modelo.put("key", "SOLICITAR");
@@ -56,49 +61,40 @@ public class ControladorAmbulancias {
 	public ModelAndView mostrarSolucitudDeAmbulanciaEnCurso(@ModelAttribute("datosSolicitudAmbulancia") DatosSolicitudAmbulancia solicitud
 															,HttpServletRequest req) {
 		ModelMap modelo = new ModelMap();
-		
-		Usuario usuario= new Usuario();
-		
-		String nombre= (String) req.getSession().getAttribute("nombre");
-		
-		usuario.setNombre(nombre);
-		
+				
+		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+		Usuario usuario= servicioRegistroLogin.obtenerUsuarioPorId(id);
+					
 		Ambulancia amb= servicioAmbulacia.obtenerPrimerAmbulanciaDisponible();
 		servicioAmbulacia.cambiarEstadoAmbulancia(amb, false);
 		
 		solicitud.setAmbulancia(amb);
 		solicitud.setUser(usuario);
 		
-		SolicitudUsuarioAmbulancia sol = new SolicitudUsuarioAmbulancia();
-		sol.setAmbulanciaEnCamino(solicitud.getAmbulancia());
-		sol.setDireccion(solicitud.getDireccion());
-		sol.setUsuarioSolicitante(usuario);	
+		SolicitudUsuarioAmbulancia sol = new SolicitudUsuarioAmbulancia(solicitud);
 		servicioAmbulacia.guardarRegistroSolicitudAmbulancia(sol);
 		
-		modelo.put("soli", solicitud);
-		
+		modelo.put("soli", sol);
+		modelo.put("mail", id);
+	
 		return new ModelAndView("solicitudDeAmbulancia", modelo);
 	}
+	
 	
 	@RequestMapping(path = "registrarAmbulancia")
 	public ModelAndView adminPuedeREIngresarAmbulancia(@RequestParam("patente") String patenteAmbulancia) {
 		ModelMap modelo= new ModelMap();
 		Ambulancia amb= servicioAmbulacia.obtenerAmbulanciaPorPatente(patenteAmbulancia);
-		String msj;
 		
-		if (amb == null) {
-			Ambulancia amb2= new Ambulancia(patenteAmbulancia, true);
-			servicioAmbulacia.agregarAmbulancia(amb2);
-			msj= "Ambulancia " + patenteAmbulancia + " Creada";
-		}else {
-			servicioAmbulacia.cambiarEstadoAmbulancia(amb, true);
-			msj= "Ambulancia " + patenteAmbulancia + " Disponible Nuevamente";
-		}
+		String msj= servicioAmbulacia.reIngresoAmbulancia(amb, patenteAmbulancia);
 		
 		modelo.put("msj", msj);
 		
 		return new ModelAndView("paginaPrincipalAdmin", modelo);
 	}
+	
+	
+	
 
 	@RequestMapping(path = "canceloAmbulancia")
 	public ModelAndView cancelarAmbulancia(@RequestParam("ambulanciaCancelada") String patenteAmbulancia) {

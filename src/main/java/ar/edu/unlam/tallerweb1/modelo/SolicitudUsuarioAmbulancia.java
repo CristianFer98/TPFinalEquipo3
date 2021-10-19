@@ -19,16 +19,22 @@ public class SolicitudUsuarioAmbulancia {
 	private String direccion;
 	
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne()
 	@JoinColumn(name="idUsuario")
 	private Usuario usuarioSolicitante;
 
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne()
 	@JoinColumn(name="patenteAmbulancia")
 	private Ambulancia ambulanciaEnCamino;
 	
 
 	public SolicitudUsuarioAmbulancia() {
+	}
+
+	public SolicitudUsuarioAmbulancia(DatosSolicitudAmbulancia solicitud) {
+		this.direccion= solicitud.getDireccion();
+		this.usuarioSolicitante=solicitud.getUser();
+		this.ambulanciaEnCamino=solicitud.getAmbulancia();
 	}
 
 	public Integer getIdSolicitud() {

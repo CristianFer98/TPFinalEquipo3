@@ -14,6 +14,7 @@ public interface ServicioAmbulancia {
 	Ambulancia obtenerAmbulanciaPorPatente(String patenteAmbulancia);
 	void guardarRegistroSolicitudAmbulancia(SolicitudUsuarioAmbulancia soli);
 	void cambiarEstadoAmbulancia(Ambulancia amb, Boolean bol);
+	String reIngresoAmbulancia(Ambulancia amb, String patenteAmbulancia);
 	
 
 }

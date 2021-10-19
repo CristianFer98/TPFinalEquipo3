@@ -42,23 +42,24 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 
 
 	@Override
-	public void agregarAmbulancia(Ambulancia ambulancia) {
+	public Integer agregarAmbulancia(Ambulancia ambulancia) {
 		sessionFactory.getCurrentSession().save(ambulancia);
+		return ambulancia.getIdAmbulancia();
 		
 	}
 
 
 	@Override
 	public void guardarRegistro(SolicitudUsuarioAmbulancia soli) {
-		sessionFactory.getCurrentSession().save(soli);
-		
+		sessionFactory.getCurrentSession().save(soli);	
 	}
 
 
 	@Override
 	public void actualizarEstadoAmbulancia(Ambulancia ambulancia, Boolean bol) {
-		Ambulancia miAmb=sessionFactory.getCurrentSession().get(Ambulancia.class, ambulancia.getPatenteAmbulancia());
+		Ambulancia miAmb=sessionFactory.getCurrentSession().get(Ambulancia.class, ambulancia.getIdAmbulancia());
 		miAmb.setDisponible(bol);
+		sessionFactory.getCurrentSession().save(miAmb);
 		
 	}
 

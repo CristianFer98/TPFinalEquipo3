@@ -34,7 +34,6 @@ public class ServicioRegistroTest {
 		servicioRegistroLogin = new ServicioRegistroLoginImpl(repositorioRegistroLogin);
 		inscribio = false;
 	}
-	
 //________________________________________________________________________________________________________________//	
 
 	@Test(expected = ClavesDistintasException.class)

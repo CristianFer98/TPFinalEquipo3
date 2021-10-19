@@ -7,7 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
 
 public interface RepositorioAmbulancia {
 	Ambulancia buscarAmbulancia(String patente);
-	void agregarAmbulancia(Ambulancia ambulancia);
+	Integer agregarAmbulancia(Ambulancia ambulancia);
 	List <Ambulancia> obtenerListaAmbulanciaDisponibles();
 	void guardarRegistro(SolicitudUsuarioAmbulancia soli);
 	void actualizarEstadoAmbulancia(Ambulancia ambulancia, Boolean bol);

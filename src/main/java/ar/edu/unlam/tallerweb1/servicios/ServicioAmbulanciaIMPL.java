@@ -56,6 +56,22 @@ public class ServicioAmbulanciaIMPL implements ServicioAmbulancia {
 		repositorioAmbulancia.actualizarEstadoAmbulancia(amb, bol);
 		
 	}
+
+	@Override
+	public String reIngresoAmbulancia(Ambulancia amb, String patente) {
+		String msj;
+		
+		if (amb == null) {
+			Ambulancia amb2= new Ambulancia(patente, true);
+			agregarAmbulancia(amb2);
+			msj= "Ambulancia " + amb2.getPatenteAmbulancia() + " Creada";
+		}else {
+			cambiarEstadoAmbulancia(amb, true);
+			msj= "Ambulancia " + amb.getPatenteAmbulancia() + " Disponible Nuevamente";
+		}
+		
+		return msj;
+	}
 	
 	
 
