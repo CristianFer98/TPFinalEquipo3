@@ -4,6 +4,7 @@ import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
 import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface RepositorioAmbulancia {
 	Ambulancia buscarAmbulancia(String patente);
@@ -11,6 +12,8 @@ public interface RepositorioAmbulancia {
 	List <Ambulancia> obtenerListaAmbulanciaDisponibles();
 	void guardarRegistro(SolicitudUsuarioAmbulancia soli);
 	void actualizarEstadoAmbulancia(Ambulancia ambulancia, Boolean bol);
+	List<SolicitudUsuarioAmbulancia> obtenerListaDeAmbulanciasQuePidioUsuario(Usuario user);
+	SolicitudUsuarioAmbulancia obtenerSolicitudDeAmbulanciaPORID(Integer id);
 	
 
 }

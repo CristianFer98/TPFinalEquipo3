@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
+import ar.edu.unlam.tallerweb1.modelo.DatosSolicitudAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioAmbulancia;
 
 @Service()
@@ -71,6 +73,71 @@ public class ServicioAmbulanciaIMPL implements ServicioAmbulancia {
 		}
 		
 		return msj;
+	}
+
+	@Override
+	public Integer pedirAmbulancia(DatosSolicitudAmbulancia datos){
+		Ambulancia amb= obtenerPrimerAmbulanciaDisponible();
+		Boolean check= verificarSiUsuarioPidioAmbulancia(datos.getUser());
+		
+		if (amb == null) {
+			throw new NoHayAmbulanciasDisponiblesException();
+		}
+		if (check == true) {
+			throw new UsuarioYaPidioAmbulanciaExeception();
+		}
+		
+		cambiarEstadoAmbulancia(amb, false);
+		datos.setAmbulancia(amb);
+		SolicitudUsuarioAmbulancia soli = new SolicitudUsuarioAmbulancia(datos);
+		soli.setAtendido(false);
+		
+		repositorioAmbulancia.guardarRegistro(soli);
+		
+		return soli.getIdSolicitud();		
+	}
+
+	private Boolean verificarSiUsuarioPidioAmbulancia(Usuario user) {
+		List <SolicitudUsuarioAmbulancia> listasDeAmbulanciasDelUsuario = repositorioAmbulancia.obtenerListaDeAmbulanciasQuePidioUsuario(user);
+		
+		for (SolicitudUsuarioAmbulancia i : listasDeAmbulanciasDelUsuario) {
+			if (i.getAtendido() == false) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
+
+	@Override
+	public SolicitudUsuarioAmbulancia obtenerSolicitudPORID(Integer id) {
+		return repositorioAmbulancia.obtenerSolicitudDeAmbulanciaPORID(id);
+	}
+
+	@Override
+	public List<SolicitudUsuarioAmbulancia> obtenerListaDeAmbulanciasQuePidioUsuario(Usuario user) {
+		return repositorioAmbulancia.obtenerListaDeAmbulanciasQuePidioUsuario(user);
+	}
+
+	@Override
+	public void atenderConsulta(SolicitudUsuarioAmbulancia soli) {
+		Integer idSolicitud = soli.getIdSolicitud();
+		soli = repositorioAmbulancia.obtenerSolicitudDeAmbulanciaPORID(idSolicitud);	
+		soli.setAtendido(true);	
+		
+	}
+
+	@Override
+	public SolicitudUsuarioAmbulancia obtenerConsultaSinAtenderPorUsuario(Usuario user) {
+		List <SolicitudUsuarioAmbulancia> listasDeAmbulanciasDelUsuario = repositorioAmbulancia.obtenerListaDeAmbulanciasQuePidioUsuario(user);
+		
+		for (SolicitudUsuarioAmbulancia i : listasDeAmbulanciasDelUsuario) {
+			if (i.getAtendido() == false) {
+				return i;
+			}
+		}
+		
+		return null;
 	}
 	
 	

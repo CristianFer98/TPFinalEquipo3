@@ -40,19 +40,8 @@ public class ControladorAmbulancias {
 	public ModelAndView mostrarListaAmbulancias() {
 		ModelMap modelo = new ModelMap();
 		
-		List <Ambulancia> listaAmbulancias= servicioAmbulacia.obtenerAmbulanciasDisponibles();
-		int cantidad= listaAmbulancias.size();
 		
-		if (cantidad == 0) {
-			modelo.put("cantidad", " No hay ambulancias disponibles por el momento");
-			//return new ModelAndView("cancelacionAmbulancia", modelo);
-		}else {
-			modelo.put("cantidad", cantidad);
-			modelo.put("key", "SOLICITAR");
-		}
-		
-		
-		
+		modelo.put("key", "SOLICITAR");
 		return new ModelAndView("centralAmbulancia", modelo);
 	}
 
@@ -64,18 +53,12 @@ public class ControladorAmbulancias {
 				
 		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
 		Usuario usuario= servicioRegistroLogin.obtenerUsuarioPorId(id);
-					
-		Ambulancia amb= servicioAmbulacia.obtenerPrimerAmbulanciaDisponible();
-		servicioAmbulacia.cambiarEstadoAmbulancia(amb, false);
+		solicitud.setUser(usuario);		
 		
-		solicitud.setAmbulancia(amb);
-		solicitud.setUser(usuario);
+		Integer idSolicitud= servicioAmbulacia.pedirAmbulancia(solicitud);
+		SolicitudUsuarioAmbulancia soli = servicioAmbulacia.obtenerSolicitudPORID(idSolicitud);
 		
-		SolicitudUsuarioAmbulancia sol = new SolicitudUsuarioAmbulancia(solicitud);
-		servicioAmbulacia.guardarRegistroSolicitudAmbulancia(sol);
-		
-		modelo.put("soli", sol);
-		modelo.put("mail", id);
+		modelo.put("soli", soli);
 	
 		return new ModelAndView("solicitudDeAmbulancia", modelo);
 	}
@@ -92,6 +75,34 @@ public class ControladorAmbulancias {
 		
 		return new ModelAndView("paginaPrincipalAdmin", modelo);
 	}
+	
+	@RequestMapping(path = "activarUsuario")
+	public ModelAndView adminPuedeAtenderConsulta(@RequestParam("email") String emailUsuario) {
+		ModelMap modelo= new ModelMap();
+		
+		String msj;
+		
+		Usuario user= servicioRegistroLogin.obtenerUsuarioPorMail(emailUsuario);		
+		if (user == null) {
+			msj="Usuario Inexistente";
+			modelo.put("msj", msj);
+			return new ModelAndView("paginaPrincipalAdmin", modelo);
+		}
+		
+		SolicitudUsuarioAmbulancia soli = servicioAmbulacia.obtenerConsultaSinAtenderPorUsuario(user);
+		if (soli == null) {
+			msj="Usuario sin solicitud sin atender";
+			modelo.put("msj", msj);
+			return new ModelAndView("paginaPrincipalAdmin", modelo);
+		}
+		
+		servicioAmbulacia.atenderConsulta(soli);
+		msj= "Estado consulta cambiado con exito!";
+		modelo.put("msj", msj);
+		return new ModelAndView("paginaPrincipalAdmin", modelo);
+	}
+	
+	
 	
 	
 	

@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
 import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository
 @Transactional
@@ -61,6 +62,26 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 		miAmb.setDisponible(bol);
 		sessionFactory.getCurrentSession().save(miAmb);
 		
+	}
+
+
+	@Override
+	public List<SolicitudUsuarioAmbulancia> obtenerListaDeAmbulanciasQuePidioUsuario(Usuario user) {
+		return sessionFactory
+			      .getCurrentSession()
+				  .createCriteria(SolicitudUsuarioAmbulancia.class)
+				  .add(Restrictions.eq("usuarioSolicitante", user))
+				  .list();	
+	}
+
+
+	@Override
+	public SolicitudUsuarioAmbulancia obtenerSolicitudDeAmbulanciaPORID(Integer id) {
+		return (SolicitudUsuarioAmbulancia) sessionFactory
+			      .getCurrentSession()
+				  .createCriteria(SolicitudUsuarioAmbulancia.class)
+				  .add(Restrictions.eq("idSolicitud", id))
+				  .uniqueResult();
 	}
 
 }

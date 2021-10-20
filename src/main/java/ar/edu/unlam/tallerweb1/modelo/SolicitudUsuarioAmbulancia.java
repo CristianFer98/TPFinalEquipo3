@@ -27,6 +27,9 @@ public class SolicitudUsuarioAmbulancia {
 	@JoinColumn(name="patenteAmbulancia")
 	private Ambulancia ambulanciaEnCamino;
 	
+	@Column
+	private Boolean atendido;
+	
 
 	public SolicitudUsuarioAmbulancia() {
 	}
@@ -68,6 +71,15 @@ public class SolicitudUsuarioAmbulancia {
 	public void setAmbulanciaEnCamino(Ambulancia ambulanciaEnCamino) {
 		this.ambulanciaEnCamino = ambulanciaEnCamino;
 	}
+
+	public Boolean getAtendido() {
+		return atendido;
+	}
+
+	public void setAtendido(Boolean atendido) {
+		this.atendido = atendido;
+	}
+	
 	
 	
 	

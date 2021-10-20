@@ -25,7 +25,12 @@
             		<form action="registrarAmbulancia">
             		 Patente: <input type="text" name="patente">
             		 <input type="submit" value="DAR DE ALTA AMBULANCIA">
-            		</form>                 
+            		</form>
+            		<br> <br> <br>   
+            		<form action="activarUsuario">
+            		 Email: <input type="text" name="email">
+            		 <input type="submit" value="ATENDER CONSULTA DE ESTE USER">
+            		</form>               
                    ${msj}   
             </div>
  
