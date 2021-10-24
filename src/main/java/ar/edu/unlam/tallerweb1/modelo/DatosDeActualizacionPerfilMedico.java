@@ -4,31 +4,39 @@ import java.io.InputStream;
 
 public class DatosDeActualizacionPerfilMedico {
 
-	
-	
 	private Integer id;
 
-	private String especialidad;
-	
+	private Integer especialidad;
+
 	private String telefono;
-	
+
 	private String foto;
-	
+
 	private String paginaPersonal;
-	
+
 	public DatosDeActualizacionPerfilMedico() {
-		
+
 	}
-	
 
 
-	public String getEspecialidad() {
+
+
+
+	public Integer getEspecialidad() {
 		return especialidad;
 	}
 
-	public void setEspecialidad(String especialidad) {
+
+
+
+
+	public void setEspecialidad(Integer especialidad) {
 		this.especialidad = especialidad;
 	}
+
+
+
+
 
 	public String getTelefono() {
 		return telefono;
@@ -62,5 +70,4 @@ public class DatosDeActualizacionPerfilMedico {
 		this.id = idUsuario;
 	}
 
-	
 }

@@ -18,7 +18,7 @@
 
 <tr>
     <th>Especialidad</th>
-    <th>${usuario.especialidad}</th>
+    <th>${usuario.especialidad.especialidad}</th>
 </tr>
 
 <tr>

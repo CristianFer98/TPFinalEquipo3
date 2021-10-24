@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,7 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import static org.mockito.Mockito.*;
 
 public class ServicioRegistroTest {
-	private String email = "Cris@gmail.com";
+	private String email = "Cristian@gmail.com";
 	private String clave = "123456789";
 	private String repiteClave = "123456789";
 	private String claveMal = "5555";
@@ -66,18 +67,21 @@ public class ServicioRegistroTest {
 	
 	@Test
 	public void testQueMeRegistraExitosamenteUnUsuarioComun() {
-		whenRegistroConDatosCorrectos(datosRegistroConDatosCorrectos);
-		thenRegistroConDatosCorrectos();
+		Integer idRecibida=  whenRegistroConDatosCorrectos(datosRegistroConDatosCorrectos);
+		thenRegistroConDatosCorrectos(idRecibida);
 		
 	}
 
-	private void whenRegistroConDatosCorrectos(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
-		 servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
+	private Integer whenRegistroConDatosCorrectos(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
+		return servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
 			
 		}
 		
-	private void thenRegistroConDatosCorrectos() {
-		assertThat(inscribio == true);
+	private void thenRegistroConDatosCorrectos(Integer idRecibida) {
+		Integer ve=1;
+		assertEquals(idRecibida,ve);
+		
+		//pienso que este metodo no anda porque se esta usando mock y no se esta guardando nada en la bd
 	}
 
 	

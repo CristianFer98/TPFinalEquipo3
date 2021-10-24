@@ -58,10 +58,12 @@ public class ControladorLogin {
 		return  comprobarTipoUsuario(usuario, req);// devuelvo el modelAndView dependiendo el tipo de Usuario.
 
 	}
-
+	
+	
+	
 	private ModelAndView comprobarTipoUsuario(Usuario usuario, HttpServletRequest req) {
 		ModelMap model = new ModelMap();
-		if (usuario != null) {
+		
 			req.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
 			req.getSession().setAttribute("nombre", usuario.getNombre());
 
@@ -77,8 +79,11 @@ public class ControladorLogin {
 
 				return new ModelAndView("paginaPrincipalAdmin", model);
 			}
-		}
+		
 		return new ModelAndView("index");
 	}
+	
+	
+	
 
 }

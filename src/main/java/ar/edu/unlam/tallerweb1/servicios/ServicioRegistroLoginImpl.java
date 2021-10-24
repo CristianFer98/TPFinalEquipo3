@@ -38,6 +38,8 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		return usuario;
 	}
 
+	
+	//refactorizar los metodos
 	@Override
 	public Integer registrarUsuario(DatosRegistroUsuarioComun datos) throws emailExistenteException {
 		String clave = datos.getContrasenia1();

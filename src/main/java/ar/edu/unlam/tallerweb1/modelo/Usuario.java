@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Usuario {
@@ -20,14 +21,15 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUsuario;
 
+	 
 	@Column
 	private String contrasenia;
 	
 	@Column
 	private String nombre;
 	
-	@Column
-	private String especialidad;
+	@ManyToOne
+	private Especialidad especialidad;
 	
 	@Column 
 	private String telefono;
@@ -112,11 +114,17 @@ public class Usuario {
 		this.edad = edad;
 	}
 
-	public String getEspecialidad() {
+	
+
+	
+
+	
+
+	public Especialidad getEspecialidad() {
 		return especialidad;
 	}
 
-	public void setEspecialidad(String especialidad) {
+	public void setEspecialidad(Especialidad especialidad) {
 		this.especialidad = especialidad;
 	}
 

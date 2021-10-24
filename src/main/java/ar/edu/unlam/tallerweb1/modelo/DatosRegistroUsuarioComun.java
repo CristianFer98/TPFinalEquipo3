@@ -15,6 +15,7 @@ public class DatosRegistroUsuarioComun {
 	private String contrasenia2; //y el repiteclave
 
 	private Integer numeroDeDeTipoDeUsuario = 1;
+	
 
 	//va a ser el admin quien pueda registrar en su cuenta nuevos medicos que accedan.
 	//el unico que va a registrarse como tal. es el usuario comun
