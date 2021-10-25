@@ -101,5 +101,21 @@ public class RepositorioRegistroLoginTest extends SpringTest { // levanto el ent
 	}
 	
 	
+	
+//	buscar usuario
+	@Transactional
+	@Rollback
+	@Test
+	public void testBusquedaUsuario() {
+		Usuario user = givenTengoUnUsuario(email, clave);
+		Integer id= whereRegistroUnUsuario(user);
+		
+		Usuario userObtenido = repositorioRegistroLogin.obtenerUsuarioPorEmail(user.getEmail());
+		Integer idObtenido= userObtenido.getIdUsuario();
+		
+		assertEquals(id, idObtenido);
+		
+	}
+	
 
 }

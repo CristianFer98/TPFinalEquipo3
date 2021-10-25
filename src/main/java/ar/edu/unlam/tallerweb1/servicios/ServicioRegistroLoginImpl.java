@@ -107,4 +107,14 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		return false;
 	}
 
+	@Override
+	public Usuario obtenerUsuarioPorMail(String mail) {
+		return repositorioRegistroLogin.obtenerUsuarioPorEmail(mail);
+	}
+
+	@Override
+	public Usuario obtenerUsuarioPorId(Integer id) {
+		return repositorioRegistroLogin.obtenerUsuarioPorID(id);
+	}
+
 }

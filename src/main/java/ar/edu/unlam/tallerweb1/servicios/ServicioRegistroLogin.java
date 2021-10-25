@@ -10,5 +10,7 @@ public interface ServicioRegistroLogin {
 	Integer registrarUsuario(DatosRegistroUsuarioComun datosRegistro);
 	Integer registrarUsuario(DatosRegistroMedico datos);
 	Usuario iniciarSesion (DatosDeInicioDeSesion datosLogin);
+	Usuario obtenerUsuarioPorMail(String mail);
+	Usuario obtenerUsuarioPorId(Integer id);
 
 }

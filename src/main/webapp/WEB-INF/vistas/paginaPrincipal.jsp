@@ -3,6 +3,7 @@
 
         <main>
 
+<<<<<<< HEAD
         ${sessionScope.get("nombre")}:   Bienvenido a la Pagina Principal de Pacientes.  
         
 <a href="listarEspecialidad">    
@@ -15,6 +16,9 @@
 </div>
 </a>  
  
+ 
+ 		
+ 		<a href="centralAmbulancia">SOLICITAR AMBULANCIA</a>
 
 
         </main>

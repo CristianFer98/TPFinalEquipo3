@@ -49,7 +49,6 @@ public class Especialidad {
 		this.precioPorTurno = precioPorTurno;
 	}
 	
-	
-	
-	
+
+
 }

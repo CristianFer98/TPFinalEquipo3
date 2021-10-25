@@ -8,5 +8,6 @@ public interface RepositorioRegistroLogin {
 	Integer registrarUsuario(Usuario usuario);
 	Usuario obtenerUsuarioPorEmail(String email);
 	Usuario iniciarSesion(String email, String contra);
+	Usuario obtenerUsuarioPorID(Integer id);
 
 }

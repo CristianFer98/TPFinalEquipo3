@@ -42,4 +42,10 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 
 	}
 
+	@Override
+	public Usuario obtenerUsuarioPorID(Integer id) {
+		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))
+				.uniqueResult();
+	}
+
 }
