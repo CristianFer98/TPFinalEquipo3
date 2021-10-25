@@ -116,6 +116,7 @@ public class ControladorMedico {
 			java.sql.Time horarioFinJornada = new java.sql.Time(formatter.parse(datos.getHorarioFinJornada()).getTime());
 			
 			
+			
 			boolean cargo = servicio.cargarAgenda(datos, id, horarioComienzoJornada, horarioFinJornada);
 
 			return new ModelAndView("exito", model);

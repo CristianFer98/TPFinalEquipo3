@@ -75,7 +75,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 		Usuario medico = obtenerUsuarioPorId(id);
 		
 		for (TurnoMedico turnoMedico : turnosNuevos) {
-			turnoMedico.setMedicoAsignado(medico);
+			turnoMedico.setMedicoAsignado(medico); 
 			session.getCurrentSession().save(turnoMedico);
 		}
 		

@@ -64,10 +64,10 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 		LocalDateTime tiempoActual = LocalDateTime.now();
 
 		LocalDateTime inicioDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth(),
-				tiempoActual.getDayOfMonth(), horarioComienzoJornada.getHours(), horarioComienzoJornada.getMinutes());
+				tiempoActual.getDayOfMonth(), horarioComienzoJornada.getHours() -3, horarioComienzoJornada.getMinutes()) ;
 
 		LocalDateTime finDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth().plus(1),
-				tiempoActual.getDayOfMonth(), horarioFinJornada.getHours(), horarioFinJornada.getHours());
+				tiempoActual.getDayOfMonth(), horarioFinJornada.getHours() -3 , horarioFinJornada.getHours());
 
 		ArrayList<TurnoMedico> turnosNuevos = recorrerFechas(inicioDeActividadMensual, finDeActividadMensual,
 				datos.getDiasDeLaSemanaElegidos());
