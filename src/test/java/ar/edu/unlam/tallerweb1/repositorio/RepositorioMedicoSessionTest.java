@@ -24,18 +24,18 @@ public class RepositorioMedicoSessionTest extends SpringTest {
 	@Test
 	public void testQueMePermiteCargarDatos() {
 		
-		Integer id = 2;
+		Integer id = 1;
 		datos.setId(id);
-		//datos.setEspecialidad(1);
 		datos.setPaginaPersonal("hola.com");
 		datos.setTelefono("46515676");
 		
-		Usuario cargo =repositorio.cargarDatos(datos, id);
+		Usuario nuevaCarga =repositorio.cargarDatos(datos, id);//devuelve un usuario de la bd, lo comparo
 		
-		assertThat(cargo.getPaginaPersonal()).isEqualTo(datos.getPaginaPersonal());
-		
+		assertThat(nuevaCarga.getPaginaPersonal()).isEqualTo(datos.getPaginaPersonal());
 		
 		
 	}
+	
+	
 
 }

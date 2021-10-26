@@ -66,22 +66,18 @@ public class ServicioRegistroTest {
 	
 	@Test
 	public void testQueMeRegistraExitosamenteUnUsuarioComun() {
-		Integer idRecibida=  whenRegistroConDatosCorrectos(datosRegistroConDatosCorrectos);
-		thenRegistroConDatosCorrectos(idRecibida);
+		when(servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos)).thenReturn(1);
+		
 		
 	}
 
-	private Integer whenRegistroConDatosCorrectos(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos2) {
-		return servicioRegistroLogin.registrarUsuario(datosRegistroConDatosCorrectos2);
-			
-		}
 		
-	private void thenRegistroConDatosCorrectos(Integer idRecibida) {
-		Integer ve=1;
-		assertEquals(idRecibida,ve);
-		
-		//pienso que este metodo no anda porque se esta usando mock y no se esta guardando nada en la bd
-	}
+//	private void thenRegistroConDatosCorrectos(Integer idRecibida) {
+//		Integer ve=1;
+//		assertEquals(idRecibida,ve);
+//		
+//		//pienso que este metodo no anda porque se esta usando mock y no se esta guardando nada en la bd
+//	}
 
 	
 

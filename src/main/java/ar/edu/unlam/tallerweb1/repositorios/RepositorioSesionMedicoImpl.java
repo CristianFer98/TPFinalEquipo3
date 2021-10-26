@@ -45,7 +45,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 		return null;
 	}
 
-	private Especialidad buscarEspecialidadPorId(Integer idEspecialidad) {
+	public Especialidad buscarEspecialidadPorId(Integer idEspecialidad) {
 		return (Especialidad) session.getCurrentSession().createCriteria(Especialidad.class)
 				.add(Restrictions.eq("idEspecialidad", idEspecialidad)).uniqueResult();
 
