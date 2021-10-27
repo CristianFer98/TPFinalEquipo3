@@ -23,9 +23,11 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class ControladorLoginTest {
-
+	
+	private ModelAndView mav = new ModelAndView();
 	private ServicioRegistroLogin servicioUsuario; // el servicio que va a ser un MOCK
 	private ControladorLogin controladorLogin; // el registro que me va hacer los metodos
 	DatosDeInicioDeSesion datos = new DatosDeInicioDeSesion();
@@ -45,10 +47,14 @@ public class ControladorLoginTest {
 		datos.setEmail("Cris@gmail.com");
 		datos.setContrasenia("123456789");
 		
-		// HttpServletRequest  mockedRequest = Mockito.mock(HttpServletRequest.class);
-		// when(controladorLogin.iniciarSesion(datos, mockedRequest)).thenReturn(new ModelAndView());
-		 
-	     
+		when(servicioUsuario.iniciarSesion(datos)).thenReturn(new Usuario());
+		HttpSession http = mock(HttpSession.class);
+		
+		HttpServletRequest  mockedRequest = mock(HttpServletRequest.class);
+		when(mockedRequest.getSession()).thenReturn(http);
+		
+		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
+		
 	}
 
 	
