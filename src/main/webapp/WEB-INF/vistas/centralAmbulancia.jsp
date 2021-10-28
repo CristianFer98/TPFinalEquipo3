@@ -6,12 +6,13 @@
 		padding:0;
 	}
 	
-	body{
-		min-height:100vh;
+	.conteiner{
+		min-height: 90vh;
 		display: flex;
-    	justify-content: center;
-    	align-items: center
+		justify-content: center;
+		align-items: center;
 	}
+
 	
 	.info-amb{    
 		background: lightgrey;
@@ -22,27 +23,34 @@
     	align-items: center;
     }
     
+    
+	.info-amb form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+	}
+	
+	.info-amb form div{
+		margin-bottom: 10px;
+	}
+    
     .info-content{
     	display:flex;
     }
-    
-    button{
-    	border: none;
-   		 background: lightblue;
-    	padding: 15PX;
-    	margin: 5px;
-    	border-radius: 35px;
-    	margin-top: 20px;
-    }
-
 
 </style>
 
 
 
 <body>
+     <jsp:include page="header.jsp"></jsp:include>
      
-     <div class="info-amb">
+     
+     
+     <div class="conteiner">
+       <div class="info-amb">
      	<span class="info-content">LA CANTIDAD DE AMBULANCIAS EN EL HOSPITAL ES DE:  <span>${cantidad}</span> </span> 
      	
      	<form action="solicitudPagina" modelAttribute="datosSolicitudAmbulancia">
@@ -51,10 +59,13 @@
      		Su direccion:<input type="text" path="direccion" name="direccion" required>	
      		</div>
      	   	
-     	   <button Type="Submit"/> ${key} </button>
+     	   <button Type="Submit" class="btn btn-danger"/> ${key} </button>
         </form>
 	
      </div>
+     
+     </div>
+   
 </body>
 
 
