@@ -1,0 +1,147 @@
+*{
+    margin: 0%;
+}
+
+/* header */
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 25px;
+    padding-right: 25px ;
+    background-color: rgb(120, 141, 141);
+    height: 75px;
+}
+
+
+#logo{
+    height: 60px;
+    width: 60px;
+    margin-right: 30px;
+}
+
+.header_titulo{
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+
+}
+
+
+
+.buscadorHeader{
+    width: 200px;
+    height: 30px;
+    opacity: 0.5;
+    border-radius: 10px;
+    border: none;
+}
+
+@media (max-width:670px){
+    .header_titulo{
+        font-size: 15px;
+    }
+
+    .buscadorHeader{
+        width: 100px;
+    }
+
+}
+
+
+/* Nav */
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgb(94, 88, 88);
+    background-color:rgb(120, 141, 141);
+    height: 35px;
+}
+
+.linkNav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    color: black;
+    text-decoration: none;
+    height: 100%;
+    
+}
+
+.linkNav:hover{
+    background-color: rgb(39, 42, 63);
+    color: rgb(206, 194, 194);
+}
+
+
+
+/* seccion de inicio de sesion */
+
+.inicioSesion{
+    height: auto;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 20px;
+    background-image: url("medico.jpg");
+    background-size: 70% 100%;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-color: #dbe2ea;
+
+}
+
+.registro{
+    height: auto;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    background-repeat: no-repeat;
+    background-origin: border-box;
+    background-color: #dbe2ea;
+
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 450px;
+    justify-content: center;
+    background-color: rgb(32, 55, 66);
+    border-radius: 10px 10px 10px 10px;
+    width: 40%;
+
+}
+
+
+.inicioSesion_inputs{
+    width: 70%;
+    margin: 20px;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+
+}
+
+.boton_unputs{
+    width: 60%;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    border: 1px solid rgb(90, 85, 85);
+    margin: 5px;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+
+.seccionEspecialidades{
+	height:auto;
+	width: 100%;
+	display:flex;
+}
