@@ -44,6 +44,11 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 
 		return repositorio.reservarTurno(idTurno , idUsuario);
 	}
+
+	@Override
+	public List<TurnoMedico> verMisTurnos(Integer id) {
+		return repositorio.verMisTurnos(id);
+	}
 	
 	
 	

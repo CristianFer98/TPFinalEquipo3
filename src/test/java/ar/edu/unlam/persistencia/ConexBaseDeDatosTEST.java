@@ -1,7 +1,6 @@
 package ar.edu.unlam.persistencia;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;

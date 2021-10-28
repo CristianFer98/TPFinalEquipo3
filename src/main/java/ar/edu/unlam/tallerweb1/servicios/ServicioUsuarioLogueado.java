@@ -13,5 +13,6 @@ public interface ServicioUsuarioLogueado {
 	List <Usuario> listarMedicosPorEspecialidad(Integer idEspecialidad);
 	List<TurnoMedico> listarTurnos(Integer idMedico);
 	boolean reservarTurno(Integer idTurno, Integer idUsuario);
+	List<TurnoMedico> verMisTurnos(Integer id);
 	
 }

@@ -2,9 +2,9 @@ package ar.edu.unlam.tallerweb1.controladores;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
@@ -38,7 +38,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 	@Test
 	@Transactional
 	@Rollback
-	public void testUsuarioPuedePedirAmbulancias() {
+	public void testUsuarioPuedePedirAmbulancias() throws ParseException {
 		Ambulancia amb= new Ambulancia("aaa111", true);
 		servicioAmbulancia.agregarAmbulancia(amb);
 		
@@ -59,7 +59,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 	@Test(expected = NoHayAmbulanciasDisponiblesException.class)
 	@Transactional
 	@Rollback
-	public void testNoSePuedePedirAmbulanciaSiNoExisteAmbulancia() {
+	public void testNoSePuedePedirAmbulanciaSiNoExisteAmbulancia() throws ParseException {
 		DatosRegistroUsuarioComun datosRegistro= new DatosRegistroUsuarioComun("test@gmail.com", "123456789", "123456789");
 		servicioRegistroLogin.registrarUsuario(datosRegistro);
 		Usuario user= servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com");
@@ -73,7 +73,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 	@Test(expected = UsuarioYaPidioAmbulanciaExeception.class)
 	@Transactional
 	@Rollback
-	public void UsuarioNoPuedePedirAmbulanciaSiYaPidioAntes(){		
+	public void UsuarioNoPuedePedirAmbulanciaSiYaPidioAntes() throws ParseException{		
 		Ambulancia amb= new Ambulancia("aaa111", true);
 		servicioAmbulancia.agregarAmbulancia(amb);
 		
@@ -100,7 +100,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 	@Test
 	@Transactional
 	@Rollback
-	public void adminPuedeMarcarSolicitudComoAtendida() {
+	public void adminPuedeMarcarSolicitudComoAtendida() throws ParseException {
 		Usuario user =  registrarUser();
 		
 		Ambulancia amb= new Ambulancia("aaa111", true);
@@ -131,7 +131,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 		return admin;
 	}
 
-	private Usuario registrarUser() {
+	private Usuario registrarUser() throws ParseException {
 		DatosRegistroUsuarioComun datosRegistro= new DatosRegistroUsuarioComun("test@gmail.com", "123456789", "123456789");
 		servicioRegistroLogin.registrarUsuario(datosRegistro);
 		Usuario user= servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com");

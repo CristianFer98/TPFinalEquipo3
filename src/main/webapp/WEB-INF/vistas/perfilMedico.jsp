@@ -7,8 +7,7 @@
 
 <tr>
     <th>Foto</th>
-    <th><img style='margin:center; width:200px;height:200px;' id='base64image'                 
-						 src='data:image/jpeg;base64, ${foto}' />						  
+    <th><img style='margin:center; width:200px;height:200px;'  src='${usuario.foto}' />						  
 </tr>
 
 <tr> <!-- Esto es una fila con los nombre de las columnas -->

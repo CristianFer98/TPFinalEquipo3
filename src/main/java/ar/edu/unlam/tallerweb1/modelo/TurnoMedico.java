@@ -22,7 +22,7 @@ public class TurnoMedico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column
+	@Column 
 	private LocalDateTime fecha;
 	
 	@ManyToOne

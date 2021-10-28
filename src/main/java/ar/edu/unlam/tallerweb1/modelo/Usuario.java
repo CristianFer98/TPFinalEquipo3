@@ -38,7 +38,7 @@ public class Usuario {
 	private String foto;
 	
 	@Column
-	private String paginaPersonal;
+	private String paginaPersonal;  
 
 
 	@Column

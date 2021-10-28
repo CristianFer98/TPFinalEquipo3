@@ -7,7 +7,9 @@
  		
  		Para ver su perfil <a href="MyPerfil">Ira mi perfil</a> <br>
  		Para editar su perfil  <a href="EditarPerfil">Click Aqui</a> <br>
- 		Para cargar su agenda semanal <a href="FormAgenda">Click Aqui</a>
+ 		Para cargar su agenda semanal <a href="FormAgenda">Click Aqui</a> <br>
+ 		
+ 		Para ver sus compromisos<a href="verTurnos">Click Aqui</a>
  		
  
  		
