@@ -19,7 +19,7 @@
     	display: flex;
     	flex-direction: column;
     	justify-content: center;
-    align-items: center;
+        align-items: center;
 	}
 	
 	.solicitud-container{
@@ -68,6 +68,8 @@
     
 
     <body>
+
+    	
 
         <div class="solicitud-container">
         	<div class="soli-info">

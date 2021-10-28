@@ -14,17 +14,63 @@
 
     <title>Document</title>
 </head>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+*{
+	padding:0;
+	margin:0;
+	font-family: 'Poppins', sans-serif;
+}
+
+.header_nombre h2{
+	font-weight: 600;
+	margin: 0;
+}
+
+#barra-resposive{
+	display: none;
+}
+
+@media (max-width:670px){
+    .header_titulo{
+        font-size: 15px;
+    }
+	
+	.header_nombre h2{
+		display:none;
+	}
+	
+	#barra-resposive{
+		display:block;
+		    font-size: 35px
+	}
+	
+	nav{
+		display: none;
+	}
+	
+
+}
+
+
+
+
+
+</style>
+
+
 <body>
         <header>
             <div class="header_titulo">
-            <img src="css/hospital.png" alt="logoHospital" id="logo"> Hospital Florencia Martin
-            </div>
-                    
-            <div class="buscador">
-                <input type="search" name="buscador" class="buscadorHeader" placeholder="Buscar servicios" id="">
-                <input type="submit" value="Buscar" style="height: 30px;">
-            </div>
-
+            <img src="css/hospital.png" alt="logoHospital" id="logo"> 
+            </div>  
+            
+            <div class="header_nombre">
+            	<h2>Hospital Florencia Martin </h2>
+            	<i class="fas fa-bars" id="barra-resposive"></i>
+            </div>                 
         </header>
 
         <nav>
@@ -32,5 +78,4 @@
             <a href="" class="linkNav">Acerca del Hospital</a>
             <a href="" class="linkNav">Areas</a>
             <a href="" class="linkNav">Contacto</a>
-
         </nav>
