@@ -1,5 +1,8 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,9 +62,11 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		usuario.setContrasenia(datos.getContrasenia1());
 		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeDeTipoDeUsuario());
 		usuario.setNombre(datos.getNombre());
+		
+		
 		usuario.setEdad(datos.getEdad());
 
-		idRecibida = repositorioRegistroLogin.registrarUsuario(usuario);
+		idRecibida =  repositorioRegistroLogin.registrarUsuario(usuario);
 		return idRecibida;
 
 	}

@@ -7,14 +7,15 @@ import org.junit.Test;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroMedico;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
-
+import ar.edu.unlam.tallerweb1.repositorios.emailExistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+
+import java.text.ParseException;
 
 public class ControladorRegistroTest {
 
@@ -58,7 +59,7 @@ public class ControladorRegistroTest {
 //_____________________________________________________________________________________________________________//	
 
 	@Test
-	public void testQueNoMePermiteRegistrarUnUsuarioConContraseñaDiferente() {
+	public void testQueNoMePermiteRegistrarUnUsuarioConContraseñaDiferente() throws ParseException {
 
 		// para usar moquito y me arroje esta exepcion tengo que poner
 		doThrow(ClavesDistintasException.class).when(servicioUsuario).registrarUsuario(datosRegistroConContraDiferente);
@@ -73,7 +74,7 @@ public class ControladorRegistroTest {
 	}
 
 	private void whenRegistroUnUsuarioConContraseñaDiferente(
-			DatosRegistroUsuarioComun datosRegistroConContraDiferente) {
+			DatosRegistroUsuarioComun datosRegistroConContraDiferente) throws ParseException {
 		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistroConContraDiferente); // esto me devuelve un
 																								// MAV
 
@@ -87,7 +88,7 @@ public class ControladorRegistroTest {
 //_____________________________________________________________________________________________________________//	
 
 	@Test
-	public void testQueNoMePermitaRegistrarUnUsuarioConContraseniaPequenia() {
+	public void testQueNoMePermitaRegistrarUnUsuarioConContraseniaPequenia() throws ParseException {
 
 		doThrow(ClavesCortasException.class).when(servicioUsuario).registrarUsuario(datosRegistroConLongitudIncorrecta);
 
@@ -96,7 +97,7 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUnUsuarioConContraseniaCorta(DatosRegistroUsuarioComun datosRegistro2) {
+	private void whenRegistroUnUsuarioConContraseniaCorta(DatosRegistroUsuarioComun datosRegistro2) throws ParseException {
 		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistro2);
 	}
 
@@ -109,13 +110,13 @@ public class ControladorRegistroTest {
 //_____________________________________________________________________________________________________________//	
 
 	@Test
-	public void testQueMePermitaRegistrarExitosamenteUnUsuarioComun() {
+	public void testQueMePermitaRegistrarExitosamenteUnUsuarioComun() throws ParseException {
 		whenRegistroUsuarioComunConContraseniaBien(datosRegistroConDatosCorrectos);
 		thenRegistroUsuarioComun();
 
 	}
 
-	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos) {
+	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos) throws ParseException {
 
 		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistroConDatosCorrectos);
 	}
@@ -127,7 +128,7 @@ public class ControladorRegistroTest {
 //_____________________________________________________________________________________________________________//	
 
 	@Test
-	public void testQueMePermitaRegistrarExitosamenteUnMedico() {
+	public void testQueMePermitaRegistrarExitosamenteUnMedico() throws ParseException {
 		whenRegistroUnMedico(datosRegistroMedico);
 		thenRegistroUnMedico();
 
@@ -138,8 +139,29 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUnMedico(DatosRegistroMedico datosRegistroMedico) {
+	private void whenRegistroUnMedico(DatosRegistroMedico datosRegistroMedico) throws ParseException {
 		mav = controladorRegistro.registrarMedico(datosRegistroMedico);
+	}
+
+//______________________________________________________________________________________________________________//
+
+	@Test
+	public void testQueNoMePermitaRegistrarUnUsuarioConMailExistente() throws ParseException {
+		doThrow(emailExistenteException.class).when(servicioUsuario).registrarUsuario(datosRegistroConDatosCorrectos);
+
+		whenRegistroUnUsuarioConEmailExistente(datosRegistroConDatosCorrectos);
+		thenRegistroUnUsuarioConEmailExistente("Ese usuario es Existente");
+
+	}
+
+	private void whenRegistroUnUsuarioConEmailExistente(DatosRegistroUsuarioComun datosRegistro2) throws ParseException {
+		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistro2);
+	}
+
+	private void thenRegistroUnUsuarioConEmailExistente(String string) {
+		assertThat(mav.getViewName()).isEqualTo("registro"); // me tiene que tirar a registro nuevamente
+		assertThat(mav.getModel().get("error")).isEqualTo(string);
+
 	}
 
 }

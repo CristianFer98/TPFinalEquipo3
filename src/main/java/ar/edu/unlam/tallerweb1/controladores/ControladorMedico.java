@@ -1,17 +1,13 @@
   package ar.edu.unlam.tallerweb1.controladores;
 
-import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +20,7 @@ import ar.edu.unlam.tallerweb1.modelo.DatosAgendaMesMedico;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeActualizacionPerfilMedico;
 import ar.edu.unlam.tallerweb1.modelo.Dias;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
+import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSesionMedico;
 
@@ -57,7 +54,7 @@ public class ControladorMedico {
 			@ModelAttribute("DatosDeActualizacionPerfilMedico") DatosDeActualizacionPerfilMedico datos,
 			HttpServletRequest req) throws IOException {
 
-		Boolean cargaExitosa = false;
+		Boolean cargaExitosa;
 		ModelMap model = new ModelMap();
 		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
 
@@ -85,10 +82,6 @@ public class ControladorMedico {
 		ModelMap model = new ModelMap();
 		Usuario Medico = servicio.obtenerInformacion(id);
 
-		byte[] fileContent = FileUtils.readFileToByteArray(new File(Medico.getFoto()));
-		String encodedString = Base64.getEncoder().encodeToString(fileContent);
-
-		model.put("foto", encodedString);
 		model.put("usuario", Medico);
 		return new ModelAndView("perfilMedico", model);
 
@@ -107,6 +100,7 @@ public class ControladorMedico {
 	public ModelAndView cargarAgendaMedico (@ModelAttribute ("DatosAgendaMesMedico") DatosAgendaMesMedico datos, HttpServletRequest req) throws ParseException {
 			//recupero la id del medico
 			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+			//validar que id no sea nulo. ver Handler
 			ModelMap model = new ModelMap();
 			
 			//Como el form me tira un string lo parseo a fecha tanto la de inicio como la de fin
@@ -117,11 +111,24 @@ public class ControladorMedico {
 			
 			
 			
-			boolean cargo = servicio.cargarAgenda(datos, id, horarioComienzoJornada, horarioFinJornada);
+			servicio.cargarAgenda(datos, id, horarioComienzoJornada, horarioFinJornada);
 
 			return new ModelAndView("exito", model);
 	}
 	
+	
+	@RequestMapping(path = "verTurnos")
+	public ModelAndView verCompromiso(HttpServletRequest req) {
+		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+
+		ModelMap model = new ModelMap();
+		
+		List <TurnoMedico> turnosCompromiso = servicio.verCompromisos(id);
+		
+		model.put("lista", turnosCompromiso);
+		return new ModelAndView("compromisoMedico", model);
+		
+	}
 	
 
 }

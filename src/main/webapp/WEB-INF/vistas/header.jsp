@@ -24,6 +24,12 @@
 	font-family: 'Poppins', sans-serif;
 }
 
+
+body{
+background-color:#C2E4EB;
+}
+
+>>>>>>> cristian
 .header_nombre h2{
 	font-weight: 600;
 	margin: 0;

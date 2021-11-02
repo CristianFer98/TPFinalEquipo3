@@ -2,7 +2,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,21 +61,24 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 	public boolean cargarAgenda(DatosAgendaMesMedico datos, Integer id, Time horarioComienzoJornada,
 			Time horarioFinJornada) {
 		LocalDateTime tiempoActual = LocalDateTime.now();
-
+		
+		Boolean cargo;
+		@SuppressWarnings("deprecation")
 		LocalDateTime inicioDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth(),
-				tiempoActual.getDayOfMonth(), horarioComienzoJornada.getHours() -3, horarioComienzoJornada.getMinutes()) ;
+				tiempoActual.getDayOfMonth(), horarioComienzoJornada.getHours(), horarioComienzoJornada.getMinutes()) ;
 
+		@SuppressWarnings("deprecation")
 		LocalDateTime finDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth().plus(1),
-				tiempoActual.getDayOfMonth(), horarioFinJornada.getHours() -3 , horarioFinJornada.getHours());
+				tiempoActual.getDayOfMonth(), horarioFinJornada.getHours()  , horarioFinJornada.getHours());
 
 		ArrayList<TurnoMedico> turnosNuevos = recorrerFechas(inicioDeActividadMensual, finDeActividadMensual,
 				datos.getDiasDeLaSemanaElegidos());
 
-		return repositorio.cargarAgenda(turnosNuevos, id);
-
+		cargo = repositorio.cargarAgenda(turnosNuevos, id);
+		return cargo;
 	}
 
-	private ArrayList<TurnoMedico> recorrerFechas(LocalDateTime inicioDeActividadMensual,
+	public ArrayList<TurnoMedico> recorrerFechas(LocalDateTime inicioDeActividadMensual,
 			LocalDateTime finDeActividadMensual, ArrayList<Integer> diasDeLaSemana) {
 
 		// Recorro primero los dias del mes y luego recorro el horario. finalmente
@@ -101,6 +103,12 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 			inicioDeActividadMensual = horarioRespaldo;
 		}
 		return nuevosTurnos;
+	}
+
+	@Override
+	public List<TurnoMedico> verCompromisos(Integer id) {
+		
+		return repositorio.verCompromisos(id);
 	}
 
 }

@@ -7,6 +7,7 @@ import ar.edu.unlam.tallerweb1.modelo.DatosAgendaMesMedico;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeActualizacionPerfilMedico;
 import ar.edu.unlam.tallerweb1.modelo.Dias;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
+import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 public interface ServicioSesionMedico {
@@ -16,5 +17,6 @@ public interface ServicioSesionMedico {
 	List <Especialidad> obtenerListaDeEspecializaciones();
 	List<Dias> obtenerDiasDeLaSemana();
 	boolean cargarAgenda(DatosAgendaMesMedico datos, Integer id, Time horarioComienzoJornada, Time horarioFinJornada);
+	List<TurnoMedico> verCompromisos(Integer id);
 	
 }

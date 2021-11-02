@@ -33,7 +33,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 			Usuario usuario = obtenerUsuarioPorId(id);
 
 			// usuario.setEspecialidad(datos.getEspecialidad());
-			Especialidad  especialidad = buscarEspecialidadPorId(datos.getEspecialidad());
+			Especialidad especialidad = buscarEspecialidadPorId(datos.getEspecialidad());
 			usuario.setEspecialidad(especialidad);
 			usuario.setFoto(datos.getFoto());
 			usuario.setTelefono(datos.getTelefono());
@@ -45,41 +45,63 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 		return null;
 	}
 
+	@SuppressWarnings("deprecation")
 	public Especialidad buscarEspecialidadPorId(Integer idEspecialidad) {
 		return (Especialidad) session.getCurrentSession().createCriteria(Especialidad.class)
 				.add(Restrictions.eq("idEspecialidad", idEspecialidad)).uniqueResult();
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Usuario obtenerUsuarioPorId(Integer idUsuario) {
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("idUsuario", idUsuario)).uniqueResult();
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Especialidad> obtenerListaDeEspecializacion() {
 		return (List<Especialidad>) session.getCurrentSession().createCriteria(Especialidad.class).list();
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Dias> obtenerDiasDeLaSemana() {
-		return (List <Dias>) session.getCurrentSession().createCriteria(Dias.class).list();
+		return (List<Dias>) session.getCurrentSession().createCriteria(Dias.class).list();
 	}
 
 	@Override
 	public boolean cargarAgenda(ArrayList<TurnoMedico> turnosNuevos, Integer id) {
-		
+
 		Usuario medico = obtenerUsuarioPorId(id);
-		
-		for (TurnoMedico turnoMedico : turnosNuevos) {
-			turnoMedico.setMedicoAsignado(medico); 
-			session.getCurrentSession().save(turnoMedico);
+
+		if (medico != null) {
+			for (TurnoMedico turnoMedico : turnosNuevos) {
+				turnoMedico.setMedicoAsignado(medico);
+				session.getCurrentSession().save(turnoMedico);
+			}
+			return true;
+		} else {
+			return false;
 		}
-		
-		return true;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TurnoMedico> verCompromisos(Integer id) {
+
+		Usuario Medico = buscarMedicoPorId(id);
+
+		return (List<TurnoMedico>) session.getCurrentSession().createCriteria(TurnoMedico.class)
+				.add(Restrictions.eq("medicoAsignado", Medico)).add(Restrictions.eq("estado", false)).list();
+	}
+
+	private Usuario buscarMedicoPorId(Integer id) {
+
+		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))
+				.uniqueResult();
 	}
 
 }

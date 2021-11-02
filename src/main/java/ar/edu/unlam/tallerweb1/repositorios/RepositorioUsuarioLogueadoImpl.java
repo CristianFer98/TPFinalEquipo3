@@ -82,4 +82,13 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<TurnoMedico> verMisTurnos(Integer id) {
+		Usuario usuario = obtenerUsuarioPorId(id);
+
+		return (List<TurnoMedico>) session.getCurrentSession().createCriteria(TurnoMedico.class)
+				.add(Restrictions.eq("clienteAsignado", usuario)).list();
+	}
+
 }

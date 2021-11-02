@@ -13,4 +13,5 @@ public interface RepositorioUsuarioLogueado {
 	List<Usuario> listarMedicosPorEspecialidad(Integer idEspecialidad);
 	List<TurnoMedico> listarTurnosDisponibles(Integer idMedico);
 	boolean reservarTurno(Integer idTurno, Integer idUsuario);
+	List<TurnoMedico> verMisTurnos(Integer id);
 }

@@ -67,7 +67,7 @@
                     <form action="Registrarse" method="POST" class="formulario" modelAttribute="DatosRegistroUsuarioComun">
                         <input type="text" path="email" name="email" id="contrasenia2" placeholder="Ingrese su email" class="inicioSesion_inputs" required>
                         <input type="text" path="nombre" name="nombre" id="nombre" placeholder="Ingrese su Nombre" class="inicioSesion_inputs" required>
-                        <input type="text" path="edad" name="edad" id="edad" placeholder="Ingrese su edad" class="inicioSesion_inputs" required>                       
+                        <input type="date" path="edad" name="edad" id="edad" placeholder="Ingrese su edad" class="inicioSesion_inputs" required>                       
                         <input type="password" path="contrasenia1" name="contrasenia1" id="contrasenia2" placeholder="Ingrese Clave" class="inicioSesion_inputs" required>
                         <input type="password" path="contrasenia2" name="contrasenia2" id="contrasenia2" placeholder="Repita su Clave" class="inicioSesion_inputs" required>                      
                        
