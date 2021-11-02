@@ -86,6 +86,7 @@ public class ControladorUsuarioLogueado {
 		
 		List <TurnoMedico> turnos = servicio.verMisTurnos(id);
 		
+		
 		model.put("lista", turnos);
 		return new ModelAndView("misTurnos", model);
 	}

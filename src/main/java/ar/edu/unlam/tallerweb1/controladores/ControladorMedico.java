@@ -100,6 +100,7 @@ public class ControladorMedico {
 	public ModelAndView cargarAgendaMedico (@ModelAttribute ("DatosAgendaMesMedico") DatosAgendaMesMedico datos, HttpServletRequest req) throws ParseException {
 			//recupero la id del medico
 			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+			//validar que id no sea nulo. ver Handler
 			ModelMap model = new ModelMap();
 			
 			//Como el form me tira un string lo parseo a fecha tanto la de inicio como la de fin

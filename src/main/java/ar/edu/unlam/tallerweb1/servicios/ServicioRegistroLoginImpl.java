@@ -63,6 +63,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeDeTipoDeUsuario());
 		usuario.setNombre(datos.getNombre());
 		
+		
 		usuario.setEdad(datos.getEdad());
 
 		idRecibida =  repositorioRegistroLogin.registrarUsuario(usuario);

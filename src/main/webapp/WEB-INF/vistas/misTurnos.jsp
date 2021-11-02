@@ -4,7 +4,7 @@
 
 <main>
 
-	${sessionScope.get("nombre")}: Seleccione su medico preferido
+	<h2 style="text-align:center">${sessionScope.get("nombre")}: Estas son las visitas medicas que tiene programadas</h2>
 
 
 	<c:if test="${not empty lista}">
@@ -14,7 +14,7 @@
 				
 				<div class="card bg-light text-dark">
 					<button type="button" class="btn btn-secondary btn-lg btn-block" 
-					name="idUsuario">${lista.fecha}</button>
+					name="idUsuario">${lista.fecha}   </button>
 				</div>
 				
 			</c:forEach>

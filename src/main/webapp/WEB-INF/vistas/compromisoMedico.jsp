@@ -4,7 +4,7 @@
 
 <main>
 
-	${sessionScope.get("nombre")}: Seleccione su medico preferido
+	<h2 style="text-align:center">${sessionScope.get("nombre")}: Estos son los proximos turnos a los que tiene que asistir</h2>
 
 
 	<c:if test="${not empty lista}">

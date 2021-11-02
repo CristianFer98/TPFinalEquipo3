@@ -4,7 +4,7 @@
 
 <main>
 
-	${sessionScope.get("nombre")}: Acontinuacion eliga los turnos disponibles para ESTE DOCTOR
+	<h2 style="text-align:center">${sessionScope.get("nombre")}: Acontinuacion eliga los turnos disponibles para ESTE DOCTOR</h2>
 
 	<c:if test="${not empty lista}">
 

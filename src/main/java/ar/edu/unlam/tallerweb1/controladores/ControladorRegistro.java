@@ -32,7 +32,7 @@ public class ControladorRegistro {
 		
 	}
 	@RequestMapping (path = "Registrarse", method = RequestMethod.POST)
-	public ModelAndView registrarNuevoUsuarioComun(@ModelAttribute("DatosRegistroUsuarioComun") DatosRegistroUsuarioComun datos) throws ParseException { //los datos tipo usuario ya tiene su numero tipo 1
+	public ModelAndView registrarNuevoUsuarioComun(@ModelAttribute("DatosRegistroUsuarioComun") DatosRegistroUsuarioComun datos) throws ParseException  { //los datos tipo usuario ya tiene su numero tipo 1
 		String mensaje = null;
 		ModelMap model = new ModelMap ();
 		Integer idRecibida;
@@ -63,7 +63,7 @@ public class ControladorRegistro {
 	
 	//este metodo va a estar en la vista que pertenece al admin.
 	@RequestMapping (path = "RegistrarMedico", method= RequestMethod.POST)
-	public ModelAndView registrarMedico (@ModelAttribute("DatosRegistroMedico") DatosRegistroMedico datos) throws ParseException {//el datos tipo medico ya tiene un atributo con su numero 2
+	public ModelAndView registrarMedico (@ModelAttribute("DatosRegistroMedico") DatosRegistroMedico datos) throws ParseException  {//el datos tipo medico ya tiene un atributo con su numero 2
 		String mensaje;
 		ModelMap model = new ModelMap ();
 		

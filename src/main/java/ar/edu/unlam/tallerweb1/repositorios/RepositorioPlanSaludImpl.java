@@ -20,25 +20,19 @@ public class RepositorioPlanSaludImpl implements RepositorioPlanSalud{
 		this.sesion = sesion;
 	}
 
-	@Override
-	public Integer recuperarEdad(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	//Recupero la edad a traves del id en la session actual
 	//Uso un criterio para recuperar donde identificador y id tienen que ser iguales
-//	@Override
-//	public Integer recuperarEdad(Integer id) {
-//	
-//		
-//		Usuario usuario = (Usuario)sesion.getCurrentSession().
-//				createCriteria(Usuario.class).
-//				add(Restrictions.eq("idUsuario", id)).
-//				uniqueResult();
-//		
-//		//return usuario.getEdad();
-//	}
+	@Override
+	public Integer recuperarEdad(Integer id) {
+	
+		
+		Usuario usuario = (Usuario)sesion.getCurrentSession().
+				createCriteria(Usuario.class).
+				add(Restrictions.eq("idUsuario", id)).
+				uniqueResult();
+		
+		return usuario.getEdad();
+	}
 
 	
 

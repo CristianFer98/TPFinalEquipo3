@@ -5,17 +5,18 @@ import static org.junit.Assert.*;
 import java.text.ParseException;
 import java.util.List;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unlam.tallerweb1.SpringTest;
 import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
 import ar.edu.unlam.tallerweb1.modelo.DatosSolicitudAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.persistencia.SpringTest;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import ar.edu.unlam.tallerweb1.servicios.NoHayAmbulanciasDisponiblesException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAmbulancia;

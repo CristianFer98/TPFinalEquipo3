@@ -4,7 +4,7 @@
 
 <main>
 
-	${sessionScope.get("nombre")}: Seleccione la especialidad deseada
+	<h2 style="text-align:center">${sessionScope.get("nombre")}: Seleccione la especialidad deseada</h2>
 
 
 
@@ -14,9 +14,11 @@
 			<c:forEach var="lista" items="${lista}">
 				<form action="listarMedicosPorEspecialidad" method="get">
 				
-				<div class="card bg-light text-dark">
-					<button type="submit" class="btn btn-secondary btn-lg btn-block" value="${lista.idEspecialidad}" 
+				<div style="display:flex; justify-content:center">
+				<div class="card bg-light text-dark" style="width:80%; heigth:50px">
+					<button type="submit" class="btn btn-secondary btn-lg btn-block" style="heigth:100px"value="${lista.idEspecialidad}" 
 					name="valor">${lista.especialidad}</button>
+				</div>
 				</div>
 				</form>
 			</c:forEach>

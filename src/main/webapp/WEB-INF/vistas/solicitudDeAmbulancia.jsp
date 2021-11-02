@@ -1,13 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-    <!DOCTYPE html>
-    <html>
 
-    <head>
-        <meta charset="ISO-8859-1">
-        <link rel="stylesheet" href="../../css/estilosSolicitud.css">
-        <title>SOLICITUD</title>
-    </head>
     
     <style>
 	*{
@@ -19,7 +10,7 @@
     	display: flex;
     	flex-direction: column;
     	justify-content: center;
-    align-items: center;
+        align-items: center;
 	}
 	
 	.solicitud-container{
@@ -69,12 +60,14 @@
 
     <body>
 
+    	
+
         <div class="solicitud-container">
         	<div class="soli-info">
         		<span>Tu ambulancia llegara lo mas pronto posible</span>
         		<span>Nombre: ${soli.getUsuarioSolicitante().getNombre()} </span>
         		<span>Direccion: ${soli.getDireccion()}</span>
-        		<span>Mail= ${mail}</span>
+        		<span></span>
             	<span>LA PATENTE DE SU AMBULANCIA ES= <span id="patente"> ${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()} </span></span>
             	<span>Asegurate que sea la ambulancia correcta para evitar incidentes</span>
         	</div>
@@ -93,4 +86,4 @@
 
     </body>
 
-    </html>
+     <jsp:include page="footer.jsp"></jsp:include>

@@ -4,7 +4,7 @@
 
 <main>
 
-	${sessionScope.get("nombre")}:Registro Realizado con Exito
+	<h2 style="text-align:center">${sessionScope.get("nombre")} :Registro Realizado con Exito</h2>
 
 
 </main>

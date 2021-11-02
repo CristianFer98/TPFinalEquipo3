@@ -52,16 +52,7 @@
      
      <div class="conteiner">
        <div class="info-amb" style="border-radius:15px">
-     	<span class="info-content">LA CANTIDAD DE AMBULANCIAS EN EL HOSPITAL ES DE :  <span>${cantidad}</span> </span> 
      	
-     	<form action="solicitudPagina" modelAttribute="datosSolicitudAmbulancia">
-     	
-     		<div>
-     		Su direccion:<input type="text" path="direccion" name="direccion" required>	
-     		</div>
-     	   	
-     	   <button Type="Submit" class="btn btn-danger"/> ${key} </button>
-        </form>
 		${mensaje}
      </div>
      
@@ -70,5 +61,3 @@
         <jsp:include page="footer.jsp"></jsp:include>
    
 </body>
-
-
