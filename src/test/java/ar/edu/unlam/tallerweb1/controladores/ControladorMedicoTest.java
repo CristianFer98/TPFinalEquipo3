@@ -67,7 +67,6 @@ public class ControladorMedicoTest {
 		// creo los datos
 		DatosDeActualizacionPerfilMedico datosActualizacion = new DatosDeActualizacionPerfilMedico();
 		datosActualizacion.setEspecialidad(1);
-		datosActualizacion.setFoto("FOTO.PNG");
 		datosActualizacion.setId(1);
 		datosActualizacion.setPaginaPersonal("Cristian.com");
 		datosActualizacion.setTelefono("1134778956");
@@ -94,7 +93,6 @@ public class ControladorMedicoTest {
 		// creo los datos
 		DatosDeActualizacionPerfilMedico datosActualizacion = new DatosDeActualizacionPerfilMedico();
 		datosActualizacion.setEspecialidad(1);
-		datosActualizacion.setFoto("FOTO.PNG");
 		datosActualizacion.setId(1);
 		datosActualizacion.setPaginaPersonal("Cristian.com");
 		datosActualizacion.setTelefono("1134778956");

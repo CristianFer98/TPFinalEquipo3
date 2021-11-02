@@ -36,7 +36,6 @@ public class ServicioSesionMedicoTest {
 
 		DatosDeActualizacionPerfilMedico datosActualizacion = new DatosDeActualizacionPerfilMedico();
 		datosActualizacion.setEspecialidad(1);
-		datosActualizacion.setFoto("FOTO.PNG");
 		datosActualizacion.setId(1);
 		datosActualizacion.setPaginaPersonal("Cristian.com");
 		datosActualizacion.setTelefono("1134778956");
@@ -55,7 +54,6 @@ public class ServicioSesionMedicoTest {
 
 		DatosDeActualizacionPerfilMedico datosActualizacion = new DatosDeActualizacionPerfilMedico();
 		datosActualizacion.setEspecialidad(1);
-		datosActualizacion.setFoto("FOTO.PNG");
 		datosActualizacion.setId(1);
 		datosActualizacion.setPaginaPersonal("Cristian.com");
 		datosActualizacion.setTelefono("1134778956");
@@ -129,61 +127,7 @@ public class ServicioSesionMedicoTest {
 		
 		assertThat(querecibioo).isTrue();
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-//		DatosAgendaMesMedico datos = new DatosAgendaMesMedico();
-//		Usuario usuario = mock(Usuario.class);
-//		usuario.setIdUsuario(1);
-//		usuario.setEmail("Cris@gmail.com");
-//		
-//		ArrayList <Integer> diasDeLaSemanaElegidos = new ArrayList <Integer>();
-//		diasDeLaSemanaElegidos.add(2);
-//		diasDeLaSemanaElegidos.add(4);
-//		datos.setDiasDeLaSemanaElegidos(diasDeLaSemanaElegidos);
-//		ArrayList <TurnoMedico> nuevosTurnos = new ArrayList <TurnoMedico>();
-//		
-//
-//		Time horarioComienzoJornada = new Time(8,00,00);
-//		Time horarioFinJornada = new Time(16,00,00);
-//		
-//	LocalDateTime tiempoActual = LocalDateTime.now();
-//		
-//		@SuppressWarnings("deprecation")
-//		LocalDateTime inicioDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth(),
-//				tiempoActual.getDayOfMonth(), horarioComienzoJornada.getHours() -3, horarioComienzoJornada.getMinutes()) ;
-//
-//		@SuppressWarnings("deprecation")
-//		LocalDateTime finDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth().plus(1),
-//				tiempoActual.getDayOfMonth(), horarioFinJornada.getHours() -3 , horarioFinJornada.getHours());
-//
-//	
-//		
-//		Integer idMedico = 1;
-//
-//		when(repositorio.cargarAgenda(nuevosTurnos, usuario.getIdUsuario())).thenReturn(true);
-//		when(repositorio.obtenerUsuarioPorId(1)).thenReturn(usuario);
-//
-//		when(servicio.recorrerFechas(inicioDeActividadMensual, finDeActividadMensual, datos.getDiasDeLaSemanaElegidos())).thenReturn(new ArrayList <TurnoMedico>());
-//
-//		
-//		Boolean cargo = servicio.cargarAgenda(datos, idMedico, horarioComienzoJornada, horarioFinJornada);
-//		
-//		assertThat(cargo).isTrue();
+
 	}
 	
 }

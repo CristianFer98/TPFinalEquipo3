@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,42 +16,40 @@ public class Usuario {
 	// va a ser de 3 tipos. cliente, medico y admin. Por el momento
 	// la forma de identificarlos va a ser con un valor booleano ya que no
 	// sabemos como joinear tablas para traer su valor especifico.
-	// hay campos compartidos, la foto, la especialidad, etc. Son campos que solo los medicos
+	// hay campos compartidos, la foto, la especialidad, etc. Son campos que solo
+	// los medicos
 	// van a ocupar. Vi innesesario hacer un mapeo entre tablas para esto.
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idUsuario;
 
-	 
 	@Column
 	private String contrasenia;
-	
+
 	@Column
 	private String nombre;
-	
+
 	@ManyToOne
 	private Especialidad especialidad;
-	
-	@Column 
+
+	@Column
 	private String telefono;
-	
+
 	@Column
 	private String foto;
-	
-	@Column
-	private String paginaPersonal;  
 
+	@Column
+	private String paginaPersonal;
 
 	@Column
 	private String email;
-	
+
 	@Column
-	private Integer edad;
+	private LocalDate edad;
 
 	@Column
 	private Integer numeroDeDeTipoDeUsuario;
-
 
 	public Usuario(String contrasenia, String email, Integer numeroDeDeTipoDeUsuario) {
 		super();
@@ -59,7 +59,6 @@ public class Usuario {
 	}
 
 	// si es 1 = usuario comun. Si es 2 = medico. Si es 3 = admin.
-	
 
 	public Usuario() {
 
@@ -88,7 +87,7 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public Integer getNumeroDeDeTipoDeUsuario() {
 		return numeroDeDeTipoDeUsuario;
 	}
@@ -96,7 +95,7 @@ public class Usuario {
 	public void setNumeroDeDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
 		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
 
-}
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -106,19 +105,13 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public Integer getEdad() {
+	public LocalDate getEdad() {
 		return edad;
 	}
 
-	public void setEdad(Integer edad) {
+	public void setEdad(LocalDate edad) {
 		this.edad = edad;
 	}
-
-	
-
-	
-
-	
 
 	public Especialidad getEspecialidad() {
 		return especialidad;
@@ -151,8 +144,5 @@ public class Usuario {
 	public void setPaginaPersonal(String paginaPersonal) {
 		this.paginaPersonal = paginaPersonal;
 	}
-	
-	
-	
 
 }

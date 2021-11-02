@@ -5,7 +5,7 @@ import org.junit.Test;
 
 import ar.edu.unlam.tallerweb1.controladores.ClavesCortasException;
 import ar.edu.unlam.tallerweb1.controladores.ClavesDistintasException;
-import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
+import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuario;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import static org.mockito.Mockito.*;
@@ -21,11 +21,11 @@ public class ServicioRegistroTest {
 	private String claveMal = "5555";
 	private String claveLongitudMenorAOcho = "1234";
 
-	private DatosRegistroUsuarioComun datosRegistroConContraDiferente = new DatosRegistroUsuarioComun(email, clave,
+	private DatosRegistroUsuario datosRegistroConContraDiferente = new DatosRegistroUsuario(email, clave,
 			claveMal);
-	private DatosRegistroUsuarioComun datosRegistroConLongitudIncorrecta = new DatosRegistroUsuarioComun(email,
+	private DatosRegistroUsuario datosRegistroConLongitudIncorrecta = new DatosRegistroUsuario(email,
 			claveLongitudMenorAOcho, claveLongitudMenorAOcho);
-	private DatosRegistroUsuarioComun datosRegistroConDatosCorrectos = new DatosRegistroUsuarioComun(email, clave,
+	private DatosRegistroUsuario datosRegistroConDatosCorrectos = new DatosRegistroUsuario(email, clave,
 			repiteClave);
 	private ServicioRegistroLoginImpl servicioRegistroLogin;
 	private RepositorioRegistroLogin repositorioRegistroLogin;
@@ -45,7 +45,7 @@ public class ServicioRegistroTest {
 		// mas
 	}
 
-	private void whenRegistroConContraseniaDiferente(DatosRegistroUsuarioComun datosRegistroConContraDiferente) throws ParseException {
+	private void whenRegistroConContraseniaDiferente(DatosRegistroUsuario datosRegistroConContraDiferente) throws ParseException {
 		servicioRegistroLogin.registrarUsuario(datosRegistroConContraDiferente); // esto arroja la exception
 	}
 
@@ -57,7 +57,7 @@ public class ServicioRegistroTest {
 		whenRegistroConContraCorta(datosRegistroConLongitudIncorrecta); // lo mismo que lo anterior.
 	}
 
-	private void whenRegistroConContraCorta(DatosRegistroUsuarioComun datosRegistroConLongitudIncorrecta) throws ParseException {
+	private void whenRegistroConContraCorta(DatosRegistroUsuario datosRegistroConLongitudIncorrecta) throws ParseException {
 		servicioRegistroLogin.registrarUsuario(datosRegistroConLongitudIncorrecta);// me tira la exception esperada
 	}
 
@@ -68,7 +68,7 @@ public class ServicioRegistroTest {
 
 		Usuario usuario = mock(Usuario.class);
 		Integer id = 1;
-		DatosRegistroUsuarioComun datos = mock(DatosRegistroUsuarioComun.class);
+		DatosRegistroUsuario datos = mock(DatosRegistroUsuario.class);
 		
 		when(datos.getContrasenia1()).thenReturn("123456789");
 		when(datos.getContrasenia2()).thenReturn("123456789");

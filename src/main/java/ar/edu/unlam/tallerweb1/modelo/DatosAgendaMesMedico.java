@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.sql.Time;
-import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 
 public class DatosAgendaMesMedico {

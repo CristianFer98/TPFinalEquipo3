@@ -57,13 +57,6 @@ background-color:#C2E4EB;
 		display: none;
 	}
 	
-
-}
-
-
-
-
-
 </style>
 
 

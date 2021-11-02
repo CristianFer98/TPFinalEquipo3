@@ -12,7 +12,7 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
-import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
+import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuario;
 import ar.edu.unlam.tallerweb1.modelo.DatosSolicitudAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -43,7 +43,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 		Ambulancia amb= new Ambulancia("aaa111", true);
 		servicioAmbulancia.agregarAmbulancia(amb);
 		
-		DatosRegistroUsuarioComun datosRegistro= new DatosRegistroUsuarioComun("test@gmail.com", "123456789", "123456789");
+		DatosRegistroUsuario datosRegistro= new DatosRegistroUsuario("test@gmail.com", "123456789", "123456789");
 		servicioRegistroLogin.registrarUsuario(datosRegistro);
 		Usuario user= servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com");
 		
@@ -61,7 +61,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 	@Transactional
 	@Rollback
 	public void testNoSePuedePedirAmbulanciaSiNoExisteAmbulancia() throws ParseException {
-		DatosRegistroUsuarioComun datosRegistro= new DatosRegistroUsuarioComun("test@gmail.com", "123456789", "123456789");
+		DatosRegistroUsuario datosRegistro= new DatosRegistroUsuario("test@gmail.com", "123456789", "123456789");
 		servicioRegistroLogin.registrarUsuario(datosRegistro);
 		Usuario user= servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com");
 		
@@ -82,7 +82,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 		servicioAmbulancia.agregarAmbulancia(amb2);
 		
 	
-		DatosRegistroUsuarioComun datosRegistro= new DatosRegistroUsuarioComun("test@gmail.com", "123456789", "123456789");
+		DatosRegistroUsuario datosRegistro= new DatosRegistroUsuario("test@gmail.com", "123456789", "123456789");
 		servicioRegistroLogin.registrarUsuario(datosRegistro);
 		Usuario user= servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com");
 		
@@ -133,7 +133,7 @@ public class ControladorAmbulanciaTest extends SpringTest {
 	}
 
 	private Usuario registrarUser() throws ParseException {
-		DatosRegistroUsuarioComun datosRegistro= new DatosRegistroUsuarioComun("test@gmail.com", "123456789", "123456789");
+		DatosRegistroUsuario datosRegistro= new DatosRegistroUsuario("test@gmail.com", "123456789", "123456789");
 		servicioRegistroLogin.registrarUsuario(datosRegistro);
 		Usuario user= servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com");
 		return user;

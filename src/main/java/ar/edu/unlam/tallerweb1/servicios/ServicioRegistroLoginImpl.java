@@ -10,10 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.unlam.tallerweb1.controladores.ClavesCortasException;
 import ar.edu.unlam.tallerweb1.controladores.ClavesDistintasException;
 import ar.edu.unlam.tallerweb1.controladores.UsuarioInexistenteException;
-import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
-import ar.edu.unlam.tallerweb1.modelo.DatosRegistroMedico;
+import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import ar.edu.unlam.tallerweb1.repositorios.emailExistenteException;
 
@@ -44,7 +43,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 	
 	//refactorizar los metodos
 	@Override
-	public Integer registrarUsuario(DatosRegistroUsuarioComun datos) throws emailExistenteException {
+	public Integer registrarUsuario(DatosRegistroUsuario datos) throws emailExistenteException {
 		String clave = datos.getContrasenia1();
 		String repiteClave = datos.getContrasenia2();
 		Integer idRecibida;
@@ -60,7 +59,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		Usuario usuario = new Usuario();
 		usuario.setEmail(datos.getEmail());
 		usuario.setContrasenia(datos.getContrasenia1());
-		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeDeTipoDeUsuario());
+		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeTipoDeUsuario());
 		usuario.setNombre(datos.getNombre());
 		
 		
@@ -71,31 +70,6 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 
 	}
 
-	@Override
-	public Integer registrarUsuario(DatosRegistroMedico datos)throws emailExistenteException {
-		String clave = datos.getContrasenia1();
-		String repiteClave = datos.getContrasenia2();
-		Integer idRecibida;
-
-		if (lasClavesSonDistintas(clave, repiteClave) == true) {
-			throw new ClavesDistintasException();
-		}
-
-		if (lasClavesSonDeMenorLongitud(clave) == true) {
-			throw new ClavesCortasException();
-		}
-
-		Usuario usuario = new Usuario();
-		usuario.setEmail(datos.getEmail());
-		usuario.setContrasenia(datos.getContrasenia1());
-		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeDeTipoDeUsuario());
-		usuario.setEdad(datos.getEdad());
-		usuario.setNombre(datos.getNombre());
-		
-		idRecibida = repositorioRegistroLogin.registrarUsuario(usuario);
-		return idRecibida;
-
-	}
 
 	private boolean lasClavesSonDistintas(String clave, String repiteclave) {
 		if (!clave.equals(repiteclave)) {

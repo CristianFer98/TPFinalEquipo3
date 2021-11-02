@@ -35,7 +35,6 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 			// usuario.setEspecialidad(datos.getEspecialidad());
 			Especialidad especialidad = buscarEspecialidadPorId(datos.getEspecialidad());
 			usuario.setEspecialidad(especialidad);
-			usuario.setFoto(datos.getFoto());
 			usuario.setTelefono(datos.getTelefono());
 			usuario.setPaginaPersonal(datos.getPaginaPersonal());
 			session.getCurrentSession().update(usuario);
@@ -88,7 +87,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<TurnoMedico> verCompromisos(Integer id) {
 
@@ -98,6 +97,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 				.add(Restrictions.eq("medicoAsignado", Medico)).add(Restrictions.eq("estado", false)).list();
 	}
 
+	@SuppressWarnings("deprecation")
 	private Usuario buscarMedicoPorId(Integer id) {
 
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))

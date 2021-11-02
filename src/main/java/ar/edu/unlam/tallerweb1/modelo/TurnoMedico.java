@@ -1,18 +1,14 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.sql.Time;
 import java.time.LocalDateTime;
-import java.util.Date;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
 
 @Entity
 public class TurnoMedico {

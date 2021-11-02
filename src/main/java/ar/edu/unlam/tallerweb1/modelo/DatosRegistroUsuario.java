@@ -1,20 +1,20 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.Column;
+import java.time.LocalDate;
 
-public class DatosRegistroUsuarioComun {
+public class DatosRegistroUsuario {
 
 	private String email;
 	
 	private String nombre; //y el repiteclave
 
-	private Integer edad;
+	private LocalDate edad;
 	
 	private String contrasenia1; //seria el clave
 	
 	private String contrasenia2; //y el repiteclave
 
-	private Integer numeroDeDeTipoDeUsuario = 1;
+	private Integer numeroDeTipoDeUsuario;
 	
 
 	//va a ser el admin quien pueda registrar en su cuenta nuevos medicos que accedan.
@@ -25,11 +25,11 @@ public class DatosRegistroUsuarioComun {
 		return email;
 	}
 	
-	public DatosRegistroUsuarioComun() {
+	public DatosRegistroUsuario() {
 		
 	}
 
-	public DatosRegistroUsuarioComun(String email, String contrasenia1, String contrasenia2) {
+	public DatosRegistroUsuario(String email, String contrasenia1, String contrasenia2) {
 		super();
 		this.email = email;
 		this.contrasenia1 = contrasenia1;
@@ -56,12 +56,12 @@ public class DatosRegistroUsuarioComun {
 		this.contrasenia2 = contrasenia2;
 	}
 
-	public Integer getNumeroDeDeTipoDeUsuario() {
-		return numeroDeDeTipoDeUsuario;
+	public Integer getNumeroDeTipoDeUsuario() {
+		return numeroDeTipoDeUsuario;
 	}
 
-	public void setNumeroDeDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
-		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
+	public void setNumeroDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
+		this.numeroDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
 	}
 
 	public String getNombre() {
@@ -72,13 +72,15 @@ public class DatosRegistroUsuarioComun {
 		this.nombre = nombre;
 	}
 
-	public Integer getEdad() {
+	public LocalDate getEdad() {
 		return edad;
 	}
 
-	public void setEdad(Integer edad) {
+	public void setEdad(LocalDate edad) {
 		this.edad = edad;
 	}
+
+
 	
 	
 	

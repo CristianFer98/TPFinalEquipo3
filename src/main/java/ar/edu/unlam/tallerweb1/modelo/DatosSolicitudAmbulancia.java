@@ -4,9 +4,7 @@ public class DatosSolicitudAmbulancia {
 	private String direccion;
 	private Usuario user;
 	private Ambulancia ambulancia;
-	
-	
-	
+
 	public DatosSolicitudAmbulancia() {
 	}
 
@@ -37,9 +35,5 @@ public class DatosSolicitudAmbulancia {
 	public void setAmbulancia(Ambulancia ambulancia) {
 		this.ambulancia = ambulancia;
 	}
-	
-	
-	
-	
 
 }

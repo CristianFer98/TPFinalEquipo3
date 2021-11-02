@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

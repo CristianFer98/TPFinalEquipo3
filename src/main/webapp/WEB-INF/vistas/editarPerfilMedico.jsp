@@ -80,7 +80,6 @@
 		</select> 
 	 
 		  <input type="text" path="telefono" name="telefono" placeholder="Telefono de Contacto" class="inicioSesion_inputs">
-	     <input type="file" path="foto" name="foto" id="foto" class="inicioSesion_inputs">
 	     <input type="text" path="paginaPersonal" name="paginaPersonal" id="PaginaPersonal" placeholder="Ingrese su sitio web" class="inicioSesion_inputs"> 
 	     
 	     <input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Cargar datos"> 

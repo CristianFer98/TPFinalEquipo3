@@ -7,8 +7,7 @@ import org.junit.Test;
 
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.DatosRegistroMedico;
-import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuarioComun;
+import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuario;
 import ar.edu.unlam.tallerweb1.repositorios.emailExistenteException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
@@ -32,11 +31,11 @@ public class ControladorRegistroTest {
 	private String claveLongitudMenorAOcho = "1234";
 
 	// los objetos datosDeRegistro para un usuario comun.
-	private DatosRegistroUsuarioComun datosRegistroConContraDiferente = new DatosRegistroUsuarioComun(email, clave,
+	private DatosRegistroUsuario datosRegistroConContraDiferente = new DatosRegistroUsuario(email, clave,
 			claveMal);
-	private DatosRegistroUsuarioComun datosRegistroConLongitudIncorrecta = new DatosRegistroUsuarioComun(email,
+	private DatosRegistroUsuario datosRegistroConLongitudIncorrecta = new DatosRegistroUsuario(email,
 			claveLongitudMenorAOcho, claveLongitudMenorAOcho);
-	private DatosRegistroUsuarioComun datosRegistroConDatosCorrectos = new DatosRegistroUsuarioComun(email, clave,
+	private DatosRegistroUsuario datosRegistroConDatosCorrectos = new DatosRegistroUsuario(email, clave,
 			repiteClave);
 
 	// datos para registrar un medico
@@ -44,7 +43,7 @@ public class ControladorRegistroTest {
 	private String claveUsuarioMedico = "123456789";
 	private String repiteClaveUsuarioMedico = "123456789";
 
-	private DatosRegistroMedico datosRegistroMedico = new DatosRegistroMedico(emailUsuarioMedico, claveUsuarioMedico,
+	private DatosRegistroUsuario datosRegistroMedico = new DatosRegistroUsuario(emailUsuarioMedico, claveUsuarioMedico,
 			repiteClaveUsuarioMedico);
 
 	@Before
@@ -74,8 +73,8 @@ public class ControladorRegistroTest {
 	}
 
 	private void whenRegistroUnUsuarioConContraseñaDiferente(
-			DatosRegistroUsuarioComun datosRegistroConContraDiferente) throws ParseException {
-		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistroConContraDiferente); // esto me devuelve un
+			DatosRegistroUsuario datosRegistroConContraDiferente) throws ParseException {
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConContraDiferente); // esto me devuelve un
 																								// MAV
 
 	}
@@ -97,8 +96,8 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUnUsuarioConContraseniaCorta(DatosRegistroUsuarioComun datosRegistro2) throws ParseException {
-		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistro2);
+	private void whenRegistroUnUsuarioConContraseniaCorta(DatosRegistroUsuario datosRegistro2) throws ParseException {
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistro2);
 	}
 
 	private void thenRegistroUnUsuarioConContraseniaCorta(String string) {
@@ -116,9 +115,9 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuarioComun datosRegistroConDatosCorrectos) throws ParseException {
+	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuario datosRegistroConDatosCorrectos) throws ParseException {
 
-		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistroConDatosCorrectos);
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConDatosCorrectos);
 	}
 
 	private void thenRegistroUsuarioComun() {
@@ -139,8 +138,8 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUnMedico(DatosRegistroMedico datosRegistroMedico) throws ParseException {
-		mav = controladorRegistro.registrarMedico(datosRegistroMedico);
+	private void whenRegistroUnMedico(DatosRegistroUsuario datosRegistroMedico) throws ParseException {
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroMedico);
 	}
 
 //______________________________________________________________________________________________________________//
@@ -154,8 +153,8 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUnUsuarioConEmailExistente(DatosRegistroUsuarioComun datosRegistro2) throws ParseException {
-		mav = controladorRegistro.registrarNuevoUsuarioComun(datosRegistro2);
+	private void whenRegistroUnUsuarioConEmailExistente(DatosRegistroUsuario datosRegistro2) throws ParseException {
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistro2);
 	}
 
 	private void thenRegistroUnUsuarioConEmailExistente(String string) {

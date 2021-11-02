@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.io.InputStream;
 
 public class DatosDeActualizacionPerfilMedico {
 
@@ -10,33 +9,19 @@ public class DatosDeActualizacionPerfilMedico {
 
 	private String telefono;
 
-	private String foto;
-
 	private String paginaPersonal;
 
 	public DatosDeActualizacionPerfilMedico() {
 
 	}
 
-
-
-
-
 	public Integer getEspecialidad() {
 		return especialidad;
 	}
 
-
-
-
-
 	public void setEspecialidad(Integer especialidad) {
 		this.especialidad = especialidad;
 	}
-
-
-
-
 
 	public String getTelefono() {
 		return telefono;
@@ -44,14 +29,6 @@ public class DatosDeActualizacionPerfilMedico {
 
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
-	}
-
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
 	}
 
 	public String getPaginaPersonal() {
