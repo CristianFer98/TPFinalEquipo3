@@ -1,42 +1,43 @@
 <jsp:include page="header.jsp"></jsp:include>
 <style>
+
 </style>
 <main>
 
-	<table width="100%" border="1" bordercolor="#0000FF"
-		style="background-color: beige" cellspacing="20" cellpadding="20">
 
-		<h2>Perfil Medico</h2>
-
-
-		<tr>
-			<!-- Esto es una fila con los nombre de las columnas -->
-			<th>Nombre</th>
-			<th>${usuario.nombre}</th>
-		</tr>
-
-		<tr style="padding-top: 25px">
-			<th>Especialidad</th>
-			<th>${usuario.especialidad.especialidad}</th>
-		</tr>
-
-		<tr>
-			<th>Pagina Personal</th>
-			<th>${usuario.paginaPersonal}</th>
-		</tr>
-
-		<tr>
-			<th>Contacto</th>
-			<th>${usuario.telefono}</th>
-		</tr>
-
-		<tr>
-			<th>Edad</th>
-			<th>${usuario.edad}</th>
-		</tr>
-
-	</table>
-
+	<div style="display: flex; justify-content: center">
+		<div class="card card-margin" style="width:50%; height:300px; margin:20px">
+			<div class="card-header no-border">
+				<h5 class="card-title">Perfil</h5>
+			</div>
+			<div class="card-body pt-0">
+				<div class="widget-49">
+					<div class="widget-49-title-wrapper">
+						<div class="widget-49-date-primary">
+							<span class="widget-49-date-day">${usuario.edad.dayOfMonth}</span>
+							<span class="widget-49-date-month">${usuario.edad.month}</span>
+						</div>
+						<div class="widget-49-meeting-info">
+							<span class="widget-49-pro-title">Nombre:
+								${usuario.nombre}</span> <span class="widget-49-meeting-time">Especialidad:
+								${usuario.especialidad.especialidad}</span>
+						</div>
+					</div>
+					<ol class="widget-49-meeting-points">
+						<li class="widget-49-meeting-item"><span>Email:
+								${usuario.email}</span></li>
+						<li class="widget-49-meeting-item"><span>Pagina Web
+								Personal: ${usuario.paginaPersonal}</span></li>
+						<li class="widget-49-meeting-item"><span>Contacto:
+								${usuario.telefono}</span></li>
+					</ol>
+					<div class="widget-49-meeting-action">
+						<a href="EditarPerfil" class="btn btn-sm btn-flash-border-primary">Editar Pefil</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </main>
 
 

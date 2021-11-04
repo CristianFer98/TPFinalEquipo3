@@ -1,5 +1,9 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.time.LocalDate;
+
+import javax.transaction.Transactional;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,21 +11,48 @@ import org.springframework.stereotype.Repository;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
-@Repository 
-public class RepositorioPlanSaludImpl implements RepositorioPlanSalud{
+@Repository
+@Transactional
+public class RepositorioPlanSaludImpl implements RepositorioPlanSalud {
 
-	//Creo la session para conectarme con la BD
-	private SessionFactory sesion;
+	private SessionFactory session;
+
+	@Autowired
+	public RepositorioPlanSaludImpl(SessionFactory session) {
+		this.session = session;
+	}
 
 	@Override
-	public Integer recuperarEdad(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public LocalDate recuperarEdad(Integer id) {
+
+		Usuario usuario = recuperarUsuarioPorId(id);
+
+		return usuario.getEdad();
 	}
-	
-	
-	
 
+	@SuppressWarnings("deprecation")
+	private Usuario recuperarUsuarioPorId(Integer id) {
+		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))
+				.uniqueResult();
+	}
 
-	
+	@Override
+	public Boolean corroborarExistenciaDePlan(Integer id) {
+
+		Usuario usuario = recuperarUsuarioPorId(id);
+		if (usuario.getDescuentoPorPlanMedico() == null) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
+	@Override
+	public void suscribirseAPlanMedico(Integer id, Double descuento) {
+		Usuario usuario = recuperarUsuarioPorId(id);
+		usuario.setDescuentoPorPlanMedico(descuento);
+		session.getCurrentSession().update(usuario);
+	}
+
 }

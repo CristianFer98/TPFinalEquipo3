@@ -4,23 +4,25 @@
 
 <main>
 
-	<h2 style="text-align:center">${sessionScope.get("nombre")}: Seleccione su medico preferido</h2>
+	<h2 style="text-align: center">${sessionScope.get("nombre")}:
+		Seleccione su medico preferido</h2>
 
 
 	<c:if test="${not empty lista}">
 
-		<ul>
-			<c:forEach var="lista" items="${lista}">
-				<form action="mostrarTurnos" method="get">
-				
-				<div class="card bg-light text-dark">
-					<button type="submit" class="btn btn-secondary btn-lg btn-block" value="${lista.idUsuario}" 
-					name="idUsuario">${lista.nombre}</button>
+		<c:forEach var="lista" items="${lista}">
+			
+			<div style="display:flex; justify-content:center; margin:15px">
+			<div class="card w-75" >
+				<div class="card-body">
+					<h5 class="card-title">${lista.nombre}</h5>
+					<p class="card-text">Telefono: ${lista.telefono} - Pagina web: ${lista.paginaPersonal}</p>
+					<a href="mostrarTurnos?idUsuario=${lista.idUsuario}" class="btn btn-primary">Ver turnos disponibles</a>
 				</div>
-				
-				</form>
-			</c:forEach>
-		</ul>
+			</div>
+			</div>
+		</c:forEach>
+
 
 	</c:if>
 

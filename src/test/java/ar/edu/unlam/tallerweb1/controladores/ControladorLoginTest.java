@@ -52,7 +52,7 @@ public class ControladorLoginTest {
 		HttpSession http = mock(HttpSession.class);
 		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
 		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
-		when(usuario.getNumeroDeDeTipoDeUsuario()).thenReturn(1);// cuando haga getNumero que siempre devuelva 1 (esto
+		when(usuario.getNumeroDeTipoDeUsuario()).thenReturn(1);// cuando haga getNumero que siempre devuelva 1 (esto
 																	// faltaba)
 
 		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
@@ -79,7 +79,7 @@ public class ControladorLoginTest {
 		HttpSession http = mock(HttpSession.class);
 		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
 		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
-		when(usuario.getNumeroDeDeTipoDeUsuario()).thenReturn(2);// cuando haga getNumero que siempre devuelva 1 (esto
+		when(usuario.getNumeroDeTipoDeUsuario()).thenReturn(2);// cuando haga getNumero que siempre devuelva 1 (esto
 																	// faltaba)
 
 		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
@@ -106,7 +106,7 @@ public class ControladorLoginTest {
 		HttpSession http = mock(HttpSession.class);
 		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
 		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
-		when(usuario.getNumeroDeDeTipoDeUsuario()).thenReturn(3);// cuando haga getNumero que siempre devuelva 1 (esto
+		when(usuario.getNumeroDeTipoDeUsuario()).thenReturn(3);// cuando haga getNumero que siempre devuelva 1 (esto
 																	// faltaba)
 
 		mav = controladorLogin.iniciarSesion(datos, mockedRequest);

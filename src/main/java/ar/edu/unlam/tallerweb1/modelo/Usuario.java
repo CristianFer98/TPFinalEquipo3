@@ -37,25 +37,25 @@ public class Usuario {
 	private String telefono;
 
 	@Column
-	private String foto;
-
-	@Column
 	private String paginaPersonal;
 
 	@Column
 	private String email;
 
-	@Column
-	private LocalDate edad;
+    @Column(updatable = false, nullable = false)
+	private LocalDate fechaNacimiento;
 
 	@Column
-	private Integer numeroDeDeTipoDeUsuario;
+	private Integer numeroDeTipoDeUsuario;
 
-	public Usuario(String contrasenia, String email, Integer numeroDeDeTipoDeUsuario) {
+	@Column
+	private Double descuentoPorPlanMedico;
+
+	public Usuario(String contrasenia, String email, Integer numeroDeTipoDeUsuario) {
 		super();
 		this.contrasenia = contrasenia;
 		this.email = email;
-		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
+		this.numeroDeTipoDeUsuario = numeroDeTipoDeUsuario;
 	}
 
 	// si es 1 = usuario comun. Si es 2 = medico. Si es 3 = admin.
@@ -88,12 +88,12 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public Integer getNumeroDeDeTipoDeUsuario() {
-		return numeroDeDeTipoDeUsuario;
+	public Integer getNumeroDeTipoDeUsuario() {
+		return numeroDeTipoDeUsuario;
 	}
 
-	public void setNumeroDeDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
-		this.numeroDeDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
+	public void setNumeroDeTipoDeUsuario(Integer numeroDeDeTipoDeUsuario) {
+		this.numeroDeTipoDeUsuario = numeroDeDeTipoDeUsuario;
 
 	}
 
@@ -106,11 +106,11 @@ public class Usuario {
 	}
 
 	public LocalDate getEdad() {
-		return edad;
+		return fechaNacimiento;
 	}
 
 	public void setEdad(LocalDate edad) {
-		this.edad = edad;
+		this.fechaNacimiento = edad;
 	}
 
 	public Especialidad getEspecialidad() {
@@ -129,20 +129,28 @@ public class Usuario {
 		this.telefono = telefono;
 	}
 
-	public String getFoto() {
-		return foto;
-	}
-
-	public void setFoto(String foto) {
-		this.foto = foto;
-	}
-
 	public String getPaginaPersonal() {
 		return paginaPersonal;
 	}
 
 	public void setPaginaPersonal(String paginaPersonal) {
 		this.paginaPersonal = paginaPersonal;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Double getDescuentoPorPlanMedico() {
+		return descuentoPorPlanMedico;
+	}
+
+	public void setDescuentoPorPlanMedico(Double descuentoPorPlanMedico) {
+		this.descuentoPorPlanMedico = descuentoPorPlanMedico;
 	}
 
 }

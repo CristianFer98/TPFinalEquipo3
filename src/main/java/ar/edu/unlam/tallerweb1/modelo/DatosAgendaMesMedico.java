@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-
 import java.util.ArrayList;
 
 public class DatosAgendaMesMedico {
@@ -9,9 +8,8 @@ public class DatosAgendaMesMedico {
 
 	private String horarioComienzoJornada;
 	private String horarioFinJornada;
-
-
-
+	private Double valorPorConsultaNormal;
+	private String duracionTurno;
 	public DatosAgendaMesMedico() {
 
 	}
@@ -43,7 +41,22 @@ public class DatosAgendaMesMedico {
 
 
 
+	public Double getValorPorConsultaNormal() {
+		return valorPorConsultaNormal;
+	}
 
+	public void setValorPorConsultaNormal(Double valorPorConsultaNormal) {
+		this.valorPorConsultaNormal = valorPorConsultaNormal;
+	}
 
+	public String getDuracionTurno() {
+		return duracionTurno;
+	}
+
+	public void setDuracionTurno(String duracionTurno) {
+		this.duracionTurno = duracionTurno;
+	}
+	
+	
 
 }

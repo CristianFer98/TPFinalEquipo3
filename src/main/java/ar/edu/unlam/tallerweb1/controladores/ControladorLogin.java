@@ -67,14 +67,14 @@ public class ControladorLogin {
 			req.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
 			req.getSession().setAttribute("nombre", usuario.getNombre());
 
-			if (usuario.getNumeroDeDeTipoDeUsuario() == 1) {
+			if (usuario.getNumeroDeTipoDeUsuario() == 1) {
 				model.put("usuario", usuario);
 				return new ModelAndView("paginaPrincipal", model);
-			} else if (usuario.getNumeroDeDeTipoDeUsuario() == 2) {
+			} else if (usuario.getNumeroDeTipoDeUsuario() == 2) {
 				model.put("usuario", usuario);
 				
 				return new ModelAndView("paginaPrincipalMedicos", model);
-			} else if (usuario.getNumeroDeDeTipoDeUsuario() == 3) {
+			} else if (usuario.getNumeroDeTipoDeUsuario() == 3) {
 				model.put("usuario", usuario);
 
 				return new ModelAndView("paginaPrincipalAdmin", model);

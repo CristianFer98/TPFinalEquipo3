@@ -41,7 +41,7 @@ public class RepositorioRegistroLoginTest extends SpringTest { // levanto el ent
 		Usuario usuario = new Usuario();
 		usuario.setEmail(email);
 		usuario.setContrasenia(clave);
-		usuario.setNumeroDeDeTipoDeUsuario(1);
+		usuario.setNumeroDeTipoDeUsuario(1);
 		return usuario;
 
 	}

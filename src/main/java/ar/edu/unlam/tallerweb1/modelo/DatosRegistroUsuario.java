@@ -8,7 +8,7 @@ public class DatosRegistroUsuario {
 	
 	private String nombre; //y el repiteclave
 
-	private LocalDate edad;
+	private String edad;
 	
 	private String contrasenia1; //seria el clave
 	
@@ -72,19 +72,20 @@ public class DatosRegistroUsuario {
 		this.nombre = nombre;
 	}
 
-	public LocalDate getEdad() {
+	public String getEdad() {
 		return edad;
 	}
 
-	public void setEdad(LocalDate edad) {
+	public void setEdad(String edad) {
 		this.edad = edad;
 	}
 
 
+
 	
 	
 	
-	
+	 
 	
 
 

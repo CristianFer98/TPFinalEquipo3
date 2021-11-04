@@ -28,20 +28,17 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 
 	@Override
 	public Usuario cargarDatos(DatosDeActualizacionPerfilMedico datos, Integer id) {
-		if (obtenerUsuarioPorId(id) != null) {
+		
 
-			Usuario usuario = obtenerUsuarioPorId(id);
+		 	Usuario usuario = obtenerUsuarioPorId(id);
 
-			// usuario.setEspecialidad(datos.getEspecialidad());
 			Especialidad especialidad = buscarEspecialidadPorId(datos.getEspecialidad());
 			usuario.setEspecialidad(especialidad);
 			usuario.setTelefono(datos.getTelefono());
 			usuario.setPaginaPersonal(datos.getPaginaPersonal());
 			session.getCurrentSession().update(usuario);
 			return obtenerUsuarioPorId(id);
-		}
-
-		return null;
+		
 	}
 
 	@SuppressWarnings("deprecation")

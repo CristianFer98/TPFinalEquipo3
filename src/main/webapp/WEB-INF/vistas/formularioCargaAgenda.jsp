@@ -85,12 +85,19 @@
 				</c:if>
 
 			</div>
-________________________________________________________________________________________________________
-			<label for="horarioComienza" style="font-size:25px">Indique Comienzo de Jornadalaboral:</label> 
+____________________________________________________________________________
+			<label for="horarioComienza" style="font-size:25px">Comienzo de Jornada laboral:</label> 
 			<input type="time" style="width: 40%; margin:10px" id="appt" path="horarioComienzoJornada" name="horarioComienzoJornada"> 
 			
-			<label for="horarioFinal" style="font-size:25px">Indique Fin de Jornada laboral:</label>
+			<label for="horarioFinal" style="font-size:25px">Fin de Jornada laboral:</label>
 			<input type="time" style="width: 40%;" id="appt" path="horarioFinJornada" name="horarioFinJornada">
+			
+			<label for="precioPorConsulta" style="font-size:25px">Indique el valor de la consulta en pesos</label>
+			<input type="number" style="width: 40%;" id="appt" path="valorPorConsultaNormal" name="valorPorConsultaNormal">
+			
+			<label for="duracionTurno" style="font-size:25px">Indique duracion de cada turno</label>
+			<input type="time" style="width: 40%;" id="appt" path="duracionTurno" name="duracionTurno">
+			
 			
 			<input type="submit"
 				style="background-color: rgb(16, 11, 37); color: aliceblue;"

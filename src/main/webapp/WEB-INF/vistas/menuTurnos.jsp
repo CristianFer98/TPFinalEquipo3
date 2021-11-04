@@ -1,1 +1,0 @@
-La fecha es= ${fe}

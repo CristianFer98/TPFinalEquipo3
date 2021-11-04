@@ -1,7 +1,11 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.time.LocalDate;
+
 public interface RepositorioPlanSalud {
 
-	Integer recuperarEdad(Integer id);
+	LocalDate recuperarEdad(Integer id);
+	Boolean corroborarExistenciaDePlan(Integer id);
+	void suscribirseAPlanMedico(Integer id, Double descuento);
 
 }

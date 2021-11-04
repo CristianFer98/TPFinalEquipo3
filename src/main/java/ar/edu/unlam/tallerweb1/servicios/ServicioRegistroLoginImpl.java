@@ -2,6 +2,8 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,12 +61,15 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		Usuario usuario = new Usuario();
 		usuario.setEmail(datos.getEmail());
 		usuario.setContrasenia(datos.getContrasenia1());
-		usuario.setNumeroDeDeTipoDeUsuario(datos.getNumeroDeTipoDeUsuario());
+		usuario.setNumeroDeTipoDeUsuario(datos.getNumeroDeTipoDeUsuario());
 		usuario.setNombre(datos.getNombre());
 		
-		
-		usuario.setEdad(datos.getEdad());
-
+		//tengo que castear la fecha//
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String date = datos.getEdad();
+        LocalDate fechaNacimiento = LocalDate.parse(date, formatter);
+        usuario.setEdad(fechaNacimiento);
+        
 		idRecibida =  repositorioRegistroLogin.registrarUsuario(usuario);
 		return idRecibida;
 

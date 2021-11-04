@@ -12,6 +12,10 @@ public interface RepositorioUsuarioLogueado {
 	List <Especialidad> listarEspecialidades();
 	List<Usuario> listarMedicosPorEspecialidad(Integer idEspecialidad);
 	List<TurnoMedico> listarTurnosDisponibles(Integer idMedico);
-	boolean reservarTurno(Integer idTurno, Integer idUsuario);
+	TurnoMedico reservarTurno(TurnoMedico turno, Integer idUsuario);
 	List<TurnoMedico> verMisTurnos(Integer id);
+	Usuario obtenerMedico(Integer idMedico);
+	TurnoMedico obtenerTurno(Integer idTurno);
+	Usuario obtenerUsuario(Integer idUsuario);
+	void cancelarTurno(Integer idTurno);
 }

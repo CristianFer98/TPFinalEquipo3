@@ -123,7 +123,7 @@ public class ServicioSesionMedicoTest {
 		
 		ArrayList <TurnoMedico> turnos = new ArrayList <TurnoMedico>();
 		when(repositorio.cargarAgenda(turnos, id)).thenReturn(true);
-		Boolean querecibioo = servicio.cargarAgenda(datos, id, horarioComienzoJornada, horarioFinJornada);
+		Boolean querecibioo = servicio.cargarAgenda(datos, id, horarioComienzoJornada, horarioFinJornada, horarioFinJornada);
 		
 		assertThat(querecibioo).isTrue();
 		

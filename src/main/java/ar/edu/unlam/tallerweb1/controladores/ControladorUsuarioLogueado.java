@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +37,7 @@ public class ControladorUsuarioLogueado {
 
 		model.put("lista", especialidades);
 		return new ModelAndView("especialidades", model);
-
+ 
 	}
 
 	@RequestMapping(path = "listarMedicosPorEspecialidad", method = RequestMethod.GET)
@@ -62,19 +64,21 @@ public class ControladorUsuarioLogueado {
 		req.getSession().getAttribute("idUsuario");
 
 		List<TurnoMedico> listaDeTurnosDisponibles = servicio.listarTurnos(idMedico);
-
+		Usuario medico = servicio.obtenerMedico(idMedico);
+		model.put("medico", medico);
 		model.put("lista", listaDeTurnosDisponibles);
-
+		
 		return new ModelAndView("turnosDisponiblesMedico", model);
 	}
 
-	@RequestMapping(path = "reservarTurno", method = RequestMethod.POST)
+	@RequestMapping(path = "reservarTurno", method = RequestMethod.GET)
 	public ModelAndView reservarTurno(@RequestParam("idTurno") Integer idTurno,
 			@RequestParam("idUsuario") Integer idUsuario, HttpServletRequest req) {
-
-		servicio.reservarTurno(idTurno, idUsuario);
-
-		return new ModelAndView("reservaExitosa");
+		ModelMap model = new ModelMap();
+		TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
+		model.put("turno", turnoNuevo);
+		
+		return new ModelAndView("reservaExitosa", model);
 
 	}
 	
@@ -89,6 +93,14 @@ public class ControladorUsuarioLogueado {
 		
 		model.put("lista", turnos);
 		return new ModelAndView("misTurnos", model);
+	}
+	
+	@RequestMapping(path = "cancelarTurno", method= RequestMethod.GET)
+	public ModelAndView cancelarTurno (@RequestParam ("idTurno") Integer idTurno, HttpServletRequest req) {
+
+		servicio.cancelarTurno(idTurno);
+		
+		return verMisTurnos(req);
 	}
 
 }

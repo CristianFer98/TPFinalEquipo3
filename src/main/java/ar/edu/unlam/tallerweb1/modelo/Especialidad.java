@@ -18,7 +18,7 @@ public class Especialidad {
 	private String especialidad;
 	
 	@Column
-	private Boolean precioPorTurno;
+	private String fotoEspecialidad;
 	
 	
 	public Especialidad() {
@@ -41,13 +41,15 @@ public class Especialidad {
 		this.especialidad = especialidad;
 	}
 
-	public Boolean getPrecioPorTurno() {
-		return precioPorTurno;
+	public String getFotoEspecialidad() {
+		return fotoEspecialidad;
 	}
 
-	public void setPrecioPorTurno(Boolean precioPorTurno) {
-		this.precioPorTurno = precioPorTurno;
+	public void setFotoEspecialidad(String fotoEspecialidad) {
+		this.fotoEspecialidad = fotoEspecialidad;
 	}
+
+
 	
 
 

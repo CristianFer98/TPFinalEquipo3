@@ -8,9 +8,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import ar.edu.unlam.tallerweb1.modelo.cotizacionExistenteException;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.servicios.ServicioPlanSalud;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
@@ -20,40 +22,55 @@ public class ControladorPlanSalud {
 	
 	private ServicioPlanSalud servicio;
 	
-	//Defino mi servicio
-	//Con el Autowired Spring instancia mi objeto
+	
 	@Autowired
 	public  ControladorPlanSalud(ServicioPlanSalud servicio) {
 		this.servicio = servicio;
 	}
 	
-	// te lleva a la vista de los planes
-	@RequestMapping(path = "planes", method=RequestMethod.GET)
-	public ModelAndView mostrarPlan() {
-		return new ModelAndView("planes"); 
+	
+	@RequestMapping(path = "formPlanSalud", method=RequestMethod.GET)
+	public ModelAndView mostrarFormPlanMedico() {
+		return new ModelAndView("formPlanMedico"); 
 
 	} 
 	
-	//Con el Http... lo que hago es obtener la id de la BD
-	//Entonces uso el id para encontrar la edad y cotizar
-	//la vista cotizacion me tiene que mostrar la cotizacion segun la edad del paciente
-	@RequestMapping(path="plan-basico",method=RequestMethod.GET)
+
+	@RequestMapping(path="cotizarPlanMedico",method=RequestMethod.GET)
 	public ModelAndView cotizarPlanBasico(HttpServletRequest req) {
+		//segun la edad del usuario el descuento al subscribirse al plan será diferente//
+		
 		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+		String nombreUsuario = (String) req.getSession().getAttribute("nombre");
 		ModelMap model = new ModelMap();
-		Double montoB= servicio.cotizarbasico(id);
-		model.put("valor", montoB);
-		return new ModelAndView("cotizacion",model);		
+		Double descuento;
+		
+		try {
+			descuento = servicio.cotizarPlanMedico(id);//en porcentaje por cada visita medica
+
+		}catch(cotizacionExistenteException e) {
+			String mensaje = "Usted ya cuenta con una suscripcion a su nombre";
+			model.put("nombre", nombreUsuario);
+			model.put("mensaje", mensaje);
+			return new ModelAndView("errorPlanMedico",model);		
+		}
+		
+		model.put("nombre", nombreUsuario);
+		model.put("valor", descuento);
+		return new ModelAndView("cotizacionDePlanMedico",model);		
 	}
 	
-	@RequestMapping(path="plan-avanzado",method=RequestMethod.GET)
-	public ModelAndView cotizarPlanAvanzado(HttpServletRequest req) {
+	@RequestMapping(path = "suscribirseAPlan", method= RequestMethod.GET)
+	public ModelAndView suscribirseAPlanMedico (@RequestParam("descuento") Double descuento,HttpServletRequest req) {
 		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
-		Double montoA= servicio.cotizaravanzado(id);
-		model.put("valor", montoA);
-		return new ModelAndView("cotizacion",model); 	
+		
+		servicio.suscribirseAPlanMedico(id, descuento);
+		
+		model.put("descuento", descuento);
+		return new ModelAndView("suscripcionAPlan", model);
 	}
+
 	
 	
 	

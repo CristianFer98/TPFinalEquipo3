@@ -4,25 +4,36 @@
 
 <main>
 
-	<h2 style="text-align:center">${sessionScope.get("nombre")}: Seleccione la especialidad deseada</h2>
+	<h2 style="text-align: center">${sessionScope.get("nombre")}:
+		Seleccione la especialidad deseada</h2>
 
 
 
 	<c:if test="${not empty lista}">
 
-		<ul>
+
+		<div style="display: flex; flex-wrap:wrap">
+
 			<c:forEach var="lista" items="${lista}">
-				<form action="listarMedicosPorEspecialidad" method="get">
 				
-				<div style="display:flex; justify-content:center">
-				<div class="card bg-light text-dark" style="width:80%; heigth:50px">
-					<button type="submit" class="btn btn-secondary btn-lg btn-block" style="heigth:100px"value="${lista.idEspecialidad}" 
-					name="valor">${lista.especialidad}</button>
+				<div class="card-group" style="width:30%; margin:15px">
+				
+					<div class="card">
+						<img src="img/${lista.fotoEspecialidad}.jpg" style="height:250px" alt="${lista.fotoEspecialidad}">
+						<div class="card-body">
+							<h5 class="card-title">${lista.especialidad}</h5>
+							<p class="card-text">Tenemos los mejores especialistas en el area de ${lista.especialidad}</p>
+							<a href="listarMedicosPorEspecialidad?valor=${lista.idEspecialidad}" ><button type="button" class="btn btn-secondary">Entrar</button></a>
+
+						</div>
+					</div>
+				
 				</div>
-				</div>
-				</form>
+				
 			</c:forEach>
-		</ul>
+		</div>
+
+
 
 	</c:if>
 

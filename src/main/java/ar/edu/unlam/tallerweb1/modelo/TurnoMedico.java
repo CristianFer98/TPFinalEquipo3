@@ -1,6 +1,7 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,15 @@ public class TurnoMedico {
 	
 	@Column
 	private Boolean estado = true;
+	
+	@Column
+	private Double valorPorConsultaNormal;
+	
+	@Column
+	private Double valorConDescuento;
+	
+	@Column
+	private LocalTime tiempoDeLaConsulta;
 	
  
 	
@@ -79,6 +89,33 @@ public class TurnoMedico {
 		this.fecha = fecha;
 	}
 
+	
+
+	public Double getValorPorConsultaNormal() {
+		return valorPorConsultaNormal;
+	}
+
+	public void setValorPorConsultaNormal(Double valorPorConsultaNormal) {
+		this.valorPorConsultaNormal = valorPorConsultaNormal;
+	}
+
+	public Double getValorConDescuento() {
+		return valorConDescuento;
+	}
+
+	public void setValorConDescuento(Double valorConDescuento) {
+		this.valorConDescuento = valorConDescuento;
+	}
+
+	public LocalTime getTiempoDeLaConsulta() {
+		return tiempoDeLaConsulta;
+	}
+
+	public void setTiempoDeLaConsulta(LocalTime tiempoDeLaConsulta) {
+		this.tiempoDeLaConsulta = tiempoDeLaConsulta;
+	}
+
+	
 
 	
 	

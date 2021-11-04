@@ -23,14 +23,14 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 		this.session = session;
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Especialidad> listarEspecialidades() {
 		return (List<Especialidad>) session.getCurrentSession().createCriteria(Especialidad.class).list();
 
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Usuario> listarMedicosPorEspecialidad(Integer idEspecialidad) {
 		Especialidad especialidad = buscarEspecialidadPorId(idEspecialidad);
@@ -38,13 +38,14 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 				.add(Restrictions.eq("especialidad", especialidad)).list();
 	}
 
+	@SuppressWarnings("deprecation")
 	private Especialidad buscarEspecialidadPorId(Integer idEspecialidad) {
 
 		return (Especialidad) session.getCurrentSession().createCriteria(Especialidad.class)
 				.add(Restrictions.eq("idEspecialidad", idEspecialidad)).uniqueResult();
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<TurnoMedico> listarTurnosDisponibles(Integer idMedico) {
 		Usuario medico = buscarMedicoPorId(idMedico);
@@ -53,6 +54,7 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 				.add(Restrictions.eq("medicoAsignado", medico)).add(Restrictions.eq("estado", true)).list();
 	}
 
+	@SuppressWarnings("deprecation")
 	private Usuario buscarMedicoPorId(Integer idMedico) {
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("idUsuario", idMedico)).uniqueResult();
@@ -60,35 +62,62 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 	}
 
 	@Override
-	public boolean reservarTurno(Integer idTurno, Integer idUsuario) {
-		// obtengo el usuario, para asignarlo al turno
+	public TurnoMedico reservarTurno(TurnoMedico turno, Integer idUsuario) {
 		Usuario usuario = obtenerUsuarioPorId(idUsuario);
-		// obtengo el turno medico
-		TurnoMedico turno = (TurnoMedico) session.getCurrentSession().createCriteria(TurnoMedico.class)
-				.add(Restrictions.eq("id", idTurno)).uniqueResult();
-		// seteo el turno para asignarle un usuario. La condicion de si un turno esta
-		// reservado o no, es porque el id del paciente es null
+		
+		
 		turno.setEstado(false);
 		turno.setClienteAsignado(usuario);
+		
 
 		session.getCurrentSession().update(turno);
-		return true;
+		return turno;
 
 	}
 
+	@SuppressWarnings("deprecation")
 	private Usuario obtenerUsuarioPorId(Integer idUsuario) {
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class)
 				.add(Restrictions.eq("idUsuario", idUsuario)).uniqueResult();
 
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<TurnoMedico> verMisTurnos(Integer id) {
 		Usuario usuario = obtenerUsuarioPorId(id);
 
 		return (List<TurnoMedico>) session.getCurrentSession().createCriteria(TurnoMedico.class)
 				.add(Restrictions.eq("clienteAsignado", usuario)).list();
+	}
+
+	@Override
+	public Usuario obtenerMedico(Integer idMedico) {
+		return obtenerUsuarioPorId(idMedico);
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public TurnoMedico obtenerTurno(Integer idTurno) {
+		return (TurnoMedico) session.getCurrentSession().createCriteria(TurnoMedico.class).add(Restrictions.eq("id", idTurno)).uniqueResult();
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public Usuario obtenerUsuario(Integer idUsuario) {
+		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("idUsuario", idUsuario)).uniqueResult();
+	}
+
+	@Override
+	public void cancelarTurno(Integer idTurno) {
+		TurnoMedico turno = obtenerTurno(idTurno);
+		
+		turno.setEstado(true);
+		turno.setClienteAsignado(null);
+		turno.setValorConDescuento(turno.getValorPorConsultaNormal());
+		
+		
 	}
 
 }

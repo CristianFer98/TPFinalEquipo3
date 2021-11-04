@@ -106,12 +106,13 @@ public class ControladorMedico {
 			//Como el form me tira un string lo parseo a fecha tanto la de inicio como la de fin
 			DateFormat formatter = new SimpleDateFormat("hh:mm");
 			
+			java.sql.Time duracionDeTurno = new java.sql.Time(formatter.parse(datos.getDuracionTurno()).getTime());
 			java.sql.Time horarioComienzoJornada = new java.sql.Time(formatter.parse(datos.getHorarioComienzoJornada()).getTime());
 			java.sql.Time horarioFinJornada = new java.sql.Time(formatter.parse(datos.getHorarioFinJornada()).getTime());
 			
 			
 			
-			servicio.cargarAgenda(datos, id, horarioComienzoJornada, horarioFinJornada);
+			servicio.cargarAgenda(datos, id, horarioComienzoJornada, horarioFinJornada, duracionDeTurno);
 
 			return new ModelAndView("exito", model);
 	}

@@ -2,8 +2,9 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 public interface ServicioPlanSalud {
 
-	Double cotizarbasico(Integer id);
+	Double cotizarPlanMedico(Integer id);
 
-	Double cotizaravanzado(Integer id);
+	void suscribirseAPlanMedico(Integer id, Double descuento);
+
 
 }

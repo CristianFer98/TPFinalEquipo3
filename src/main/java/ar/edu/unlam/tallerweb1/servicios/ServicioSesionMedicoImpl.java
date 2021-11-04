@@ -2,6 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.sql.Time;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,12 +31,9 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 
 	@Override
 	public Boolean cargarDatos(DatosDeActualizacionPerfilMedico datos, Integer id) {
-		if (repositorio.cargarDatos(datos, id) != null) {
-			repositorio.cargarDatos(datos, id);
-			return true;
-		} else {
-			return false;
-		}
+		repositorio.cargarDatos(datos, id);
+		return true;
+
 	}
 
 	@Override
@@ -59,32 +57,26 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 
 	@Override
 	public boolean cargarAgenda(DatosAgendaMesMedico datos, Integer id, Time horarioComienzoJornada,
-			Time horarioFinJornada) {
-		LocalDateTime tiempoActual = LocalDateTime.now();
-		
+			Time horarioFinJornada, Time duracionDeTurno) {
+
 		Boolean cargo;
-		@SuppressWarnings("deprecation")
-		LocalDateTime inicioDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth(),
-				tiempoActual.getDayOfMonth(), horarioComienzoJornada.getHours(), horarioComienzoJornada.getMinutes()) ;
 
-		@SuppressWarnings("deprecation")
-		LocalDateTime finDeActividadMensual = LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth().plus(1),
-				tiempoActual.getDayOfMonth(), horarioFinJornada.getHours()  , horarioFinJornada.getHours());
+		LocalDateTime inicioDeActividadMensual = obtenerInicioDeActividadMensual(horarioComienzoJornada,horarioFinJornada);
+		LocalDateTime finDeActividadMensual = obtenerFinDeActividadMensual(horarioComienzoJornada, horarioFinJornada);
+		LocalTime duracionConsulta = obtenerDuracionConsulta(duracionDeTurno);
 
-		ArrayList<TurnoMedico> turnosNuevos = recorrerFechas(inicioDeActividadMensual, finDeActividadMensual,
-				datos.getDiasDeLaSemanaElegidos());
+		ArrayList<TurnoMedico> turnosNuevos = recorrerFechas(inicioDeActividadMensual, finDeActividadMensual, datos.getDiasDeLaSemanaElegidos(), duracionConsulta, datos.getValorPorConsultaNormal());
 
 		cargo = repositorio.cargarAgenda(turnosNuevos, id);
 		return cargo;
 	}
 
-	public ArrayList<TurnoMedico> recorrerFechas(LocalDateTime inicioDeActividadMensual,
-			LocalDateTime finDeActividadMensual, ArrayList<Integer> diasDeLaSemana) {
+	public ArrayList<TurnoMedico> recorrerFechas(LocalDateTime inicioDeActividadMensual, LocalDateTime finDeActividadMensual, ArrayList<Integer> diasDeLaSemana, LocalTime duracionDeTurno, Double precioPorConsulta) {
 
-		// Recorro primero los dias del mes y luego recorro el horario. finalmente
-		// asigno a un nuevo turno ese objeto
-		ArrayList<TurnoMedico> nuevosTurnos = new ArrayList<TurnoMedico>();
+		
 		LocalDateTime horarioRespaldo = inicioDeActividadMensual;
+
+		ArrayList<TurnoMedico> nuevosTurnos = new ArrayList<TurnoMedico>();
 
 		for (int i = 0; i < diasDeLaSemana.size(); i++) {
 			while (inicioDeActividadMensual.isBefore(finDeActividadMensual)) {
@@ -94,11 +86,16 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 							&& inicioDeActividadMensual.getHour() <= finDeActividadMensual.getHour()) {
 						TurnoMedico nuevoTurno = new TurnoMedico();
 						nuevoTurno.setFecha(inicioDeActividadMensual);
+						nuevoTurno.setValorPorConsultaNormal(precioPorConsulta);
+						nuevoTurno.setValorConDescuento(precioPorConsulta);
+						nuevoTurno.setTiempoDeLaConsulta(duracionDeTurno);
 						nuevosTurnos.add(nuevoTurno);
-					}
+					} 
 				}
-				inicioDeActividadMensual = inicioDeActividadMensual.plusHours(1);
+				inicioDeActividadMensual = inicioDeActividadMensual.plusHours(duracionDeTurno.getHour())
+						.plusMinutes(duracionDeTurno.getMinute());
 			}
+			//nuevosTurnos.remove(nuevosTurnos.size()-1);
 
 			inicioDeActividadMensual = horarioRespaldo;
 		}
@@ -107,8 +104,29 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 
 	@Override
 	public List<TurnoMedico> verCompromisos(Integer id) {
-		
+
 		return repositorio.verCompromisos(id);
+	}
+
+	@SuppressWarnings("deprecation")
+	private LocalTime obtenerDuracionConsulta(Time duracionDeTurno) {
+		return LocalTime.of(duracionDeTurno.getHours(), duracionDeTurno.getMinutes());
+//la BD le suma 3 horas F.
+	}
+
+	@SuppressWarnings("deprecation")
+	private LocalDateTime obtenerFinDeActividadMensual(Time horarioComienzoJornada, Time horarioFinJornada) {
+		LocalDateTime tiempoActual = LocalDateTime.now();
+		return LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth().plus(1), tiempoActual.getDayOfMonth(),
+				horarioFinJornada.getHours(), horarioFinJornada.getHours());
+
+	}
+
+	@SuppressWarnings("deprecation")
+	private LocalDateTime obtenerInicioDeActividadMensual(Time horarioComienzoJornada, Time horarioFinJornada) {
+		LocalDateTime tiempoActual = LocalDateTime.now();
+		return LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth(), tiempoActual.getDayOfMonth(),
+				horarioComienzoJornada.getHours(), horarioComienzoJornada.getMinutes());
 	}
 
 }

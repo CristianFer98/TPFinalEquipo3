@@ -16,7 +16,7 @@ public interface ServicioSesionMedico {
 	Usuario obtenerInformacion(Integer id);
 	List <Especialidad> obtenerListaDeEspecializaciones();
 	List<Dias> obtenerDiasDeLaSemana();
-	boolean cargarAgenda(DatosAgendaMesMedico datos, Integer id, Time horarioComienzoJornada, Time horarioFinJornada);
+	boolean cargarAgenda(DatosAgendaMesMedico datos, Integer id, Time horarioComienzoJornada, Time horarioFinJornada, Time duracionDeTurno);
 	List<TurnoMedico> verCompromisos(Integer id);
 	
 }
