@@ -42,7 +42,7 @@ public class Usuario {
 	@Column
 	private String email;
 
-    @Column(updatable = false, nullable = false)
+    @Column
 	private LocalDate fechaNacimiento;
 
 	@Column

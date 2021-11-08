@@ -33,7 +33,7 @@ public class TurnoMedico {
 	
 	@Column
 	private Double valorPorConsultaNormal;
-	
+	 
 	@Column
 	private Double valorConDescuento;
 	

@@ -37,7 +37,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 			usuario.setTelefono(datos.getTelefono());
 			usuario.setPaginaPersonal(datos.getPaginaPersonal());
 			session.getCurrentSession().update(usuario);
-			return obtenerUsuarioPorId(id);
+			return usuario;
 		
 	}
 
