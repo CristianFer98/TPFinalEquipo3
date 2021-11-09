@@ -31,12 +31,10 @@ public class ControladorRegistroTest {
 	private String claveLongitudMenorAOcho = "1234";
 
 	// los objetos datosDeRegistro para un usuario comun.
-	private DatosRegistroUsuario datosRegistroConContraDiferente = new DatosRegistroUsuario(email, clave,
-			claveMal);
+	private DatosRegistroUsuario datosRegistroConContraDiferente = new DatosRegistroUsuario(email, clave, claveMal);
 	private DatosRegistroUsuario datosRegistroConLongitudIncorrecta = new DatosRegistroUsuario(email,
 			claveLongitudMenorAOcho, claveLongitudMenorAOcho);
-	private DatosRegistroUsuario datosRegistroConDatosCorrectos = new DatosRegistroUsuario(email, clave,
-			repiteClave);
+	private DatosRegistroUsuario datosRegistroConDatosCorrectos = new DatosRegistroUsuario(email, clave, repiteClave);
 
 	// datos para registrar un medico
 	private String emailUsuarioMedico = "medico@gmail.com";
@@ -72,10 +70,10 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUnUsuarioConContraseñaDiferente(
-			DatosRegistroUsuario datosRegistroConContraDiferente) throws ParseException {
+	private void whenRegistroUnUsuarioConContraseñaDiferente(DatosRegistroUsuario datosRegistroConContraDiferente)
+			throws ParseException {
 		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConContraDiferente); // esto me devuelve un
-																								// MAV
+																							// MAV
 
 	}
 
@@ -115,7 +113,8 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuario datosRegistroConDatosCorrectos) throws ParseException {
+	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuario datosRegistroConDatosCorrectos)
+			throws ParseException {
 
 		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConDatosCorrectos);
 	}
@@ -134,7 +133,7 @@ public class ControladorRegistroTest {
 	}
 
 	private void thenRegistroUnMedico() {
-		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalAdmin");
+		assertThat(mav.getViewName()).isEqualTo("index");
 
 	}
 

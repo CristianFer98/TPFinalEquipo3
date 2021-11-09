@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unlam.tallerweb1.controladores.ClavesDistintasException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.persistencia.SpringTest;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
@@ -31,10 +30,10 @@ public class RepositorioRegistroLoginTest extends SpringTest { // levanto el ent
 	@Rollback
 	public void testQueMePermitaRegistrarUnUsuarioNuevo() {
 
-		Usuario usuario = givenTengoUnUsuario(email, clave);// creo un usuario
-		Integer id =whereRegistroUnUsuario(usuario);// registro un usuario. me devuelve un boolean
+		Usuario usuario = givenTengoUnUsuario(email, clave);
+		Integer id =whereRegistroUnUsuario(usuario);
 		thenMePermiteRegistrar(usuario.getIdUsuario());
-		// ver como chequear esto
+		
 	}
 	
 	private Usuario givenTengoUnUsuario(String email, String clave) {
@@ -52,9 +51,8 @@ public class RepositorioRegistroLoginTest extends SpringTest { // levanto el ent
 	}
 
 	private void thenMePermiteRegistrar(Integer id) {
-		//Integer ve = 1;//no se como hacer que se reinicie por cada test el repositorio por eso le puse 2
 		
-			assertThat(id).isNotNull();//si quiero que funcione tengo que poner el hibernate context en CREATE
+			assertThat(id).isNotNull();
 	}
 
 

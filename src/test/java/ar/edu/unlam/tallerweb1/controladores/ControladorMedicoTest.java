@@ -181,6 +181,7 @@ public class ControladorMedicoTest {
 		
 		datos.setHorarioComienzoJornada("08:00");
 		datos.setHorarioFinJornada("16:00");
+		datos.setDuracionTurno("00:30");
 
 		HttpSession http = mock(HttpSession.class);
 		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);

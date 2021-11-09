@@ -47,24 +47,6 @@ public class ServicioSesionMedicoTest {
 
 	}
 
-//_________________________________________________________________________________________________________//	
-
-	@Test
-	public void testQueNoMePermiteCargarDatosAUnMedico() {
-
-		DatosDeActualizacionPerfilMedico datosActualizacion = new DatosDeActualizacionPerfilMedico();
-		datosActualizacion.setEspecialidad(1);
-		datosActualizacion.setId(1);
-		datosActualizacion.setPaginaPersonal("Cristian.com");
-		datosActualizacion.setTelefono("1134778956");
-
-		when(repositorio.cargarDatos(datosActualizacion, datosActualizacion.getId())).thenReturn(null);
-		Boolean cargaExitosa = servicio.cargarDatos(datosActualizacion, datosActualizacion.getId());
-
-		assertThat(cargaExitosa).isFalse();
-
-	}
-
 //_________________________________________________________________________________________________________//
 
 	@Test
