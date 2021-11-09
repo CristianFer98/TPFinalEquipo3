@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioLogueado;
-import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioLogueadoTest;
 
 public class ControladorUsuarioLogueadoTest {
 

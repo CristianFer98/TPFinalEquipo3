@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository()
@@ -19,6 +18,7 @@ public class RepositorioUsuarioIMPLEM implements RepositorioUsuario{
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Usuario buscarUsuario(Integer id) {
 		return (Usuario) sessionFactory

@@ -15,7 +15,7 @@
 				<div class="card-group" style="width:30%; margin:15px">
 				
 					<div class="card">
-						<img src="img/turnoMedico.jpg" style="height:250px" ">
+						<img src="img/turnoMedico.jpg" style="height:250px">
 						<div class="card-body">
 							<h5 class="card-title">Solicita tu turno</h5>
 							<p class="card-text">Tenes los mejores especialistas en salud.</p>

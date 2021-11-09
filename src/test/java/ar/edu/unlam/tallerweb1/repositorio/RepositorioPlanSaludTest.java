@@ -4,7 +4,6 @@ import java.time.LocalDate;
 
 import javax.transaction.Transactional;
 
-import org.apache.log4j.spi.RepositorySelector;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;

@@ -19,14 +19,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ServicioRegistroLoginTest {
 	private String email = "Cristian@gmail.com";
 	private String clave = "123456789";
-	private String repiteClave = "123456789";
 	private String claveMal = "5555";
 	private String claveLongitudMenorAOcho = "1234";
 
 	private DatosRegistroUsuario datosRegistroConContraDiferente = new DatosRegistroUsuario(email, clave, claveMal);
 	private DatosRegistroUsuario datosRegistroConLongitudIncorrecta = new DatosRegistroUsuario(email,
 			claveLongitudMenorAOcho, claveLongitudMenorAOcho);
-	private DatosRegistroUsuario datosRegistroConDatosCorrectos = new DatosRegistroUsuario(email, clave, repiteClave);
 	private ServicioRegistroLoginImpl servicioRegistroLogin;
 	private RepositorioRegistroLogin repositorioRegistroLogin;
 

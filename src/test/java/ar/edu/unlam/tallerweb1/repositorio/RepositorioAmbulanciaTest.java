@@ -42,7 +42,6 @@ public class RepositorioAmbulanciaTest extends SpringTest{
 		Integer idAmbRegistrada = whereRegistroAmbulancia(amb);
 		
 		//VERIFICACION
-		Ambulancia ambRegistrada=repositorio.buscarAmbulancia(amb.getPatenteAmbulancia());
 		Integer idAmbObtenida=amb.getIdAmbulancia();
 		
 		assertEquals(idAmbRegistrada, idAmbObtenida);		

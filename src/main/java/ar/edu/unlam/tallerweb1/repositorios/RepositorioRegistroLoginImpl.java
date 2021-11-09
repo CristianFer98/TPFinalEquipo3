@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +28,14 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Usuario obtenerUsuarioPorEmail(String email) {
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("email", email))
 				.uniqueResult();
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Usuario iniciarSesion(String email, String contra) {
 		return  (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("email", email))
@@ -42,6 +43,7 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Usuario obtenerUsuarioPorID(Integer id) {
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))
