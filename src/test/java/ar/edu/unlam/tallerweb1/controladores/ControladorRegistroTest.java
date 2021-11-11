@@ -56,7 +56,7 @@ public class ControladorRegistroTest {
 //_____________________________________________________________________________________________________________//	
 
 	@Test
-	public void testQueNoMePermiteRegistrarUnUsuarioConContraseñaDiferente() throws ParseException {
+	public void testQueNoMePermiteRegistrarUnUsuarioConContraseniaDiferente() throws ParseException {
 
 		// para usar moquito y me arroje esta exepcion tengo que poner
 		doThrow(ClavesDistintasException.class).when(servicioUsuario).registrarUsuario(datosRegistroConContraDiferente);
@@ -65,12 +65,12 @@ public class ControladorRegistroTest {
 		// controlador reciba esa
 		// excepcion.
 
-		whenRegistroUnUsuarioConContraseñaDiferente(datosRegistroConContraDiferente);// intento registrar estos datos
+		whenRegistroUnUsuarioConContraseniaDiferente(datosRegistroConContraDiferente);// intento registrar estos datos
 		thenRegistroUnUsuarioConContraseniaDiferente("las claves deben ser iguales");
 
 	}
 
-	private void whenRegistroUnUsuarioConContraseñaDiferente(DatosRegistroUsuario datosRegistroConContraDiferente)
+	private void whenRegistroUnUsuarioConContraseniaDiferente(DatosRegistroUsuario datosRegistroConContraDiferente)
 			throws ParseException {
 		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConContraDiferente); // esto me devuelve un
 																							// MAV

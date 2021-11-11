@@ -1,5 +1,4 @@
 language: java
 script: mvn clean test
 jdk:
-  - oraclejdk14
-script: ant build
+  - oraclejdk11
