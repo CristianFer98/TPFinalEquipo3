@@ -62,9 +62,9 @@
      		Su direccion:<input type="text" path="direccion" name="direccion" required>	
      		</div>
      	   	
-     	   <button Type="Submit" class="btn btn-danger"/> ${key} </button>
+     	   <button Type="Submit" class="btn btn-danger"/> SOLICITAR </button>
         </form>
-		${mensaje}
+		${msj}
      </div>
      
      </div>

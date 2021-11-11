@@ -72,7 +72,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
         
 		idRecibida =  repositorioRegistroLogin.registrarUsuario(usuario);
 		return idRecibida;
-
+ 
 	}
 
 

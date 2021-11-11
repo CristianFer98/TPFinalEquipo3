@@ -117,11 +117,81 @@ public class RepositorioAmbulanciaTest extends SpringTest{
 		repositorio.agregarAmbulancia(amb3);
 	}
 
-	private void generarSolicitud(Usuario user) {
+	private SolicitudUsuarioAmbulancia generarSolicitud(Usuario user) {
 		DatosSolicitudAmbulancia solicitud = new DatosSolicitudAmbulancia("Edison 3580");
 		solicitud.setUser(user);
 		SolicitudUsuarioAmbulancia soli1 = new SolicitudUsuarioAmbulancia(solicitud );	
 		repositorio.guardarRegistro(soli1);
+		return soli1;
+	}
+	
+	// - que me devuelva correctamente la ambulancia que busco
+	@Test
+	@Transactional
+	@Rollback
+	public void buscarAmbulanciaCorrecta() {
+		agregarAmbulancias();
+		Ambulancia amb = repositorio.buscarAmbulancia("aaa111");
+		
+		assertEquals("aaa111",amb.getPatenteAmbulancia());		
+	}
+	
+	@Test
+	@Transactional
+	@Rollback
+	public void cambiarEstadoSolicitudAmbulancia() {
+		SolicitudUsuarioAmbulancia soli = crearSolicitud();
+		repositorio.actualizarRegistro(soli, true);
+		assertEquals(true, soli.getAtendido());	
+	}
+
+	private SolicitudUsuarioAmbulancia crearSolicitud() {
+		Usuario user =  new Usuario("123456789", "test@gmail.com", 1);
+		Ambulancia amb = new Ambulancia("aaa111", true);
+		
+		repositorioRegistroLogin.registrarUsuario(user);
+		repositorio.agregarAmbulancia(amb);
+		
+		SolicitudUsuarioAmbulancia soli = new SolicitudUsuarioAmbulancia();
+		soli.setIdSolicitud(1);
+		soli.setDireccion("edison 3580");
+		soli.setUsuarioSolicitante(user);
+		soli.setAtendido(false);
+		soli.setAmbulanciaEnCamino(amb);
+		
+		repositorio.guardarRegistro(soli);
+		
+		return soli;
+	}
+	
+	
+	//obtener solo ambulancias disponibles
+	@Test
+	@Transactional
+	@Rollback
+	public void ambulanciasDisponibles() {
+		agregarAmbulancias();
+		
+		Ambulancia amb4= new Ambulancia("ddd333", false);	
+		repositorio.agregarAmbulancia(amb4);
+		
+		Integer cant= repositorio.obtenerListaAmbulanciaDisponibles().size();
+		
+		assertEquals(cant, 3, 0.0);	
+	}
+	
+	@Test
+	@Transactional
+	@Rollback
+	public void obtenerSolicitudporElId() {
+		agregarAmbulancias();
+		
+		Ambulancia amb4= new Ambulancia("ddd333", false);	
+		repositorio.agregarAmbulancia(amb4);
+		
+		Integer cant= repositorio.obtenerListaAmbulanciaDisponibles().size();
+		
+		assertEquals(cant, 3, 0.0);	
 	}
 	
 

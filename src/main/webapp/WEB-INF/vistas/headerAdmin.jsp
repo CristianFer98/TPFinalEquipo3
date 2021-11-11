@@ -76,7 +76,6 @@ height:auto;
 
         <nav>
             <a href="index" class="linkNav">Principal</a>
-            <a href="" class="linkNav">Acerca del Hospital</a>
-            <a href="" class="linkNav">Areas</a>
-            <a href="" class="linkNav">Contacto</a>
+            <a href="showFormNewMedic" class="linkNav">Medicos</a>
+            <a href="formGestionAmbulancia" class="linkNav">Ambulancia</a>
         </nav>
