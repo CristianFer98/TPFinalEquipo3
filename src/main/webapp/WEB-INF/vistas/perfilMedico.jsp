@@ -14,8 +14,8 @@
 				<div class="widget-49">
 					<div class="widget-49-title-wrapper">
 						<div class="widget-49-date-primary">
-							<span class="widget-49-date-day">${usuario.edad.dayOfMonth}</span>
-							<span class="widget-49-date-month">${usuario.edad.month}</span>
+							<span class="widget-49-date-day"><img style="heigth:50px; width:50px" src="img/${usuario.avatar}.png"></span>
+							<span class="widget-49-date-month"></span>
 						</div>
 						<div class="widget-49-meeting-info">
 							<span class="widget-49-pro-title">Nombre:
@@ -30,6 +30,8 @@
 								Personal: ${usuario.paginaPersonal}</span></li>
 						<li class="widget-49-meeting-item"><span>Contacto:
 								${usuario.telefono}</span></li>
+						<li class="widget-49-meeting-item"><span>Fecha de cumpleaños:
+								${usuario.edad.dayOfMonth}/${usuario.edad.month.value} </span></li>
 					</ol>
 					<div class="widget-49-meeting-action">
 						<a href="EditarPerfil" class="btn btn-sm btn-flash-border-primary">Editar Pefil</a>

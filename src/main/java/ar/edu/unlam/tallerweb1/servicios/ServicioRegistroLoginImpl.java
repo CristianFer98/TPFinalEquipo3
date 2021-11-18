@@ -58,6 +58,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		}
 
 		Usuario usuario = new Usuario();
+		usuario.setAvatar(datos.getSexo());
 		usuario.setEmail(datos.getEmail());
 		usuario.setContrasenia(datos.getContrasenia1());
 		usuario.setNumeroDeTipoDeUsuario(datos.getNumeroDeTipoDeUsuario());

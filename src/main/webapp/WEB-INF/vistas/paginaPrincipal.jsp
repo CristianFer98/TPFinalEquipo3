@@ -48,7 +48,7 @@
 						<div class="card-body">
 							<h5 class="card-title">Accede a nuestro plan medico</h5>
 							<p class="card-text">Los mejores descuentos para tus tratamientos</p>
-							<a href="cotizarPlanMedico" ><button type="button" class="btn btn-secondary">Entrar</button></a>
+							<a href="planes" ><button type="button" class="btn btn-secondary">Entrar</button></a>
 
 						</div>
 					</div>

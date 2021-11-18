@@ -23,7 +23,7 @@ public class ServicioPlanSaludImpl implements ServicioPlanSalud {
 	}
 
 	@Override
-	public Double cotizarPlanMedico(Integer id) {
+	public Boolean comprobarExistenciaDePlan(Integer id) {
 
 		// comprobar que no tenga una suscripcion
 
@@ -31,27 +31,10 @@ public class ServicioPlanSaludImpl implements ServicioPlanSalud {
 
 		if (tienePlanMedico == true) {
 			throw new cotizacionExistenteException();
-		} else {
-			LocalDate fechaNaciemiento = this.repositorio.recuperarEdad(id);
-			LocalDate ahora = LocalDate.now();
-			Period periodo = Period.between(fechaNaciemiento, ahora);
-
-			Integer edad = periodo.getYears();
-
-			Double porcentajeDescuento;
-
-			if (edad < 30) {
-				porcentajeDescuento = 50.0; // si es menor a 30 años se le descuenta 50% por consulta
-				return porcentajeDescuento;
-			}
-			if (edad > 80) {
-				porcentajeDescuento = 20.0; // si es mayor a 80 el plan le cubre un 20% por consulta
-				return porcentajeDescuento;
-			} else {
-				porcentajeDescuento = 35.0; // si es mayor de 30 y menor de 80 un descuento del 35%
-				return porcentajeDescuento;
-			}
 		}
+		
+		return true;
+		
 
 	}
 

@@ -70,6 +70,7 @@
 		<select path="especialidad" name="especialidad" id="especialidad">
 
 			<c:if test="${not empty lista}">
+					<option selected value= "${medico.especialidad.idEspecialidad}">${medico.especialidad.especialidad}</option>
 				<c:forEach var="lista" items="${lista}">
 					<option value="${lista.idEspecialidad}">${lista.especialidad}</option>
 				</c:forEach>
@@ -78,8 +79,8 @@
 
 		</select> 
 	 
-		 <input type="text" path="telefono" name="telefono" placeholder="Telefono de Contacto" class="inicioSesion_inputs">
-	     <input type="text" path="paginaPersonal" name="paginaPersonal" id="PaginaPersonal" placeholder="Ingrese su sitio web" class="inicioSesion_inputs"> 
+		 <input type="text" path="telefono" name="telefono" placeholder="Telefono de Contacto" class="inicioSesion_inputs" value="${medico.telefono}">
+	     <input type="text" path="paginaPersonal" name="paginaPersonal" id="PaginaPersonal" placeholder="Ingrese su sitio web" class="inicioSesion_inputs" value="${medico.paginaPersonal}"> 
 	     
 	     <input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Cargar datos"> 
 	     <a href="MyPerfil">Ira mi perfil</a>

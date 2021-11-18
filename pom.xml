@@ -40,6 +40,12 @@
 			<scope>test</scope>
 		</dependency>
 
+          
+		<dependency>
+			<groupId> com.mercadopago </groupId>
+			<artifactId> sdk-java </artifactId>
+			<version> 1.9.0 </version>
+		</dependency>
 
 		<dependency>
 			<groupId>commons-io</groupId>

@@ -50,6 +50,9 @@ public class Usuario {
 
 	@Column
 	private Double descuentoPorPlanMedico;
+	
+	@Column
+	private String avatar;
 
 	public Usuario(String contrasenia, String email, Integer numeroDeTipoDeUsuario) {
 		super();
@@ -152,5 +155,14 @@ public class Usuario {
 	public void setDescuentoPorPlanMedico(Double descuentoPorPlanMedico) {
 		this.descuentoPorPlanMedico = descuentoPorPlanMedico;
 	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+	
 
 }
