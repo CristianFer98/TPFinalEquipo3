@@ -16,5 +16,8 @@ public interface ServicioUsuarioLogueado {
 	List<TurnoMedico> verMisTurnos(Integer id);
 	Usuario obtenerMedico(Integer idMedico);
 	void cancelarTurno(Integer idTurno);
+	TurnoMedico getTurnoByID(Integer idTurno);
+	void setPagadoTurno(TurnoMedico turno,Boolean estado);
+	
 	
 }

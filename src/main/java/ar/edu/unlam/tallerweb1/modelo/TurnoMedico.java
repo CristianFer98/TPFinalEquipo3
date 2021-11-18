@@ -40,11 +40,15 @@ public class TurnoMedico {
 	@Column
 	private LocalTime tiempoDeLaConsulta;
 	
+	@Column
+	private Boolean pagado;
+	
  
 	
 	public TurnoMedico() {
 		
 	}
+	
 
 	public Integer getId() {
 		return id;
@@ -53,9 +57,6 @@ public class TurnoMedico {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
-
-
 
 	public Usuario getMedicoAsignado() {
 		return medicoAsignado;
@@ -89,8 +90,6 @@ public class TurnoMedico {
 		this.fecha = fecha;
 	}
 
-	
-
 	public Double getValorPorConsultaNormal() {
 		return valorPorConsultaNormal;
 	}
@@ -114,6 +113,17 @@ public class TurnoMedico {
 	public void setTiempoDeLaConsulta(LocalTime tiempoDeLaConsulta) {
 		this.tiempoDeLaConsulta = tiempoDeLaConsulta;
 	}
+
+
+	public Boolean getPagado() {
+		return pagado;
+	}
+
+	public void setPagado(Boolean pagado) {
+		this.pagado = pagado;
+	}
+	
+	
 
 	
 

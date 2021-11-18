@@ -27,6 +27,7 @@
 							<p>
 						</div>
 					</a>
+					
 				</c:forEach>
 
 			</div>

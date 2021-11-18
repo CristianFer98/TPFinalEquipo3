@@ -71,15 +71,23 @@ public class ControladorUsuarioLogueado {
 		return new ModelAndView("turnosDisponiblesMedico", model);
 	}
 
-	@RequestMapping(path = "reservarTurno", method = RequestMethod.GET)
+	@RequestMapping(path = "pagoExitoso", method = RequestMethod.GET)
 	public ModelAndView reservarTurno(@RequestParam("idTurno") Integer idTurno,
-			@RequestParam("idUsuario") Integer idUsuario, HttpServletRequest req) {
+									  @RequestParam("idUsuario") Integer idUsuario, 
+									  @RequestParam("status") String status       ,HttpServletRequest req) {
 		ModelMap model = new ModelMap();
 		TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
+		
+		if (status.equals("approved")) {
+			model.put("estadoPago", "Pago realizado con exito");
+			servicio.setPagadoTurno(turnoNuevo, true);
+		}else {
+			model.put("estadoPago", "Debes pagar la consulta en el hospital");
+		}
+		
 		model.put("turno", turnoNuevo);
 		
 		return new ModelAndView("reservaExitosa", model);
-
 	}
 	
 	@RequestMapping (path = "verMisTurnos", method = RequestMethod.GET)

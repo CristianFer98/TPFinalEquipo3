@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -118,6 +119,13 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 		turno.setValorConDescuento(turno.getValorPorConsultaNormal());
 		
 		
+	}
+
+	@Override
+	public void setPagadoTurno(TurnoMedico turno,Boolean estado) {
+		TurnoMedico t=session.getCurrentSession().get(TurnoMedico.class, turno.getId());
+		t.setPagado(estado);
+		session.getCurrentSession().save(t);	 
 	}
 
 }

@@ -77,6 +77,16 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 		repositorio.cancelarTurno(idTurno);
 		
 	}
+
+	@Override
+	public TurnoMedico getTurnoByID(Integer idTurno) {
+		return repositorio.obtenerTurno(idTurno);	
+	}
+
+	@Override
+	public void setPagadoTurno(TurnoMedico turno,Boolean estado) {
+		repositorio.setPagadoTurno(turno,estado);	
+	}
 	
 	
 	

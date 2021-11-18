@@ -85,15 +85,15 @@ public class ControladorUsuarioLogueadoTest {
 	
 //__________________________________________________________________________________________________________//
 	
-	@Test
-	public void testQueMePermitaRegistrarUnUsuario() {
-		HttpSession http = mock(HttpSession.class);
-		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
-		when(mockedRequest.getSession()).thenReturn(http);
-		
-
-		mav = controladorUsuarioLogueado.reservarTurno(1, 1, mockedRequest);
-		
-		assertThat(mav.getViewName()).isEqualTo("reservaExitosa");
-	}
+//	@Test
+//	public void testQueMePermitaRegistrarUnUsuario() {
+//		HttpSession http = mock(HttpSession.class);
+//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+//		when(mockedRequest.getSession()).thenReturn(http);
+//		
+//
+//		mav = controladorUsuarioLogueado.reservarTurno(1, 1, mockedRequest);
+//		
+//		assertThat(mav.getViewName()).isEqualTo("reservaExitosa");
+//	}
 }

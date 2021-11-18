@@ -66,24 +66,30 @@ public class ControladorAmbulancias {
 		modelo.put("key", id);
 
 		Integer idSolicitud = null;
+		SolicitudUsuarioAmbulancia soli = null;
 		
 		try {
 			idSolicitud= servicioAmbulacia.pedirAmbulancia(solicitud);
-			SolicitudUsuarioAmbulancia soli = servicioAmbulacia.obtenerSolicitudPORID(idSolicitud);		
-			modelo.put("soli", soli);
-			return new ModelAndView("solicitudDeAmbulancia", modelo);
+			soli = servicioAmbulacia.obtenerSolicitudPORID(idSolicitud);			
 		} catch (UsuarioYaPidioAmbulanciaExeception e) {
-			modelo.put("msj", "Usted ya tiene una ambulancia pedida en curso");
-			return new ModelAndView("centralAmbulancia", modelo);
+			String msj ="Usted ya tiene una ambulancia pedida en curso"; 
+			return mostrarMensajeError(modelo,msj);
 		}catch (NoHayAmbulanciasDisponiblesException e) {
-			modelo.put("msj", "Disculpe, por el momento no hay ambulancias");
-			return new ModelAndView("centralAmbulancia", modelo);
+			String msj= "Disculpe, por el momento no hay ambulancias";
+			return mostrarMensajeError(modelo, msj);
 		}
 		
+		modelo.put("soli", soli);
+		return new ModelAndView("solicitudDeAmbulancia", modelo);
 		
 	}
 	
 	
+	private ModelAndView mostrarMensajeError(ModelMap modelo,String msj) {
+		modelo.put("msj", msj);
+    	return new ModelAndView("centralAmbulancia", modelo);		
+	}
+
 	@RequestMapping(path = "registrarAmbulancia")
 	public ModelAndView adminPuedeREIngresarAmbulancia(@RequestParam("patente") String patenteAmbulancia) {
 		ModelMap modelo= new ModelMap();

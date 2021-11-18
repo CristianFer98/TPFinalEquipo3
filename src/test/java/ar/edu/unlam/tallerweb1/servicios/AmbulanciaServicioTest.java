@@ -61,15 +61,6 @@ public class AmbulanciaServicioTest extends SpringTest{
 		
 		assertEquals(expected, actual);
 	}
-	
-	@Test
-	@Transactional
-	@Rollback
-	public void obtenerSoloAmbulanciasDisponibles(){
-		
-	}
-	
-	
 
 	
 	

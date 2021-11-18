@@ -8,8 +8,7 @@
 		<div class="card card-margin"
 			style="width: 50%; height: 300px; margin: 20px">
 			<div class="card-header no-border">
-				<h5 class="card-title">Reserva Exitosa - He aqui los datos de
-					su turno</h5>
+				<h5 class="card-title">Checkout de Su reserva</h5>
 			</div>
 			<div class="card-body pt-0">
 				<div class="widget-49">
@@ -32,15 +31,46 @@
 								el Medico : ${turno.medicoAsignado.telefono}</span></li>
 						<li class="widget-49-meeting-item"><span>Especialidad : ${turno.medicoAsignado.especialidad.especialidad}</span></li>
 					</ol>
-					
-					<div class="alert alert-success">
-					${estadoPago}
-					</div>
 
 				</div>
 			</div>
+			
+			<div class="btns">
+			 <div class=".cho-container btn btn-primary" >
+				<a href="${preference.initPoint}" style="color:white">Pagar con Mercado Pago</a>
+			 </div>
+			 <div class="btn btn-secondary" >
+			 	<a href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no" style="color:white">Pagar en la clinica</a>
+			 </div>
+			
+			</div>
+			
 		</div>
 	</div>
+	
+	<div>
+	IdPreferencia = ${preference.getId()}
+	</div>
+	
+	
+	<script src="https://sdk.mercadopago.com/js/v2"></script>
+	<script>
+		// Agrega credenciales de SDK
+		const mp = new MercadoPago('TEST-734025de-7dce-4565-ae60-d940bcca5b07', {
+			locale : 'es-AR'
+		});
+
+		// Inicializa el checkout
+		mp.checkout({
+			preference : {
+				id : '${preferenceId}'
+			},
+			render : {
+				container : '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+				label : 'Pagar', // Cambia el texto del botón de pago (opcional)
+			}
+		});
+	</script>
 
 </main>
 
