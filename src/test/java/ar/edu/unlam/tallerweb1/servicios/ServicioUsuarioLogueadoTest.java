@@ -20,6 +20,8 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioUsuarioLogueado;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.BDDMockito.given;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ServicioUsuarioLogueadoTest {
@@ -48,37 +50,31 @@ public class ServicioUsuarioLogueadoTest {
 	}
 	
 	@Test
-	public void regitrarTurnoMedico() {
+	public void regitrarTurnoMedico() {		
 		TurnoMedico turno1 = new TurnoMedico();
-		Usuario usuario = new Usuario();
-			
-		reservarTurno(turno1,usuario);
-			
+		Usuario usuario = mock(Usuario.class);
+					
+		when(repositorio.obtenerTurno(1)).thenReturn(turno1);
+		when(repositorio.obtenerUsuario(1)).thenReturn(usuario);
+		when(usuario.getDescuentoPorPlanMedico()).thenReturn(10.0); //me da o no igual que entre a ese condicional If 
+																	//ya que lo unico que quiero demostrar es que funciona la reserva 
+																									
+		servicio.reservarTurno(turno1.getId(), usuario.getIdUsuario());
+		
 		assertThat(servicio.getTurnoByID(turno1.getId())).isEqualTo(turno1.getId());		
 	}
 	
-	private void reservarTurno(TurnoMedico turno1, Usuario usuario) {
-		when(repositorio.obtenerTurno(1)).thenReturn(turno1);
-		when(repositorio.obtenerUsuario(1)).thenReturn(usuario);
-		
-		servicio.reservarTurno(turno1.getId(), usuario.getIdUsuario());
-	}
-	
-
-	@Test
-	public void pagarUnTurno() {
-		TurnoMedico turno1 = new TurnoMedico();
-		turno1.setPagado(false);
-		
-		Usuario usuario = new Usuario();
-		
-		reservarTurno(turno1,usuario);
-		
-		servicio.setPagadoTurno(turno1, true);	
-		
-			
-		assertThat(servicio.getTurnoByID(turno1.getId()).getPagado()).isEqualTo(true);
-	}
+//	@Test
+//	public void setPagadoUnTurno() {
+//		TurnoMedico turno1 = new TurnoMedico();
+//		turno1.setPagado(false);
+//		
+//		Usuario usuario = new Usuario();
+//				
+//		servicio.setPagadoTurno(turno1, true);	
+//		
+//		assertThat(servicio.getTurnoByID(turno1.getId()).getPagado()).isEqualTo(true);
+//	}
 	
 
 
