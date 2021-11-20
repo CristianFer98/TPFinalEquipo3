@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.modelo;
 
-import java.time.LocalDate;
 
 public class DatosRegistroUsuario {
 

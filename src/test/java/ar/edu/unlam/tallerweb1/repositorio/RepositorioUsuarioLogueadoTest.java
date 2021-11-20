@@ -21,20 +21,20 @@ public class RepositorioUsuarioLogueadoTest extends SpringTest{
 	RepositorioRegistroLogin repositorioRegistroLogin;
 
 	
-	@Test
-	@Transactional
-	@Rollback
-	public void queGuardeTurno() {
-		TurnoMedico turno= new TurnoMedico();
-		
-		Usuario user = new Usuario("123456789","test@gmail.com",1);
-		repositorioRegistroLogin.registrarUsuario(user);
-		
-		repositorio.reservarTurno(turno, user.getIdUsuario());
-		
-		TurnoMedico turno2  = repositorio.obtenerTurno(1);
-		
-		assertEquals(turno.getId(), turno2.getId());
-	}
+//	@Test
+//	@Transactional
+//	@Rollback
+//	public void queGuardeTurno() {
+//		TurnoMedico turno= new TurnoMedico();
+//		
+//		Usuario user = new Usuario("123456789","test@gmail.com",1);
+//		repositorioRegistroLogin.registrarUsuario(user);
+//		
+//		repositorio.reservarTurno(turno, user.getIdUsuario());
+//		
+//		TurnoMedico turno2  = repositorio.obtenerTurno(1);
+//		
+//		assertEquals(turno.getId(), turno2.getId());
+//	}
 
 }

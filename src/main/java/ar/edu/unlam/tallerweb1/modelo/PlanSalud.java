@@ -20,11 +20,11 @@ public class PlanSalud {
 	private Double descuento;
 
 	@Column
-	private Double precioDelPlan;
+	private Float precioDelPlan;
 
 	public PlanSalud() {
 
-	}
+	} 
 
 	public Integer getIdPlanSalud() {
 		return idPlanSalud;
@@ -50,11 +50,11 @@ public class PlanSalud {
 		this.descuento = descuento;
 	}
 
-	public Double getPrecioDelPlan() {
+	public Float getPrecioDelPlan() {
 		return precioDelPlan;
 	}
 
-	public void setPrecioDelPlan(Double precioDelPlan) {
+	public void setPrecioDelPlan(Float precioDelPlan) {
 		this.precioDelPlan = precioDelPlan;
 	}
 

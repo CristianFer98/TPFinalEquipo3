@@ -7,7 +7,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -43,7 +42,6 @@ public class RepositorioAmbulanciaTest extends SpringTest{
 		Integer idAmbRegistrada = whereRegistroAmbulancia(amb);
 		
 		//VERIFICACION
-		Ambulancia ambRegistrada=repositorio.buscarAmbulancia(amb.getPatenteAmbulancia());
 		Integer idAmbObtenida=amb.getIdAmbulancia();
 		
 		assertEquals(idAmbRegistrada, idAmbObtenida);		

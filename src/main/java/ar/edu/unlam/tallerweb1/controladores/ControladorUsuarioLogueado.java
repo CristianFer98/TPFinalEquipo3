@@ -1,7 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -75,6 +74,7 @@ public class ControladorUsuarioLogueado {
 	public ModelAndView reservarTurno(@RequestParam("idTurno") Integer idTurno,
 									  @RequestParam("idUsuario") Integer idUsuario, 
 									  @RequestParam("status") String status       ,HttpServletRequest req) {
+		
 		ModelMap model = new ModelMap();
 		TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
 		
@@ -109,6 +109,23 @@ public class ControladorUsuarioLogueado {
 		servicio.cancelarTurno(idTurno);
 		
 		return verMisTurnos(req);
+	}
+	
+	@RequestMapping(path = "paginaPrincipal", method= RequestMethod.GET)
+	public ModelAndView getPaginaPrincipal() {
+		
+		return new ModelAndView("paginaPrincipal");
+	}
+
+	@RequestMapping(path = "paginaPrincipalMedicos", method= RequestMethod.GET)
+	public ModelAndView getPaginaPrincipalMedicos() {
+		
+		return new ModelAndView("paginaPrincipalMedicos");
+	}
+	@RequestMapping(path = "paginaPrincipalAdmin", method= RequestMethod.GET)
+	public ModelAndView getPaginaPrincipalAdmin() {
+		
+		return new ModelAndView("paginaPrincipalAdmin");
 	}
 
 }

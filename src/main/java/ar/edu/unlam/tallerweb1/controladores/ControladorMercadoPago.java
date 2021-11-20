@@ -15,19 +15,18 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioLogueado;
 
 import com.mercadopago.MercadoPago;
-import com.mercadopago.exceptions.MPConfException;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Preference;
 import com.mercadopago.resources.datastructures.preference.BackUrls;
 import com.mercadopago.resources.datastructures.preference.Item;
 
 @Controller
-public class controladorMercadoPago {
+public class ControladorMercadoPago {
 	ServicioUsuarioLogueado servicioUsuario;
 	ServicioRegistroLogin servicioRegistroLogin;
 
 	@Autowired
-	public controladorMercadoPago(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioRegistroLogin servicioRegistroLogin) {
+	public ControladorMercadoPago(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioRegistroLogin servicioRegistroLogin) {
 		this.servicioUsuario = servicioUsuarioLogueado;
 		this.servicioRegistroLogin = servicioRegistroLogin;
 	}
@@ -37,8 +36,8 @@ public class controladorMercadoPago {
 			@RequestParam("idUsuario") Integer idUsuario, HttpServletRequest req) throws MPException {
 		ModelMap model= new ModelMap();
 		
-		
-		TurnoMedico turnoNuevo= servicioUsuario.getTurnoByID(idTurno);
+		//devuelvo el turno con el descuento aplicado
+		TurnoMedico turnoNuevo= servicioUsuario.getTurnoByID(idTurno, idUsuario);
 		turnoNuevo.setClienteAsignado(servicioRegistroLogin.obtenerUsuarioPorId(idUsuario));
 		model.put("turno", turnoNuevo);
 		
@@ -57,7 +56,7 @@ public class controladorMercadoPago {
 		Item item = new Item();
 		item.setTitle("Turno medico #" + turnoNuevo.getId())
 		    .setQuantity(1)
-		    .setUnitPrice(turnoNuevo.getValorConDescuento().floatValue());
+		    .setUnitPrice(turnoNuevo.getValorDeLaConsulta().floatValue());
 		
 		preference.appendItem(item);
 		preference.save();

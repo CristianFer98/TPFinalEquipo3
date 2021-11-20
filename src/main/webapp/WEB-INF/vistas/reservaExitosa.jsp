@@ -6,7 +6,7 @@
 
 	<div style="display: flex; justify-content: center">
 		<div class="card card-margin"
-			style="width: 50%; height: 300px; margin: 20px">
+			style="width: 50%; height: auto; margin: 20px">
 			<div class="card-header no-border">
 				<h5 class="card-title">Reserva Exitosa - He aqui los datos de
 					su turno</h5>
@@ -25,7 +25,7 @@
 						<li class="widget-49-meeting-item"><span>Duracion de
 								consulta ${turno.tiempoDeLaConsulta} HS.</span></li>
 						<li class="widget-49-meeting-item"><span>Valor de la
-								consulta : $${turno.valorConDescuento}</span></li>
+								consulta : $${turno.valorFinal}</span></li>
 						<li class="widget-49-meeting-item"><span>Medico
 								Asignado: ${turno.medicoAsignado.nombre}</span></li>
 						<li class="widget-49-meeting-item"><span>Contacto con
@@ -35,6 +35,10 @@
 					
 					<div class="alert alert-success">
 					${estadoPago}
+					</div>
+					
+					<div style="display:flex; justify-content:center">
+			    <a href="paginaPrincipal"><button type="button" class="btn btn-primary" style="width: 100%; align-self:center">Volver a la pagina principal</button></a>
 					</div>
 
 				</div>

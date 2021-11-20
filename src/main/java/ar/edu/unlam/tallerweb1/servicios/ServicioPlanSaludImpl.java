@@ -1,14 +1,14 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.time.LocalDate;
-import java.time.Period;
+
 
 import javax.transaction.Transactional;
 
-import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.cotizacionExistenteException;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPlanSalud;
 
@@ -24,7 +24,7 @@ public class ServicioPlanSaludImpl implements ServicioPlanSalud {
 	}
 
 	@Override
-	public Double cotizarPlanMedico(Integer id) {
+	public Boolean comprobarExistenciaDePlan(Integer id) {
 
 		// comprobar que no tenga una suscripcion
 
@@ -32,33 +32,28 @@ public class ServicioPlanSaludImpl implements ServicioPlanSalud {
 
 		if (tienePlanMedico == true) {
 			throw new cotizacionExistenteException();
-		} else {
-			LocalDate fechaNaciemiento = this.repositorio.recuperarEdad(id);
-			LocalDate ahora = LocalDate.now();
-			Period periodo = Period.between(fechaNaciemiento, ahora);
-
-			Integer edad = periodo.getYears();
-
-			Double porcentajeDescuento;
-
-			if (edad < 30) {
-				porcentajeDescuento = 50.0; // si es menor a 30 años se le descuenta 50% por consulta
-				return porcentajeDescuento;
-			}
-			if (edad > 80) {
-				porcentajeDescuento = 20.0; // si es mayor a 80 el plan le cubre un 20% por consulta
-				return porcentajeDescuento;
-			} else {
-				porcentajeDescuento = 35.0; // si es mayor de 30 y menor de 80 un descuento del 35%
-				return porcentajeDescuento;
-			}
 		}
+
+		return true;
 
 	}
 
+	
+
 	@Override
-	public void suscribirseAPlanMedico(Integer id, Double descuento) {
-		repositorio.suscribirseAPlanMedico(id,descuento);
+	public PlanSalud obtenerPlan(Integer idPlan) {
+		return repositorio.obtenerPlanMedico(idPlan);
+	}
+
+	@Override
+	public void registrarSubscripcion(Integer idPlan, Integer idUsuario) {
+		repositorio.registrarSubscripcion(idPlan, idUsuario);
+		
+	}
+
+	@Override
+	public Usuario obtenerUsuario(Integer idUsuario) {
+		return repositorio.obtenerUsuario(idUsuario);
 	}
 
 }
