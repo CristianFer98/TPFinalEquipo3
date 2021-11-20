@@ -63,6 +63,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		usuario.setContrasenia(datos.getContrasenia1());
 		usuario.setNumeroDeTipoDeUsuario(datos.getNumeroDeTipoDeUsuario());
 		usuario.setNombre(datos.getNombre());
+		usuario.setAvatar(datos.getSexo());
 		
 		//tengo que castear la fecha//
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

@@ -16,6 +16,8 @@ public class DatosRegistroUsuario {
 
 	private Integer numeroDeTipoDeUsuario;
 	
+	private String sexo;
+	
 
 	//va a ser el admin quien pueda registrar en su cuenta nuevos medicos que accedan.
 	//el unico que va a registrarse como tal. es el usuario comun
@@ -80,7 +82,15 @@ public class DatosRegistroUsuario {
 		this.edad = edad;
 	}
 
+	public String getSexo() {
+		return sexo;
+	}
 
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	
 
 	
 	

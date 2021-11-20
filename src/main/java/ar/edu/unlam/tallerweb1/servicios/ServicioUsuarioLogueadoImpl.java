@@ -40,9 +40,7 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 	}
 
 	@Override
-	public TurnoMedico reservarTurno(Integer idTurno, Integer idUsuario) {
-		
-		
+	public TurnoMedico reservarTurno(Integer idTurno, Integer idUsuario) {	
 		TurnoMedico turno = repositorio.obtenerTurno(idTurno);
 		Usuario usuario = repositorio.obtenerUsuario(idUsuario);
 		
@@ -50,7 +48,6 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 			Double descuento = calcularDescuento(turno,usuario);
 			turno.setValorConDescuento(descuento);
 		}
-		
 		
 		return repositorio.reservarTurno(turno , idUsuario);
 	}
