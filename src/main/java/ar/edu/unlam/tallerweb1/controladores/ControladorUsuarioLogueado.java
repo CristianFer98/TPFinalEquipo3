@@ -36,10 +36,8 @@ public class ControladorUsuarioLogueado {
 
 		model.put("lista", especialidades);
 		return new ModelAndView("especialidades", model);
-
+ 
 	}
-	
-	
 
 	@RequestMapping(path = "listarMedicosPorEspecialidad", method = RequestMethod.GET)
 	public ModelAndView listarMedicosPorEspecialidad(@RequestParam("valor") Integer idEspecialidad,
@@ -68,7 +66,7 @@ public class ControladorUsuarioLogueado {
 		Usuario medico = servicio.obtenerMedico(idMedico);
 		model.put("medico", medico);
 		model.put("lista", listaDeTurnosDisponibles);
-
+		
 		return new ModelAndView("turnosDisponiblesMedico", model);
 	}
 
@@ -88,25 +86,28 @@ public class ControladorUsuarioLogueado {
 		}
 		
 		model.put("turno", turnoNuevo);
-
+		
 		return new ModelAndView("reservaExitosa", model);
 	}
-
-	@RequestMapping(path = "verMisTurnos", method = RequestMethod.GET)
-	public ModelAndView verMisTurnos(HttpServletRequest req) {
-
+	
+	@RequestMapping (path = "verMisTurnos", method = RequestMethod.GET)
+	public ModelAndView verMisTurnos (HttpServletRequest req) {
+		
 		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
 		ModelMap model = new ModelMap();
-
-		List<TurnoMedico> turnos = servicio.verMisTurnos(id);
-
+		
+		List <TurnoMedico> turnos = servicio.verMisTurnos(id);
+		
+		
 		model.put("lista", turnos);
 		return new ModelAndView("misTurnos", model);
 	}
+	
+	@RequestMapping(path = "cancelarTurno", method= RequestMethod.GET)
+	public ModelAndView cancelarTurno (@RequestParam ("idTurno") Integer idTurno, HttpServletRequest req) {
 
-	@RequestMapping(path = "cancelarTurno", method = RequestMethod.GET)
-	public ModelAndView cancelarTurno(@RequestParam("idTurno") Integer idTurno, HttpServletRequest req) {
 		servicio.cancelarTurno(idTurno);
+		
 		return verMisTurnos(req);
 	}
 	

@@ -44,19 +44,12 @@ public class Usuario {
 
 	
 	@Column
-<<<<<<< HEAD
-	private Double descuentoPorPlanMedico;
-	
-	@Column
-	private String avatar;
-=======
 	private String avatar;
 	
 	@ManyToOne
 	private PlanSalud plan;
 
 
->>>>>>> ramaEsteban
 
 	public Usuario(String contrasenia, String email, Integer numeroDeTipoDeUsuario) {
 		super();
@@ -166,20 +159,8 @@ public class Usuario {
 		return plan;
 	}
 
-<<<<<<< HEAD
-	public String getAvatar() {
-		return avatar;
-	}
-
-	public void setAvatar(String avatar) {
-		this.avatar = avatar;
-	}
-	
-
-=======
 	public void setPlan(PlanSalud plan) {
 		this.plan = plan;
 	}
 	
->>>>>>> ramaEsteban
 }

@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-//package ar.edu.unlam.tallerweb1.servicios;
-//
-=======
 package ar.edu.unlam.tallerweb1.servicios;
 
->>>>>>> ramaEsteban
 //import static org.junit.Assert.*;
 //
 //import org.aspectj.lang.annotation.Before;
@@ -13,20 +8,14 @@ package ar.edu.unlam.tallerweb1.servicios;
 //import org.springframework.test.annotation.Rollback;
 //import org.springframework.transaction.annotation.Transactional;
 //
-<<<<<<< HEAD
-=======
 //import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
->>>>>>> ramaEsteban
 //import ar.edu.unlam.tallerweb1.modelo.DatosSolicitudAmbulancia;
 //import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
 //import ar.edu.unlam.tallerweb1.persistencia.SpringTest;
 //import ar.edu.unlam.tallerweb1.repositorios.RepositorioAmbulancia;
 //import static org.mockito.Mockito.*;
 //
-<<<<<<< HEAD
-=======
 //
->>>>>>> ramaEsteban
 //public class AmbulanciaServicioTest extends SpringTest{
 //	@Autowired
 //	private ServicioAmbulanciaIMPL servicio;
@@ -54,15 +43,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 //		
 //		assertEquals(soli.getIdSolicitud(), soliObtenida.getIdSolicitud());
 //		assertNotNull(soliObtenida);
-<<<<<<< HEAD
-//		
-//	}
-//	
-//	
-//
-//	
-//	
-=======
 //	}
 //	
 //	@Test
@@ -83,7 +63,6 @@ package ar.edu.unlam.tallerweb1.servicios;
 //
 //	
 //	// MOQUEAR AMBULANCIA
->>>>>>> ramaEsteban
 //	
 //
 //}

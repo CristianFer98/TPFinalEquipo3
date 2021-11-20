@@ -14,7 +14,5 @@ public interface ServicioPlanSalud {
 
 	
 
-	Boolean comprobarExistenciaDePlan(Integer id);
-
 
 }

@@ -59,8 +59,6 @@
 								Personal: ${medico.paginaPersonal}</span></li>
 						<li class="widget-49-meeting-item"><span>Contacto:
 								${medico.telefono}</span></li>
-								<li class="widget-49-meeting-item"><span>Fecha de cumpleaños:
-								${medico.edad.dayOfMonth}/${medico.edad.month.value} </span></li>
 					</ol>
 					<div class="widget-49-meeting-action">
 						

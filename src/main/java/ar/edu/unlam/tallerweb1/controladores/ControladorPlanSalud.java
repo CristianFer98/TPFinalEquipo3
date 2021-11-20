@@ -1,19 +1,15 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-<<<<<<< HEAD
-=======
 import org.springframework.ui.ModelMap;
->>>>>>> ramaEsteban
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-<<<<<<< HEAD
-=======
 import com.mercadopago.MercadoPago;
 import com.mercadopago.exceptions.MPConfException;
 import com.mercadopago.exceptions.MPException;
@@ -23,15 +19,10 @@ import com.mercadopago.resources.datastructures.preference.Item;
 
 import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
->>>>>>> ramaEsteban
 import ar.edu.unlam.tallerweb1.servicios.ServicioPlanSalud;
 
 @Controller
 public class ControladorPlanSalud {
-<<<<<<< HEAD
-
-=======
->>>>>>> ramaEsteban
 	private ServicioPlanSalud servicio;
 
 	@Autowired
@@ -40,16 +31,6 @@ public class ControladorPlanSalud {
 	}
 
 	@RequestMapping(path = "planes", method = RequestMethod.GET)
-<<<<<<< HEAD
-	public ModelAndView mostrarPlanesDisponibles() {
-		return new ModelAndView("planesMedicos");
-
-	}
-
-
-
-}
-=======
 	public ModelAndView showPlanesMedicos(HttpServletRequest req) {
 		// segun la edad del usuario el descuento al subscribirse al plan será
 		// diferente//
@@ -186,4 +167,3 @@ public class ControladorPlanSalud {
 
 	}
 }
->>>>>>> ramaEsteban

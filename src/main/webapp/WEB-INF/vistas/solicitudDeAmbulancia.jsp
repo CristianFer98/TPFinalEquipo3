@@ -1,0 +1,89 @@
+
+    
+    <style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	body{
+		min-height:100vh;
+    	display: flex;
+    	flex-direction: column;
+    	justify-content: center;
+        align-items: center;
+	}
+	
+	.solicitud-container{
+		    padding: 10px;
+    	background-color: lightgray;
+    	display: flex;
+    	align-items: center;
+    	justify-content: center;
+    	flex-direction: column;
+	}
+	 
+	.soli-info{
+		padding: 10px 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 18px;
+	}
+	.btn-canelar{
+		border: none;
+   		background: tomato;
+    	padding: 15PX;
+    	margin: 5px;
+    	border-radius: 35px;
+    	margin-top: 20px;
+	}
+	
+	span{
+		margin-top: 20px;
+	}
+	
+	span:nth-child(2){
+	}
+	
+	#patente{
+	    background-color: #808080a1;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 900;
+	}
+	
+	
+	</style>
+    
+    
+
+    <body>
+
+    	
+
+        <div class="solicitud-container">
+        	<div class="soli-info">
+        		<span>Tu ambulancia llegara lo mas pronto posible</span>
+        		<span>Nombre: ${soli.getUsuarioSolicitante().getNombre()} </span>
+        		<span>Direccion: ${soli.getDireccion()}</span>
+        		<span></span>
+            	<span>LA PATENTE DE SU AMBULANCIA ES= <span id="patente"> ${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()} </span></span>
+            	<span>Asegurate que sea la ambulancia correcta para evitar incidentes</span>
+        	</div>
+        	<div class="soli-btns">
+        	
+        	<form action="canceloAmbulancia">
+        	 	<input type="text" name="ambulanciaCancelada" value="${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()}" style="display:none">
+        		<button type="submit">CANCELAR</button>
+        	</form>
+        	
+        	
+        		
+        	</div>
+            
+        </div>
+
+    </body>
+
+     <jsp:include page="footer.jsp"></jsp:include>

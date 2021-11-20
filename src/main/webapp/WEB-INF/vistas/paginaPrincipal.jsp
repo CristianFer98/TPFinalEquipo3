@@ -15,7 +15,7 @@
 				<div class="card-group" style="width:30%; margin:15px">
 				
 					<div class="card">
-						<img src="img/turnoMedico.jpg" style="height:250px">
+						<img src="img/turnoMedico.jpg" style="height:250px" ">
 						<div class="card-body">
 							<h5 class="card-title">Solicita tu turno</h5>
 							<p class="card-text">Tenes los mejores especialistas en salud.</p>
@@ -40,18 +40,6 @@
 						</div>
 					</div>
 				</div>
-<<<<<<< HEAD
-				
-				<div class="card-group" style="width:30%; margin:15px">
-				
-					<div class="card">
-						<img src="img/planMedico.jpg" style="height:250px">
-						<div class="card-body">
-							<h5 class="card-title">Accede a nuestro plan medico</h5>
-							<p class="card-text">Los mejores descuentos para tus tratamientos</p>
-							<a href="planes" ><button type="button" class="btn btn-secondary">Entrar</button></a>
-=======
->>>>>>> ramaEsteban
 
 	<div class="card-group" style="width: 30%; margin: 15px">
 

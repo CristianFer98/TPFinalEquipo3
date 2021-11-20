@@ -33,9 +33,6 @@ public class ServicioPlanSaludImpl implements ServicioPlanSalud {
 		if (tienePlanMedico == true) {
 			throw new cotizacionExistenteException();
 		}
-		
-		return true;
-		
 
 		return true;
 

@@ -41,21 +41,6 @@ public class ControladorMedicoTest {
 
 //_______________________________________________________________________________________________//
 
-<<<<<<< HEAD
-	@Test
-	public void testQueMeMuestraElFormularioDeEdicionDePerfilMedico() {
-		ArrayList<Especialidad> especializaciones = new ArrayList<Especialidad>();
-		especialidad1.setIdEspecialidad(1);
-		especialidad1.setEspecialidad("Cardiologo");
-		especialidad2.setIdEspecialidad(2);
-		especialidad2.setEspecialidad("Pediatra");
-
-		especializaciones.add(especialidad1);
-		especializaciones.add(especialidad2);
-
-		when(servicioUsuario.obtenerListaDeEspecializaciones()).thenReturn(especializaciones);
-
-=======
 //	@Test
 //	public void testQueMeMuestraElFormularioDeEdicionDePerfilMedico() {
 //		ArrayList<Especialidad> especializaciones = new ArrayList<Especialidad>();
@@ -69,16 +54,11 @@ public class ControladorMedicoTest {
 //
 //		when(servicioUsuario.obtenerListaDeEspecializaciones()).thenReturn(especializaciones);
 //
->>>>>>> ramaEsteban
 //		mav = controladorMedico.formularioEdicionPerfil();
 //
 //		assertThat(mav.getViewName()).isEqualTo("editarPerfilMedico");
 //		assertThat(mav.getModel().get("lista")).isEqualTo(especializaciones);
-<<<<<<< HEAD
-	}
-=======
 //	}
->>>>>>> ramaEsteban
 
 //________________________________________________________________________________________________//
 
