@@ -51,17 +51,21 @@ public class ServicioUsuarioLogueadoTest {
 	
 	@Test
 	public void regitrarTurnoMedico() {		
+		Integer id = 1;
+
 		TurnoMedico turno1 = new TurnoMedico();
-		Usuario usuario = mock(Usuario.class);
-					
-		when(repositorio.obtenerTurno(1)).thenReturn(turno1);
-		when(repositorio.obtenerUsuario(1)).thenReturn(usuario);
-		when(usuario.getDescuentoPorPlanMedico()).thenReturn(10.0); //me da o no igual que entre a ese condicional If 
-																	//ya que lo unico que quiero demostrar es que funciona la reserva 
-																									
-		servicio.reservarTurno(turno1.getId(), usuario.getIdUsuario());
+		Usuario usuario = new Usuario();
 		
-		assertThat(servicio.getTurnoByID(turno1.getId())).isEqualTo(turno1.getId());		
+		usuario.setDescuentoPorPlanMedico(null);
+				
+		when(repositorio.obtenerUsuario(id)).thenReturn(usuario);
+		when(repositorio.obtenerTurno(id)).thenReturn(turno1);
+		when(repositorio.reservarTurno(turno1, id)).thenReturn(turno1);
+
+		TurnoMedico turno = servicio.reservarTurno(id, id);
+
+		
+		assertThat(turno).isNotNull();		
 	}
 	
 //	@Test
