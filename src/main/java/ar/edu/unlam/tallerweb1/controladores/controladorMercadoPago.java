@@ -47,7 +47,6 @@ public class controladorMercadoPago {
 
 		Preference preference = new Preference();
 		
-
 		preference.setBackUrls(
 				new BackUrls().setFailure("http://localhost:8080/proyecto-limpio-spring/pagofallido")
 							  .setPending("http://localhost:8080/proyecto-limpio-spring/pagoPendiente")
