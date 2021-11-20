@@ -10,6 +10,9 @@ values ("Lunes"),("Martes"),("Miercoles"),("Jueves"),("Viernes"),("Sabado"),("Do
 insert into plansalud (descuento, nombre, precioDelPlan)
 values (30,"Plan Basico",1000),(60,"Plan Silver",1700),(100,"Plan Gold",2500);
 
+select * from usuario;
+select * from turnomedico;
+select * from plansalud;
 insert into usuario (contrasenia, fechaNacimiento, email, nombre, numeroDeTipoDeUsuario)
 values (123456789, 19980507,"admin@gmail.com", "Admin", 3);
 
@@ -18,8 +21,6 @@ values (123456789, 19900507,"cris@gmail.com", "Cris", 1);
 
 insert into usuario (contrasenia, fechaNacimiento, email, nombre, numeroDeTipoDeUsuario)
 values (123456789, 19900507,"Hori@gmail.com", "Hori", 1);
-
-select * from usuario;
 
 insert into usuario (contrasenia, fechaNacimiento, email, nombre, numeroDeTipoDeUsuario, especialidad_idEspecialidad,telefono, paginaPersonal, avatar)
 values (123456789, 19800505,"Maria@gmail.com", "Maria", 2,1,46515676,"Maria.com", "F"),(123456789, 19700205,"Roberto@gmail.com", "Roberto", 2,2,11654684,"Roberto.com", "M"),
@@ -37,6 +38,6 @@ select * from especialidad;
 select * from dias;
 SELECT * FROM USUARIO;
 select * from turnomedico;
-select * from plansalud;
+
 delete from turnomedico;
 

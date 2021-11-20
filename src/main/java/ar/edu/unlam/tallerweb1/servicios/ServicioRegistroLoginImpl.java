@@ -58,11 +58,11 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 		}
 
 		Usuario usuario = new Usuario();
-		usuario.setAvatar(datos.getSexo());
 		usuario.setEmail(datos.getEmail());
 		usuario.setContrasenia(datos.getContrasenia1());
 		usuario.setNumeroDeTipoDeUsuario(datos.getNumeroDeTipoDeUsuario());
 		usuario.setNombre(datos.getNombre());
+		usuario.setAvatar(datos.getSexo());
 		
 		//tengo que castear la fecha//
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -72,7 +72,7 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
         
 		idRecibida =  repositorioRegistroLogin.registrarUsuario(usuario);
 		return idRecibida;
-
+ 
 	}
 
 

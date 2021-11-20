@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 
 @Repository
@@ -40,7 +41,7 @@ public class RepositorioPlanSaludImpl implements RepositorioPlanSalud {
 	public Boolean corroborarExistenciaDePlan(Integer id) {
 
 		Usuario usuario = recuperarUsuarioPorId(id);
-		if (usuario.getDescuentoPorPlanMedico() == null) {
+		if (usuario.getPlan() == null) {
 			return false;
 		} else {
 			return true;
@@ -48,11 +49,31 @@ public class RepositorioPlanSaludImpl implements RepositorioPlanSalud {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public void suscribirseAPlanMedico(Integer id, Double descuento) {
-		Usuario usuario = recuperarUsuarioPorId(id);
-		usuario.setDescuentoPorPlanMedico(descuento);
+	public PlanSalud obtenerPlanMedico(Integer idPlan) {
+
+		return (PlanSalud) session.getCurrentSession().createCriteria(PlanSalud.class)
+				.add(Restrictions.eq("idPlanSalud", idPlan)).uniqueResult();
+
+	}
+
+	@Override
+	public void registrarSubscripcion(Integer idPlan, Integer idUsuario) {
+		Usuario usuario = recuperarUsuarioPorId(idUsuario);
+		PlanSalud planAsignado = obtenerPlanMedico(idPlan);
+
+		usuario.setPlan(planAsignado);
+
 		session.getCurrentSession().update(usuario);
+
+	}
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public Usuario obtenerUsuario(Integer idUsuario) {
+		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class)
+				.add(Restrictions.eq("idUsuario", idUsuario)).uniqueResult();
 	}
 
 }

@@ -19,8 +19,9 @@ public interface ServicioAmbulancia {
 	Integer pedirAmbulancia(DatosSolicitudAmbulancia datos);
 	SolicitudUsuarioAmbulancia obtenerSolicitudPORID(Integer id);
 	List<SolicitudUsuarioAmbulancia> obtenerListaDeAmbulanciasQuePidioUsuario(Usuario user);
-	void atenderConsulta(SolicitudUsuarioAmbulancia soli);
+//	void atenderConsulta(SolicitudUsuarioAmbulancia soli, Boolean bol);
 	SolicitudUsuarioAmbulancia obtenerConsultaSinAtenderPorUsuario(Usuario user);
+	void cambiarEstadoConsulta(SolicitudUsuarioAmbulancia soli, Boolean bol);
 	
 
 }

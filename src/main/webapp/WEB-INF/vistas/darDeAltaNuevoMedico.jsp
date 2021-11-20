@@ -93,12 +93,11 @@ main {
 					class="inicioSesion_inputs" required> <input
 					type="password" path="contrasenia2" name="contrasenia2"
 					id="contrasenia2" placeholder="Repita su Clave"
-					class="inicioSesion_inputs" required> 
-					<select path="sexo" name="sexo">
-							<option value="M">MASCULINO</option>
-							<option value="F" selected>FEMENINO</option>
-				    </select> 
-				<input type="submit"
+					class="inicioSesion_inputs" required> <select path="sexo"
+					name="sexo">
+					<option value="M">MASCULINO</option>
+					<option value="F" selected>FEMENINO</option>
+				</select> <input type="submit"
 					style="background-color: rgb(16, 11, 37); color: aliceblue;"
 					class="boton_unputs" value="Registrarse"> <input
 					type="hidden" path="numeroDeTipoDeUsuario"

@@ -1,5 +1,5 @@
-//package ar.edu.unlam.tallerweb1.servicios;
-//
+package ar.edu.unlam.tallerweb1.servicios;
+
 //import static org.junit.Assert.*;
 //
 //import org.aspectj.lang.annotation.Before;
@@ -8,11 +8,13 @@
 //import org.springframework.test.annotation.Rollback;
 //import org.springframework.transaction.annotation.Transactional;
 //
+//import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
 //import ar.edu.unlam.tallerweb1.modelo.DatosSolicitudAmbulancia;
 //import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
 //import ar.edu.unlam.tallerweb1.persistencia.SpringTest;
 //import ar.edu.unlam.tallerweb1.repositorios.RepositorioAmbulancia;
 //import static org.mockito.Mockito.*;
+//
 //
 //public class AmbulanciaServicioTest extends SpringTest{
 //	@Autowired
@@ -41,13 +43,26 @@
 //		
 //		assertEquals(soli.getIdSolicitud(), soliObtenida.getIdSolicitud());
 //		assertNotNull(soliObtenida);
-//		
 //	}
 //	
-//	
+//	@Test
+//	@Transactional
+//	@Rollback
+//	public void cambiarEstadoAmbulancia(){
+//		Ambulancia amb = new Ambulancia("aaa111", true);
+//		servicio.agregarAmbulancia(amb);
+//		servicio.cambiarEstadoAmbulancia(amb, false);
+//		
+//		Ambulancia amb2= servicio.obtenerAmbulanciaPorPatente("aaa111");
+//		
+////		Boolean actual= amb2.getDisponible();
+////		Boolean expected= false;
+////		
+////		assertEquals(expected, actual);
+////	}
 //
 //	
-//	
+//	// MOQUEAR AMBULANCIA
 //	
 //
 //}

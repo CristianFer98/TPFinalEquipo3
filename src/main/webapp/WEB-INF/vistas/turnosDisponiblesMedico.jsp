@@ -23,10 +23,11 @@
 						<div class="list-group-item">
 							<p style="color: #252440; font-size: 20px">
 								${lista.fecha.year}/${lista.fecha.monthValue}/${lista.fecha.dayOfMonth}
-								- ${lista.fecha.hour}:${lista.fecha.minute} HS. Precio $${lista.valorPorConsultaNormal}
+								- ${lista.fecha.hour}:${lista.fecha.minute} HS. Precio $${lista.valorDeLaConsulta}
 							<p>
 						</div>
 					</a>
+					
 				</c:forEach>
 
 			</div>
@@ -58,8 +59,6 @@
 								Personal: ${medico.paginaPersonal}</span></li>
 						<li class="widget-49-meeting-item"><span>Contacto:
 								${medico.telefono}</span></li>
-								<li class="widget-49-meeting-item"><span>Fecha de cumpleaños:
-								${medico.edad.dayOfMonth}/${medico.edad.month.value} </span></li>
 					</ol>
 					<div class="widget-49-meeting-action">
 						
@@ -68,6 +67,8 @@
 			</div>
 		</div>
 	</div>
+	
+
 </main>
 
 <jsp:include page="footer.jsp"></jsp:include>

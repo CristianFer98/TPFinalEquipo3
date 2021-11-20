@@ -115,9 +115,16 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 		
 		turno.setEstado(true);
 		turno.setClienteAsignado(null);
-		turno.setValorConDescuento(turno.getValorPorConsultaNormal());
+		turno.setValorFinal(turno.getValorDeLaConsulta());
+		session.getCurrentSession().update(turno);
 		
-		
+	}
+
+	@Override
+	public void setPagadoTurno(TurnoMedico turno,Boolean estado) {
+		TurnoMedico t=session.getCurrentSession().get(TurnoMedico.class, turno.getId());
+		t.setPagado(estado);
+		session.getCurrentSession().save(t);	 
 	}
 
 }

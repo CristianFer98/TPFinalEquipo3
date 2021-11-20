@@ -120,11 +120,8 @@ public class ServicioAmbulanciaIMPL implements ServicioAmbulancia {
 	}
 
 	@Override
-	public void atenderConsulta(SolicitudUsuarioAmbulancia soli) {
-		Integer idSolicitud = soli.getIdSolicitud();
-		soli = repositorioAmbulancia.obtenerSolicitudDeAmbulanciaPORID(idSolicitud);	
-		soli.setAtendido(true);	
-		
+	public void cambiarEstadoConsulta(SolicitudUsuarioAmbulancia soli, Boolean bol) {
+		repositorioAmbulancia.actualizarRegistro(soli, bol);
 	}
 
 	@Override

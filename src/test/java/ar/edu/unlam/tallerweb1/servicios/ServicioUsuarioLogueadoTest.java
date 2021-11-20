@@ -44,30 +44,6 @@ public class ServicioUsuarioLogueadoTest {
 	
 //________________________________________________________________________//
 	
-	@Test
-	public void testQueMePermiteHacerDescuentoAlTurnoNuevo() {
-		Integer idTurno = 1;
-		Integer idUsuario = 1;
-		
-		//defino el usuario
-		Usuario usuario = new Usuario();
-		Double descuento = 50.0;
-		usuario.setDescuentoPorPlanMedico(descuento);
-		
-		//defino el turno
-		TurnoMedico turno = new TurnoMedico();
-		Double valorConsulta = 500.0;
-		turno.setValorConDescuento(valorConsulta);
-		turno.setValorPorConsultaNormal(valorConsulta);
 
-		when(repositorio.obtenerTurno(idTurno)).thenReturn(turno);
-		when(repositorio.obtenerUsuario(idUsuario)).thenReturn(usuario);
-		when(repositorio.reservarTurno(turno, idUsuario)).thenReturn(turno);
-		
-		TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
-		
-		Double valorEsperado = 250.0;
-		assertThat(turnoNuevo.getValorConDescuento()).isEqualTo(valorEsperado);
-	}
 
 }

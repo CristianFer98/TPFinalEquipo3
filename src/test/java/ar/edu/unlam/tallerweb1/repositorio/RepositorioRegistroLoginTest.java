@@ -30,11 +30,10 @@ public class RepositorioRegistroLoginTest extends SpringTest { // levanto el ent
 	@Rollback
 	public void testQueMePermitaRegistrarUnUsuarioNuevo() {
 
-		Usuario usuario = givenTengoUnUsuario(email, clave);
-		@SuppressWarnings("unused")
-		Integer id =whereRegistroUnUsuario(usuario);
+		Usuario usuario = givenTengoUnUsuario(email, clave);// creo un usuario
+		Integer id =whereRegistroUnUsuario(usuario);// registro un usuario. me devuelve un boolean
 		thenMePermiteRegistrar(usuario.getIdUsuario());
-		
+		// ver como chequear esto
 	}
 	
 	private Usuario givenTengoUnUsuario(String email, String clave) {
@@ -52,8 +51,9 @@ public class RepositorioRegistroLoginTest extends SpringTest { // levanto el ent
 	}
 
 	private void thenMePermiteRegistrar(Integer id) {
+		//Integer ve = 1;//no se como hacer que se reinicie por cada test el repositorio por eso le puse 2
 		
-			assertThat(id).isNotNull();
+			assertThat(id).isNotNull();//si quiero que funcione tengo que poner el hibernate context en CREATE
 	}
 
 
