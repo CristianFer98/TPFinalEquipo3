@@ -62,8 +62,7 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 	public void actualizarEstadoAmbulancia(Ambulancia ambulancia, Boolean bol) {
 		Ambulancia miAmb=sessionFactory.getCurrentSession().get(Ambulancia.class, ambulancia.getIdAmbulancia());
 		miAmb.setDisponible(bol);
-		sessionFactory.getCurrentSession().save(miAmb);
-		
+		sessionFactory.getCurrentSession().save(miAmb);	 
 	}
 
 
@@ -86,6 +85,14 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 				  .createCriteria(SolicitudUsuarioAmbulancia.class)
 				  .add(Restrictions.eq("idSolicitud", id))
 				  .uniqueResult();
+	}
+
+
+	@Override
+	public void actualizarRegistro(SolicitudUsuarioAmbulancia soli, Boolean bol) {
+		SolicitudUsuarioAmbulancia solicitud= sessionFactory.getCurrentSession().get(SolicitudUsuarioAmbulancia.class, soli.getIdSolicitud());
+		solicitud.setAtendido(bol);
+		sessionFactory.getCurrentSession().save(soli);
 	}
 
 }

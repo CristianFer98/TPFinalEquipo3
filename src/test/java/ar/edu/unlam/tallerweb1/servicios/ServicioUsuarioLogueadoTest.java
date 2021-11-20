@@ -44,6 +44,7 @@ public class ServicioUsuarioLogueadoTest {
 	
 //________________________________________________________________________//
 	
+<<<<<<< HEAD
 	@Test
 	public void testQueMePermiteHacerDescuentoAlTurnoNuevo() {
 		Integer idTurno = 1;
@@ -71,3 +72,8 @@ public class ServicioUsuarioLogueadoTest {
 	}
 
 }
+=======
+
+
+}
+>>>>>>> ramaEsteban

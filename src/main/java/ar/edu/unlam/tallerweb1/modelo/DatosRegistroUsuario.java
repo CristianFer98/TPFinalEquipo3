@@ -16,6 +16,11 @@ public class DatosRegistroUsuario {
 	private Integer numeroDeTipoDeUsuario;
 	
 	private String sexo;
+<<<<<<< HEAD
+=======
+	
+
+>>>>>>> ramaEsteban
 	//va a ser el admin quien pueda registrar en su cuenta nuevos medicos que accedan.
 	//el unico que va a registrarse como tal. es el usuario comun
 	

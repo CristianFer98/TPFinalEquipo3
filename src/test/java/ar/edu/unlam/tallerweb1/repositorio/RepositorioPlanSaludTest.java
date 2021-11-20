@@ -1,13 +1,18 @@
 package ar.edu.unlam.tallerweb1.repositorio;
 
+<<<<<<< HEAD
 import java.time.LocalDate;
 
 import javax.transaction.Transactional;
+=======
+>>>>>>> ramaEsteban
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.test.annotation.Rollback;
 import static org.assertj.core.api.Assertions.assertThat;
+=======
+>>>>>>> ramaEsteban
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.persistencia.SpringTest;
@@ -19,6 +24,7 @@ public class RepositorioPlanSaludTest extends SpringTest {
 	Usuario usuario = new Usuario();
 
 	@Autowired
+<<<<<<< HEAD
 	private RepositorioPlanSalud repositorio;
 	@Autowired
 	private RepositorioRegistroLogin repositorioRegistro;
@@ -27,6 +33,11 @@ public class RepositorioPlanSaludTest extends SpringTest {
 	@Transactional
 	@Rollback
 	public void testQueMePermiteRecuperarLaEdadDeUnUsuario() {
+=======
+    private RepositorioPlanSalud repositorio;
+	
+	
+>>>>>>> ramaEsteban
 
 		Integer id = 1;
 		usuario.setEdad(LocalDate.now());

@@ -72,15 +72,24 @@ public class ControladorUsuarioLogueado {
 		return new ModelAndView("turnosDisponiblesMedico", model);
 	}
 
-	@RequestMapping(path = "reservarTurno", method = RequestMethod.GET)
+	@RequestMapping(path = "pagoExitoso", method = RequestMethod.GET)
 	public ModelAndView reservarTurno(@RequestParam("idTurno") Integer idTurno,
-			@RequestParam("idUsuario") Integer idUsuario, HttpServletRequest req) {
+									  @RequestParam("idUsuario") Integer idUsuario, 
+									  @RequestParam("status") String status       ,HttpServletRequest req) {
+		
 		ModelMap model = new ModelMap();
 		TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
+		
+		if (status.equals("approved")) {
+			model.put("estadoPago", "Pago realizado con exito");
+			servicio.setPagadoTurno(turnoNuevo, true);
+		}else {
+			model.put("estadoPago", "Debes pagar la consulta en el hospital");
+		}
+		
 		model.put("turno", turnoNuevo);
 
 		return new ModelAndView("reservaExitosa", model);
-
 	}
 
 	@RequestMapping(path = "verMisTurnos", method = RequestMethod.GET)
@@ -99,6 +108,23 @@ public class ControladorUsuarioLogueado {
 	public ModelAndView cancelarTurno(@RequestParam("idTurno") Integer idTurno, HttpServletRequest req) {
 		servicio.cancelarTurno(idTurno);
 		return verMisTurnos(req);
+	}
+	
+	@RequestMapping(path = "paginaPrincipal", method= RequestMethod.GET)
+	public ModelAndView getPaginaPrincipal() {
+		
+		return new ModelAndView("paginaPrincipal");
+	}
+
+	@RequestMapping(path = "paginaPrincipalMedicos", method= RequestMethod.GET)
+	public ModelAndView getPaginaPrincipalMedicos() {
+		
+		return new ModelAndView("paginaPrincipalMedicos");
+	}
+	@RequestMapping(path = "paginaPrincipalAdmin", method= RequestMethod.GET)
+	public ModelAndView getPaginaPrincipalAdmin() {
+		
+		return new ModelAndView("paginaPrincipalAdmin");
 	}
 
 }

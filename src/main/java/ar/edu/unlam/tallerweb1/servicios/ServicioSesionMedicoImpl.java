@@ -86,8 +86,8 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 							&& inicioDeActividadMensual.getHour() <= finDeActividadMensual.getHour()) {
 						TurnoMedico nuevoTurno = new TurnoMedico();
 						nuevoTurno.setFecha(inicioDeActividadMensual);
-						nuevoTurno.setValorPorConsultaNormal(precioPorConsulta);
-						nuevoTurno.setValorConDescuento(precioPorConsulta);
+						nuevoTurno.setValorDeLaConsulta(precioPorConsulta);
+						nuevoTurno.setValorFinal(precioPorConsulta);
 						nuevoTurno.setTiempoDeLaConsulta(duracionDeTurno);
 						nuevosTurnos.add(nuevoTurno);
 					} 

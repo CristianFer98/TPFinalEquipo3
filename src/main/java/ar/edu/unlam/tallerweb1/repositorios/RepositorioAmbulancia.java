@@ -14,6 +14,7 @@ public interface RepositorioAmbulancia {
 	void actualizarEstadoAmbulancia(Ambulancia ambulancia, Boolean bol);
 	List<SolicitudUsuarioAmbulancia> obtenerListaDeAmbulanciasQuePidioUsuario(Usuario user);
 	SolicitudUsuarioAmbulancia obtenerSolicitudDeAmbulanciaPORID(Integer id);
+	void actualizarRegistro(SolicitudUsuarioAmbulancia soli, Boolean bol);
 	
 
 }

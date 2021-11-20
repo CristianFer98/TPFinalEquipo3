@@ -87,6 +87,7 @@ public class ControladorUsuarioLogueadoTest {
 
 //__________________________________________________________________________________________________________//
 
+<<<<<<< HEAD
 	@Test
 	public void testQueMePermitaReservarUnTurno() {
 		HttpSession http = mock(HttpSession.class);
@@ -128,3 +129,46 @@ public class ControladorUsuarioLogueadoTest {
 
 	}
 }
+=======
+//	@Test
+//	public void testQueMePermitaReservarUnTurno() {
+//		HttpSession http = mock(HttpSession.class);
+//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+//		when(mockedRequest.getSession()).thenReturn(http);
+//
+//		mav = controladorUsuarioLogueado.reservarTurno(1, 1, null, mockedRequest);
+//
+//		assertThat(mav.getViewName()).isEqualTo("reservaExitosa");
+//	}
+
+//_________________________________________________________________________________________//
+	@Test
+	public void testQueMePermitaVerMisTurnos() {
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		when(mockedRequest.getSession()).thenReturn(http);
+		Integer idUsuario = 1;
+		ArrayList<TurnoMedico> turnos = new ArrayList<TurnoMedico>();
+		when(servicioUsuario.verMisTurnos(idUsuario)).thenReturn(turnos);
+
+		mav = controladorUsuarioLogueado.verMisTurnos(mockedRequest);
+
+		assertThat(mav.getViewName()).isEqualTo("misTurnos");
+	}
+
+//________________________________________________________________________________________//
+
+	@Test
+	public void testQueMePermitaCancelarUnTurno() {
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		when(mockedRequest.getSession()).thenReturn(http);
+		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(1);
+
+		mav = controladorUsuarioLogueado.cancelarTurno(1, mockedRequest);
+
+		assertThat(mav.getViewName()).isEqualTo("misTurnos");
+
+	}
+}
+>>>>>>> ramaEsteban

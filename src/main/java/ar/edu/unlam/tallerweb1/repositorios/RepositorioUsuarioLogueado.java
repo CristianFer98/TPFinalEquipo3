@@ -18,4 +18,5 @@ public interface RepositorioUsuarioLogueado {
 	TurnoMedico obtenerTurno(Integer idTurno);
 	Usuario obtenerUsuario(Integer idUsuario);
 	void cancelarTurno(Integer idTurno);
+	void setPagadoTurno(TurnoMedico turno,Boolean estado);
 }
