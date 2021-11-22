@@ -6,7 +6,11 @@
 
 	<div style="display: flex; justify-content: center">
 		<div class="card card-margin"
+<<<<<<< HEAD
 			style="width: 50%; height: 300px; margin: 20px">
+=======
+			style="width: 50%; height: auto; margin: 20px">
+>>>>>>> origin/main
 			<div class="card-header no-border">
 				<h5 class="card-title">Checkout de Su reserva</h5>
 			</div>
@@ -24,7 +28,9 @@
 						<li class="widget-49-meeting-item"><span>Duracion de
 								consulta ${turno.tiempoDeLaConsulta} HS.</span></li>
 						<li class="widget-49-meeting-item"><span>Valor de la
-								consulta : $${turno.valorConDescuento}</span></li>
+
+								consulta : $${turno.valorDeLaConsulta}</span></li>
+
 						<li class="widget-49-meeting-item"><span>Medico
 								Asignado: ${turno.medicoAsignado.nombre}</span></li>
 						<li class="widget-49-meeting-item"><span>Contacto con
@@ -35,10 +41,13 @@
 				</div>
 			</div>
 			
-			<div class="btns">
-			 <div class=".cho-container btn btn-primary" >
-				<a href="${preference.initPoint}" style="color:white">Pagar con Mercado Pago</a>
-			 </div>
+
+			<script
+  				src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+  				data-preference-id="${preference.id}">
+			</script>
+			 
+
 			 <div class="btn btn-secondary" >
 			 	<a href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no" style="color:white">Pagar en la clinica</a>
 			 </div>
@@ -46,11 +55,10 @@
 			</div>
 			
 		</div>
-	</div>
+
 	
-	<div>
-	IdPreferencia = ${preference.getId()}
-	</div>
+	
+
 	
 	
 	<script src="https://sdk.mercadopago.com/js/v2"></script>

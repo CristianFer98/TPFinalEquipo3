@@ -1,13 +1,12 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
-import static org.junit.Assert.*;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.text.ParseException;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -15,19 +14,15 @@ import javax.servlet.http.HttpSession;
 import static org.mockito.Mockito.doThrow;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
-import org.springframework.transaction.annotation.Transactional;
+
+
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
-import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
-import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuario;
+
 import ar.edu.unlam.tallerweb1.modelo.DatosSolicitudAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.SolicitudUsuarioAmbulancia;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.persistencia.SpringTest;
-import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
+
 import ar.edu.unlam.tallerweb1.servicios.NoHayAmbulanciasDisponiblesException;
 import ar.edu.unlam.tallerweb1.servicios.ServicioAmbulancia;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
@@ -75,8 +70,9 @@ public class ControladorAmbulanciaTest{
 		when(servicioAmbulancia.obtenerSolicitudPORID(1)).thenReturn(soli);
 		
 		
-		ModelAndView mav= controladorAmbulancia.mostrarSolucitudDeAmbulanciaEnCurso(solicitud, mockedRequest);
-		
+
+		 mav= controladorAmbulancia.mostrarSolucitudDeAmbulanciaEnCurso(solicitud, mockedRequest);
+	
 		assertThat(mav.getViewName()).isEqualTo("solicitudDeAmbulancia");
 		
 	}
@@ -86,7 +82,7 @@ public class ControladorAmbulanciaTest{
 	public void UsuarioNoPuedePedirAmbulanciaSiYaPidioAntes() throws ParseException {
 		DatosSolicitudAmbulancia solicitud = new DatosSolicitudAmbulancia();
 		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
-		SolicitudUsuarioAmbulancia soli=new SolicitudUsuarioAmbulancia();
+
 		
 
 		HttpSession http = mock(HttpSession.class);
@@ -97,8 +93,9 @@ public class ControladorAmbulanciaTest{
 		doThrow(UsuarioYaPidioAmbulanciaExeception.class).when(servicioAmbulancia).pedirAmbulancia(solicitud);
 
 		
-	    ModelAndView mav= controladorAmbulancia.mostrarSolucitudDeAmbulanciaEnCurso(solicitud, mockedRequest);
+	     mav= controladorAmbulancia.mostrarSolucitudDeAmbulanciaEnCurso(solicitud, mockedRequest);
 		
+
 		assertThat(mav.getViewName()).isEqualTo("centralAmbulancia");
 		assertThat(mav.getModel().get("msj")).isEqualTo("Usted ya tiene una ambulancia pedida en curso");
 	}
@@ -107,7 +104,7 @@ public class ControladorAmbulanciaTest{
 	public void usuarioNoPuedePedirAmbulanciaExistente() throws ParseException{		
 		DatosSolicitudAmbulancia solicitud = new DatosSolicitudAmbulancia();
 		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
-		SolicitudUsuarioAmbulancia soli=new SolicitudUsuarioAmbulancia();
+
 		
 
 		HttpSession http = mock(HttpSession.class);
@@ -130,6 +127,7 @@ public class ControladorAmbulanciaTest{
 		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
 		SolicitudUsuarioAmbulancia soli=new SolicitudUsuarioAmbulancia();
 		soli.setAtendido(false);
+
 		
 		
 		HttpSession http = mock(HttpSession.class);
@@ -139,8 +137,7 @@ public class ControladorAmbulanciaTest{
 		when(servicioAmbulancia.obtenerConsultaSinAtenderPorUsuario(user)).thenReturn(soli);
 //		when(servicioAmbulancia.cambiarEstadoConsulta(soli, true))
 		servicioAmbulancia.cambiarEstadoConsulta(soli, true);
-		
-		
+
 		
 		ModelAndView mav= controladorAmbulancia.adminPuedeAtenderConsulta("test@gmail.com");
 		

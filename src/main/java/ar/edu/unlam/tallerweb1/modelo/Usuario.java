@@ -12,13 +12,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Usuario {
 
-	// este va a ser el usuario que se registrara en el sistema
-	// va a ser de 3 tipos. cliente, medico y admin. Por el momento
-	// la forma de identificarlos va a ser con un valor booleano ya que no
-	// sabemos como joinear tablas para traer su valor especifico.
-	// hay campos compartidos, la foto, la especialidad, etc. Son campos que solo
-	// los medicos
-	// van a ocupar. Vi innesesario hacer un mapeo entre tablas para esto.
+
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,11 +42,15 @@ public class Usuario {
 	@Column
 	private Integer numeroDeTipoDeUsuario;
 
-	@Column
-	private Double descuentoPorPlanMedico;
 	
 	@Column
 	private String avatar;
+	
+	@ManyToOne
+	private PlanSalud plan;
+
+
+
 
 	public Usuario(String contrasenia, String email, Integer numeroDeTipoDeUsuario) {
 		super();
@@ -148,13 +146,7 @@ public class Usuario {
 		this.fechaNacimiento = fechaNacimiento;
 	}
 
-	public Double getDescuentoPorPlanMedico() {
-		return descuentoPorPlanMedico;
-	}
 
-	public void setDescuentoPorPlanMedico(Double descuentoPorPlanMedico) {
-		this.descuentoPorPlanMedico = descuentoPorPlanMedico;
-	}
 
 	public String getAvatar() {
 		return avatar;
@@ -162,6 +154,15 @@ public class Usuario {
 
 	public void setAvatar(String avatar) {
 		this.avatar = avatar;
+	}
+
+	public PlanSalud getPlan() {
+		return plan;
+	}
+
+
+	public void setPlan(PlanSalud plan) {
+		this.plan = plan;
 	}
 
 	

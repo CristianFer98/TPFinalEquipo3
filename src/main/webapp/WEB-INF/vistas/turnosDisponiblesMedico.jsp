@@ -23,7 +23,7 @@
 						<div class="list-group-item">
 							<p style="color: #252440; font-size: 20px">
 								${lista.fecha.year}/${lista.fecha.monthValue}/${lista.fecha.dayOfMonth}
-								- ${lista.fecha.hour}:${lista.fecha.minute} HS. Precio $${lista.valorPorConsultaNormal}
+								- ${lista.fecha.hour}:${lista.fecha.minute} HS. Precio $${lista.valorDeLaConsulta}
 							<p>
 						</div>
 					</a>
@@ -43,8 +43,8 @@
 				<div class="widget-49">
 					<div class="widget-49-title-wrapper">
 						<div class="widget-49-date-primary">
-							<span class="widget-49-date-day">${medico.edad.dayOfMonth}</span>
-							<span class="widget-49-date-month">${medico.edad.month}</span>
+							<span class="widget-49-date-day"><img style="heigth:50px; width:50px" src="img/${medico.avatar}.png"></span>
+							<span class="widget-49-date-month"></span>
 						</div>
 						<div class="widget-49-meeting-info">
 							<span class="widget-49-pro-title">Nombre:
@@ -67,6 +67,8 @@
 			</div>
 		</div>
 	</div>
+	
+
 </main>
 
 <jsp:include page="footer.jsp"></jsp:include>

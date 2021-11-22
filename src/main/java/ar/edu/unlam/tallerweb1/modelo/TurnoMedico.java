@@ -32,10 +32,10 @@ public class TurnoMedico {
 	private Boolean estado = true;
 	
 	@Column
-	private Double valorPorConsultaNormal;
+	private Double valorDeLaConsulta;
 	 
 	@Column
-	private Double valorConDescuento;
+	private Double valorFinal;
 	
 	@Column
 	private LocalTime tiempoDeLaConsulta;
@@ -90,21 +90,17 @@ public class TurnoMedico {
 		this.fecha = fecha;
 	}
 
-	public Double getValorPorConsultaNormal() {
-		return valorPorConsultaNormal;
+
+
+	public Double getValorDeLaConsulta() {
+		return valorDeLaConsulta;
 	}
 
-	public void setValorPorConsultaNormal(Double valorPorConsultaNormal) {
-		this.valorPorConsultaNormal = valorPorConsultaNormal;
+
+	public void setValorDeLaConsulta(Double valorDeLaConsulta) {
+		this.valorDeLaConsulta = valorDeLaConsulta;
 	}
 
-	public Double getValorConDescuento() {
-		return valorConDescuento;
-	}
-
-	public void setValorConDescuento(Double valorConDescuento) {
-		this.valorConDescuento = valorConDescuento;
-	}
 
 	public LocalTime getTiempoDeLaConsulta() {
 		return tiempoDeLaConsulta;
@@ -122,7 +118,20 @@ public class TurnoMedico {
 	public void setPagado(Boolean pagado) {
 		this.pagado = pagado;
 	}
-	
+
+
+
+	public Double getValorFinal() {
+		return valorFinal;
+	}
+
+
+	public void setValorFinal(Double valorFinal) {
+		this.valorFinal = valorFinal;
+	}
+
+
+
 	
 
 	

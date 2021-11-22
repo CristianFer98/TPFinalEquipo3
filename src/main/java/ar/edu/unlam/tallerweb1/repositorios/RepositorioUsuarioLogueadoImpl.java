@@ -116,8 +116,8 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 		
 		turno.setEstado(true);
 		turno.setClienteAsignado(null);
-		turno.setValorConDescuento(turno.getValorPorConsultaNormal());
-		
+		turno.setValorFinal(turno.getValorDeLaConsulta());
+		session.getCurrentSession().update(turno);
 		
 	}
 

@@ -23,6 +23,7 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 	}
 	
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Ambulancia buscarAmbulancia(String patente) {
 		return (Ambulancia) sessionFactory
@@ -32,6 +33,7 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 				  .uniqueResult();
 	}
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Ambulancia> obtenerListaAmbulanciaDisponibles() {
 		return sessionFactory
@@ -64,6 +66,7 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 	}
 
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<SolicitudUsuarioAmbulancia> obtenerListaDeAmbulanciasQuePidioUsuario(Usuario user) {
 		return sessionFactory
@@ -74,6 +77,7 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 	}
 
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public SolicitudUsuarioAmbulancia obtenerSolicitudDeAmbulanciaPORID(Integer id) {
 		return (SolicitudUsuarioAmbulancia) sessionFactory

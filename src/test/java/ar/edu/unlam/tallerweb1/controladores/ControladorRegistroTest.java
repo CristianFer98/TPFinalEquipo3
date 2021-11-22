@@ -31,12 +31,10 @@ public class ControladorRegistroTest {
 	private String claveLongitudMenorAOcho = "1234";
 
 	// los objetos datosDeRegistro para un usuario comun.
-	private DatosRegistroUsuario datosRegistroConContraDiferente = new DatosRegistroUsuario(email, clave,
-			claveMal);
+	private DatosRegistroUsuario datosRegistroConContraDiferente = new DatosRegistroUsuario(email, clave, claveMal);
 	private DatosRegistroUsuario datosRegistroConLongitudIncorrecta = new DatosRegistroUsuario(email,
 			claveLongitudMenorAOcho, claveLongitudMenorAOcho);
-	private DatosRegistroUsuario datosRegistroConDatosCorrectos = new DatosRegistroUsuario(email, clave,
-			repiteClave);
+	private DatosRegistroUsuario datosRegistroConDatosCorrectos = new DatosRegistroUsuario(email, clave, repiteClave);
 
 	// datos para registrar un medico
 	private String emailUsuarioMedico = "medico@gmail.com";
@@ -58,7 +56,7 @@ public class ControladorRegistroTest {
 //_____________________________________________________________________________________________________________//	
 
 	@Test
-	public void testQueNoMePermiteRegistrarUnUsuarioConContraseñaDiferente() throws ParseException {
+	public void testQueNoMePermiteRegistrarUnUsuarioConContraseniaDiferente() throws ParseException {
 
 		// para usar moquito y me arroje esta exepcion tengo que poner
 		doThrow(ClavesDistintasException.class).when(servicioUsuario).registrarUsuario(datosRegistroConContraDiferente);
@@ -67,15 +65,15 @@ public class ControladorRegistroTest {
 		// controlador reciba esa
 		// excepcion.
 
-		whenRegistroUnUsuarioConContraseñaDiferente(datosRegistroConContraDiferente);// intento registrar estos datos
+		whenRegistroUnUsuarioConContraseniaDiferente(datosRegistroConContraDiferente);// intento registrar estos datos
 		thenRegistroUnUsuarioConContraseniaDiferente("las claves deben ser iguales");
 
 	}
 
-	private void whenRegistroUnUsuarioConContraseñaDiferente(
-			DatosRegistroUsuario datosRegistroConContraDiferente) throws ParseException {
+	private void whenRegistroUnUsuarioConContraseniaDiferente(DatosRegistroUsuario datosRegistroConContraDiferente)
+			throws ParseException {
 		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConContraDiferente); // esto me devuelve un
-																								// MAV
+																							// MAV
 
 	}
 
@@ -115,7 +113,8 @@ public class ControladorRegistroTest {
 
 	}
 
-	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuario datosRegistroConDatosCorrectos) throws ParseException {
+	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuario datosRegistroConDatosCorrectos)
+			throws ParseException {
 
 		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConDatosCorrectos);
 	}
@@ -134,7 +133,7 @@ public class ControladorRegistroTest {
 	}
 
 	private void thenRegistroUnMedico() {
-		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalAdmin");
+		assertThat(mav.getViewName()).isEqualTo("index");
 
 	}
 

@@ -39,7 +39,7 @@
 									<li class="widget-49-meeting-item"><span>Duracion:
 											${lista.tiempoDeLaConsulta}</span></li>
 									<li class="widget-49-meeting-item"><span>Precio:
-											$${lista.valorConDescuento}</span></li>
+											$${lista.valorFinal}</span></li>
 								</ol>
 								<div class="widget-49-meeting-action">
 									<a href="cancelarTurno?idTurno=${lista.id}" class="btn btn-sm btn-flash-border-primary">Cancelar

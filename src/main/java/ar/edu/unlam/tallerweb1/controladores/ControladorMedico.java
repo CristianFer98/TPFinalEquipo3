@@ -37,11 +37,14 @@ public class ControladorMedico {
 
 	@RequestMapping(path = "EditarPerfil", method = RequestMethod.GET)
 
-	public ModelAndView formularioEdicionPerfil() {
+	public ModelAndView formularioEdicionPerfil(HttpServletRequest req) {
 		ModelMap model = new ModelMap();
 		List<Especialidad> especializaciones;
+		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+		Usuario medico = servicio.obtenerInformacion(id);
+		
 		especializaciones = servicio.obtenerListaDeEspecializaciones();
-
+		model.put("medico", medico);
 		model.put("lista", especializaciones);
 		return new ModelAndView("editarPerfilMedico", model);
 	}
@@ -61,15 +64,13 @@ public class ControladorMedico {
 		cargaExitosa = servicio.cargarDatos(datos, id);
 
 		if (cargaExitosa == true) {
-			String mensajeExitoso = "carga exitosa";
-			model.put("mensaje", mensajeExitoso);
-			ModelAndView MAV =  formularioEdicionPerfil();
+			ModelAndView MAV =  verPerfilMedico(req);
 			return MAV.addAllObjects(model);
 		} else {
 			String mensajeError = "hubo un error";
 
 			model.put("mensaje", mensajeError);
-			ModelAndView MAV =  formularioEdicionPerfil();
+			ModelAndView MAV =  formularioEdicionPerfil(req);
 			return MAV.addAllObjects(model);
 		}
 
