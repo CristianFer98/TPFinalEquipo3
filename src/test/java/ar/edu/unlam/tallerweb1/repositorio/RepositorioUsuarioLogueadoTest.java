@@ -23,6 +23,7 @@ public class RepositorioUsuarioLogueadoTest extends SpringTest{
 	RepositorioRegistroLogin repositorioRegistroLogin;
 
 	
+
 	@Test
 	@Transactional
 	@Rollback
@@ -43,10 +44,11 @@ public class RepositorioUsuarioLogueadoTest extends SpringTest{
 	
 	@Test
 	@Transactional
-	@Rollback
+	@Rollback 
 	public void testQueMePermitaCancelarUnTurno() {
 		
 		
 	}
+
 
 }

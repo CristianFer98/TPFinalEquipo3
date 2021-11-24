@@ -51,6 +51,7 @@ public class Usuario {
 
 
 
+
 	public Usuario(String contrasenia, String email, Integer numeroDeTipoDeUsuario) {
 		super();
 		this.contrasenia = contrasenia;
@@ -159,8 +160,10 @@ public class Usuario {
 		return plan;
 	}
 
+
 	public void setPlan(PlanSalud plan) {
 		this.plan = plan;
 	}
+
 	
 }

@@ -43,6 +43,9 @@ public class TurnoMedico {
 	@Column
 	private Boolean pagado;
 	
+//	@ManyToOne
+//	private Pagos pagos;
+//	
  
 	
 	public TurnoMedico() {
@@ -120,6 +123,7 @@ public class TurnoMedico {
 	}
 
 
+
 	public Double getValorFinal() {
 		return valorFinal;
 	}
@@ -130,9 +134,17 @@ public class TurnoMedico {
 	}
 
 
+//	public Pagos getPagos() {
+//		return pagos;
+//	}
+//
+//
+//	public void setPagos(Pagos pagos) {
+//		this.pagos = pagos;
+//	}
 
 	
-	
+
 	
 
 	

@@ -16,6 +16,7 @@
 				<p class="card-text">Solicita el plan Basico para obtener un 30%
 					de descuento en tus visitas medicas.</p>
 
+
 				<c:choose>
 					<c:when test="${usuario.plan.idPlanSalud == '1'}">
 						<h4 style="color: green;">Asignado actualmente</h4>
@@ -23,11 +24,11 @@
 					<c:otherwise>
 						<script
 							src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-							data-preference-id="${preferenciaBasico.id}">
-							
+							data-preference-id="${preferenciaBasico.id}">		
 						</script>
 					</c:otherwise>
 				</c:choose>
+
 
 
 
@@ -51,6 +52,7 @@
 				<p class="card-text">Solicita el plan Basico para obtener un 60%
 					de descuento en tus visitas medicas</p>
 
+
 				<c:choose>
 					<c:when test="${usuario.plan.idPlanSalud == '2'}">
 						<h4 style="color: green;">Asignado actualmente</h4>
@@ -63,6 +65,7 @@
 						</script>
 					</c:otherwise>
 				</c:choose>
+
 
 
 
@@ -84,6 +87,7 @@
 					100% de descuento en tus visitas medicas</p>
 
 
+
 				<c:choose>
 					<c:when test="${usuario.plan.idPlanSalud == '3'}">
 						<h4 style="color: green;">Asignado actualmente</h4>
@@ -96,6 +100,7 @@
 						</script>
 					</c:otherwise>
 				</c:choose>
+
 
 
 

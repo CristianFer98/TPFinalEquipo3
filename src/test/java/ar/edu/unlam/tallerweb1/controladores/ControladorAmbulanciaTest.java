@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import static org.mockito.Mockito.doThrow;
 import org.junit.Before;
 import org.junit.Test;
+
 
 import org.springframework.web.servlet.ModelAndView;
 
@@ -68,8 +70,9 @@ public class ControladorAmbulanciaTest{
 		when(servicioAmbulancia.obtenerSolicitudPORID(1)).thenReturn(soli);
 		
 		
+
 		 mav= controladorAmbulancia.mostrarSolucitudDeAmbulanciaEnCurso(solicitud, mockedRequest);
-		
+	
 		assertThat(mav.getViewName()).isEqualTo("solicitudDeAmbulancia");
 		
 	}
@@ -79,6 +82,7 @@ public class ControladorAmbulanciaTest{
 	public void UsuarioNoPuedePedirAmbulanciaSiYaPidioAntes() throws ParseException {
 		DatosSolicitudAmbulancia solicitud = new DatosSolicitudAmbulancia();
 		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
+
 		
 
 		HttpSession http = mock(HttpSession.class);
@@ -91,6 +95,7 @@ public class ControladorAmbulanciaTest{
 		
 	     mav= controladorAmbulancia.mostrarSolucitudDeAmbulanciaEnCurso(solicitud, mockedRequest);
 		
+
 		assertThat(mav.getViewName()).isEqualTo("centralAmbulancia");
 		assertThat(mav.getModel().get("msj")).isEqualTo("Usted ya tiene una ambulancia pedida en curso");
 	}
@@ -99,6 +104,7 @@ public class ControladorAmbulanciaTest{
 	public void usuarioNoPuedePedirAmbulanciaExistente() throws ParseException{		
 		DatosSolicitudAmbulancia solicitud = new DatosSolicitudAmbulancia();
 		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
+
 		
 
 		HttpSession http = mock(HttpSession.class);
@@ -121,6 +127,7 @@ public class ControladorAmbulanciaTest{
 		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
 		SolicitudUsuarioAmbulancia soli=new SolicitudUsuarioAmbulancia();
 		soli.setAtendido(false);
+
 		
 		
 		HttpSession http = mock(HttpSession.class);
@@ -130,8 +137,7 @@ public class ControladorAmbulanciaTest{
 		when(servicioAmbulancia.obtenerConsultaSinAtenderPorUsuario(user)).thenReturn(soli);
 //		when(servicioAmbulancia.cambiarEstadoConsulta(soli, true))
 		servicioAmbulancia.cambiarEstadoConsulta(soli, true);
-		
-		
+
 		
 		ModelAndView mav= controladorAmbulancia.adminPuedeAtenderConsulta("test@gmail.com");
 		

@@ -20,11 +20,13 @@ public class PlanSalud {
 	private Double descuento;
 
 	@Column
+
 	private Float precioDelPlan;
 
 	public PlanSalud() {
 
 	} 
+
 
 	public Integer getIdPlanSalud() {
 		return idPlanSalud;
