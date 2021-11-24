@@ -15,6 +15,10 @@
 				<h5 class="card-title">Plan Basic</h5>
 				<p class="card-text">Solicita el plan Basico para obtener un 30%
 					de descuento en tus visitas medicas.</p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 				<c:choose>
 					<c:when test="${usuario.plan.idPlanSalud == '1'}">
@@ -23,11 +27,14 @@
 					<c:otherwise>
 						<script
 							src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-							data-preference-id="${preferenciaBasico.id}">
-							
+							data-preference-id="${preferenciaBasico.id}">		
 						</script>
 					</c:otherwise>
 				</c:choose>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 
 
@@ -50,6 +57,10 @@
 				<h5 class="card-title">Plan Silver</h5>
 				<p class="card-text">Solicita el plan Basico para obtener un 60%
 					de descuento en tus visitas medicas</p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 				<c:choose>
 					<c:when test="${usuario.plan.idPlanSalud == '2'}">
@@ -63,6 +74,10 @@
 						</script>
 					</c:otherwise>
 				</c:choose>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 
 
@@ -82,6 +97,10 @@
 				<h5 class="card-title">Plan Gold</h5>
 				<p class="card-text">Solicita el plan Basico para obtener un
 					100% de descuento en tus visitas medicas</p>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 
 				<c:choose>
@@ -96,6 +115,10 @@
 						</script>
 					</c:otherwise>
 				</c:choose>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 
 

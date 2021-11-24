@@ -1,5 +1,9 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -46,4 +50,8 @@ public class ServicioUsuarioLogueadoTest {
 	
 
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

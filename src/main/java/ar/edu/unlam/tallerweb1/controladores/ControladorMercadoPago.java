@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Pagos;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
+import ar.edu.unlam.tallerweb1.servicios.ServicioPagos;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioLogueado;
 
 import com.mercadopago.MercadoPago;
 import com.mercadopago.exceptions.MPException;
+import com.mercadopago.resources.Payment;
 import com.mercadopago.resources.Preference;
+import com.mercadopago.resources.datastructures.advancedpayment.Refund;
 import com.mercadopago.resources.datastructures.preference.BackUrls;
 import com.mercadopago.resources.datastructures.preference.Item;
 
@@ -24,11 +29,13 @@ import com.mercadopago.resources.datastructures.preference.Item;
 public class ControladorMercadoPago {
 	ServicioUsuarioLogueado servicioUsuario;
 	ServicioRegistroLogin servicioRegistroLogin;
+	ServicioPagos servicioPagos;
 
 	@Autowired
-	public ControladorMercadoPago(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioRegistroLogin servicioRegistroLogin) {
+	public ControladorMercadoPago(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioRegistroLogin servicioRegistroLogin, ServicioPagos servicioPagos) {
 		this.servicioUsuario = servicioUsuarioLogueado;
 		this.servicioRegistroLogin = servicioRegistroLogin;
+		this.servicioPagos= servicioPagos;
 	}
 	
 	@RequestMapping(path = "reservarTurno", method = RequestMethod.GET)
@@ -46,9 +53,10 @@ public class ControladorMercadoPago {
 
 		Preference preference = new Preference();
 		
+		
 		preference.setBackUrls(
-				new BackUrls().setFailure("http://localhost:8080/proyecto-limpio-spring/pagofallido")
-							  .setPending("http://localhost:8080/proyecto-limpio-spring/pagoPendiente")
+				new BackUrls().setFailure("http://localhost:8080/proyecto-limpio-spring/pagofallido?idTurno="+turnoNuevo.getId()+"&idUsuario=" + turnoNuevo.getClienteAsignado().getIdUsuario())
+							  .setPending("http://localhost:8080/proyecto-limpio-spring/pagofallido?idTurno="+turnoNuevo.getId()+"&idUsuario=" + turnoNuevo.getClienteAsignado().getIdUsuario())
 							  .setSuccess("http://localhost:8080/proyecto-limpio-spring/pagoExitoso?idTurno="+turnoNuevo.getId()+"&idUsuario=" + turnoNuevo.getClienteAsignado().getIdUsuario())
 				);
 		
@@ -62,26 +70,35 @@ public class ControladorMercadoPago {
 		preference.save();
 		
 		model.put("preference", preference);
+		model.put("problema", 4);
 		return new ModelAndView("checkoutReserva" ,model);
 	}
 	
 	
-	
-	@RequestMapping(path = "pagofallido", method = RequestMethod.GET)
-	public ModelAndView pagoFallido() {
+	@RequestMapping(path = "devolucionDinero", method= RequestMethod.GET)
+	public ModelAndView devolucionDinero(@RequestParam ("idTurno") Integer id) throws MPException {
 		ModelMap model = new ModelMap();
 		
+		TurnoMedico turno = servicioUsuario.getTurnoByOnlyID(id);
+		Pagos pagoADevolver = servicioPagos.getPagoByIDTurnoandIdUser(turno.getId(), turno.getClienteAsignado().getIdUsuario());
 		
-		return new ModelAndView("reservaFallida", model);
+		String paymentId= pagoADevolver.getPaymentId().toString();
+		
+		MercadoPago.SDK.setAccessToken("APP_USR-4705968898385123-111613-fad5d969f8511decebb5000b6a0fc1d9-160323409");
+		
+		MercadoPago.SDK.setClientId("4705968898385123");
+		MercadoPago.SDK.setClientSecret("pD6o84iny2ZU4lT5i1JxhRiMbIjNETe4");
+		
+		Payment payment= Payment.findById(paymentId);
+		
+		//ArrayList<com.mercadopago.resources.Refund> devoluciones = payment.getRefunds();
+		
+		
+		model.put("p", payment);
+		model.put("turno", turno);
+		return new ModelAndView("devolucionDinero", model);
 	}
 	
-	@RequestMapping(path = "pagoPendiente", method = RequestMethod.GET)
-	public ModelAndView pagoPendiente() {
-		ModelMap model = new ModelMap();
-		
-		
-		return new ModelAndView("reservaPendiente", model);
-	}
 	
 	
 	

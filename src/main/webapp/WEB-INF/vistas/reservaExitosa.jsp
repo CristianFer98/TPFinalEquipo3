@@ -36,10 +36,18 @@
 					<div class="alert alert-success">
 					${estadoPago}
 					</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 					
 					<div style="display:flex; justify-content:center">
 			    <a href="paginaPrincipal"><button type="button" class="btn btn-primary" style="width: 100%; align-self:center">Volver a la pagina principal</button></a>
 					</div>
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 				</div>
 			</div>

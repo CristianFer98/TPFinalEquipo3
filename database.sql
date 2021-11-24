@@ -10,6 +10,9 @@ values ("Lunes"),("Martes"),("Miercoles"),("Jueves"),("Viernes"),("Sabado"),("Do
 insert into plansalud (descuento, nombre, precioDelPlan)
 values (30,"Plan Basico",1000),(60,"Plan Silver",1700),(100,"Plan Gold",2500);
 
+insert into ambulancia (disponible, patenteAmbulancia)
+values (true, "AAA000"),(true, "AAA111"),(true, "AAA222");
+
 select * from usuario;
 select * from turnomedico;
 select * from plansalud;

@@ -50,6 +50,10 @@ public class Usuario {
 	private PlanSalud plan;
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 
 	public Usuario(String contrasenia, String email, Integer numeroDeTipoDeUsuario) {
 		super();
@@ -159,8 +163,16 @@ public class Usuario {
 		return plan;
 	}
 
+<<<<<<< HEAD
 	public void setPlan(PlanSalud plan) {
 		this.plan = plan;
 	}
+=======
+
+	public void setPlan(PlanSalud plan) {
+		this.plan = plan;
+	}
+
+>>>>>>> main
 	
 }

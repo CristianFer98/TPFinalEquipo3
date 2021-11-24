@@ -1,9 +1,13 @@
 package ar.edu.unlam.tallerweb1.repositorio;
 
 import static org.junit.Assert.*;
+<<<<<<< HEAD
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+=======
+import static org.assertj.core.api.Assertions.assertThat;
+>>>>>>> main
 
 import javax.inject.Inject;
 
@@ -11,7 +15,10 @@ import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.transaction.annotation.Transactional;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -47,7 +54,7 @@ public class RepositorioUsuarioLogueadoTest extends SpringTest{
 	
 	@Test
 	@Transactional
-	@Rollback
+	@Rollback 
 	public void testQueMePermitaCancelarUnTurno() {
 		
 		
