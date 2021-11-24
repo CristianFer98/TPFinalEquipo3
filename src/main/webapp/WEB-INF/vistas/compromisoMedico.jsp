@@ -35,10 +35,7 @@
 											${lista.medicoAsignado.fechaNacimiento}</span></li>
 								
 								</ol>
-								<div class="widget-49-meeting-action">
-									<a href="#" class="btn btn-sm btn-flash-border-primary">Cancelar
-										Turno</a>
-								</div>
+								
 							</div>
 						</div>
 					</div>

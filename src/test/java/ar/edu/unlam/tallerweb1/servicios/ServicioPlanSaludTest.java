@@ -5,7 +5,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPlanSalud;
-import ar.edu.unlam.tallerweb1.servicios.ServicioPlanSalud;
 
 public class ServicioPlanSaludTest {
 

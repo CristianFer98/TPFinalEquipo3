@@ -1,90 +1,38 @@
 
-    
-    <style>
-	*{
-		margin:0;
-		padding:0;
-	}
-	body{
-		min-height:100vh;
-    	display: flex;
-    	flex-direction: column;
-    	justify-content: center;
-        align-items: center;
-	}
-	
-	.solicitud-container{
-		    padding: 10px;
-    	background-color: lightgray;
-    	display: flex;
-    	align-items: center;
-    	justify-content: center;
-    	flex-direction: column;
-	}
-	 
-	.soli-info{
-		padding: 10px 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-size: 18px;
-	}
-	.btn-canelar{
-		border: none;
-   		background: tomato;
-    	padding: 15PX;
-    	margin: 5px;
-    	border-radius: 35px;
-    	margin-top: 20px;
-	}
-	
-	span{
-		margin-top: 20px;
-	}
-	
-	span:nth-child(2){
-	}
-	
-	#patente{
-	    background-color: #808080a1;
-    padding: 10px;
-    text-transform: uppercase;
-    font-weight: 900;
-	}
-	
-	
-	</style>
-    
-    
-	<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="header.jsp"></jsp:include>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-    <body>
+<main>
+	<div
+		style="display: flex; justify-content: center; height: 400px; align-items: center">
+		<div
+			style="height: auto; width: 80%; display: flex; flex-direction: column; justify-content: center; background-color: beige; border-radius: 15px">
+			<h2 style="text-align: center">${sessionScope.get("nombre")}:Tu
+				ambulancia llegara lo mas pronto posible</h2>
 
-    	
+			<h4>Nombre: ${soli.getUsuarioSolicitante().getNombre()}</h4>
+			<h4>Direccion: ${soli.getDireccion()}</h4>
 
-        <div class="solicitud-container">
-        	<div class="soli-info">
-        		<span>Tu ambulancia llegara lo mas pronto posible</span>
-        		<span>Nombre: ${soli.getUsuarioSolicitante().getNombre()} </span>
-        		<span>Direccion: ${soli.getDireccion()}</span>
-        		<span></span>
-            	<span>LA PATENTE DE SU AMBULANCIA ES= <span id="patente"> ${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()} </span></span>
-            	<span>Asegurate que sea la ambulancia correcta para evitar incidentes</span>
-        	</div>
-        	<div class="soli-btns">
-        	
-        	<form action="canceloAmbulancia">
+			<h4>LA PATENTE DE SU AMBULANCIA ES=
+				${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()}</h4>
+			<h4>Asegurate que sea la ambulancia correcta para evitar
+				incidentes</h4>
+
+
+			<div style="display: flex; justify-content: center">
+				<a href="paginaPrincipal"><button type="button"
+						class="btn btn-primary" style="width: 100%; align-self: center">Volver
+						a la pagina principal</button></a>
+			</div>
+			
+			<div style="display: flex; justify-content: center">
+				<form action="canceloAmbulancia">
         	 	<input type="text" name="ambulanciaCancelada" value="${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()}" style="display:none">
         		<button type="submit">CANCELAR</button>
         	</form>
-        	
-        	
-        		
-        	</div>
-            
-        </div>
+			</div>
+		</div>
+	</div>
+</main>
 
-    </body>
-
-     <jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"></jsp:include>
