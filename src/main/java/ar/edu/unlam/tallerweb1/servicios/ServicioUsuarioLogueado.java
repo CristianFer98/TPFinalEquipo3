@@ -20,6 +20,7 @@ public interface ServicioUsuarioLogueado {
 	TurnoMedico getTurnoByID(Integer idTurno, Integer idUsuario);
 
 	void setPagadoTurno(TurnoMedico turno,Boolean estado);
+	TurnoMedico getTurnoByOnlyID(Integer idTurno);
 	
 	
 }

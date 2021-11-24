@@ -24,8 +24,7 @@
 					<c:otherwise>
 						<script
 							src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-							data-preference-id="${preferenciaBasico.id}">
-							
+							data-preference-id="${preferenciaBasico.id}">		
 						</script>
 					</c:otherwise>
 				</c:choose>

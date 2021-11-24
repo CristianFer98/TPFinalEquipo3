@@ -6,11 +6,7 @@
 
 	<div style="display: flex; justify-content: center">
 		<div class="card card-margin"
-<<<<<<< HEAD
-			style="width: 50%; height: 300px; margin: 20px">
-=======
 			style="width: 50%; height: auto; margin: 20px">
->>>>>>> origin/main
 			<div class="card-header no-border">
 				<h5 class="card-title">Checkout de Su reserva</h5>
 			</div>
@@ -41,6 +37,18 @@
 				</div>
 			</div>
 			
+			<c:set var = "problema" scope = "session" value = "0"/>
+			 
+	         <c:if test="${problema == 1}">
+	         <div class="alert alert-danger">${msj}</div>
+	         </c:if>
+	         
+	         <c:if test="${problema == 2}">
+	         <div class="alert alert-warning">${msj}</div>
+	         </c:if>
+	         
+             
+
 
 			<script
   				src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
@@ -49,7 +57,7 @@
 			 
 
 			 <div class="btn btn-secondary" >
-			 	<a href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no" style="color:white">Pagar en la clinica</a>
+			 	<a href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no&payment_id=0" style="color:white">Pagar en la clinica</a>
 			 </div>
 			
 			</div>

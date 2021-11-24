@@ -108,8 +108,8 @@ public class ControladorUsuarioLogueadoTest {
 		Integer idUsuario = 1;
 		ArrayList<TurnoMedico> turnos = new ArrayList<TurnoMedico>();
 		when(servicioUsuario.verMisTurnos(idUsuario)).thenReturn(turnos);
-
-		mav = controladorUsuarioLogueado.verMisTurnos(mockedRequest);
+//
+//		mav = controladorUsuarioLogueado.verMisTurnos(mockedRequest);
 
 		assertThat(mav.getViewName()).isEqualTo("misTurnos");
 	}

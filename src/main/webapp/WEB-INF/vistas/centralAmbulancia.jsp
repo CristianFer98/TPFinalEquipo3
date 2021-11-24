@@ -46,15 +46,16 @@
 </style>
 
 
-     <jsp:include page="header.jsp"></jsp:include>
+     
 
 
-<body>     
+<body>    
+	<div><jsp:include page="header.jsp"></jsp:include></div> 
      
      
      <div class="conteiner">
        <div class="info-amb" style="border-radius:15px">
-     	<span class="info-content">LA CANTIDAD DE AMBULANCIAS EN EL HOSPITAL ES DE :  <span>${cantidad}</span> </span> 
+     	
      	
      	<form action="solicitudPagina" modelAttribute="datosSolicitudAmbulancia">
      	
