@@ -62,7 +62,7 @@ public class ControladorPlanSalud {
 	}
 
 	@RequestMapping(path = "registrarPlan", method = RequestMethod.GET)
-	private ModelAndView registrarSubscripcionSalud(@RequestParam("idPlanSalud") Integer idPlan,
+	public ModelAndView registrarSubscripcionSalud(@RequestParam("idPlanSalud") Integer idPlan,
 			HttpServletRequest req) {
 		Integer idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
 
@@ -71,7 +71,7 @@ public class ControladorPlanSalud {
 		return new ModelAndView("subscripcionExitosa");
 	}
 
-	private Preference generarPreferenciaBasico(PlanSalud planBasico) {
+	public Preference generarPreferenciaBasico(PlanSalud planBasico) {
 		// integrar mercadoPago
 		try {
 			MercadoPago.SDK.setAccessToken("TEST-262736215767777-111621-1ac4ab10864719f8f5f2c61e9e77bd5e-183335380");
@@ -103,7 +103,7 @@ public class ControladorPlanSalud {
 		return preference;
 	}
 
-	private Preference generarPreferenciaSilver(PlanSalud planSilver) {
+	public Preference generarPreferenciaSilver(PlanSalud planSilver) {
 		// integrar mercadoPago
 		try {
 			MercadoPago.SDK.setAccessToken("TEST-262736215767777-111621-1ac4ab10864719f8f5f2c61e9e77bd5e-183335380");
@@ -136,7 +136,7 @@ public class ControladorPlanSalud {
 		return preference;
 	}
 
-	private Preference generarPreferenciaGold(PlanSalud planGold) {
+	public Preference generarPreferenciaGold(PlanSalud planGold) {
 		// integrar mercadoPago
 		try {
 			MercadoPago.SDK.setAccessToken("TEST-262736215767777-111621-1ac4ab10864719f8f5f2c61e9e77bd5e-183335380");

@@ -23,31 +23,13 @@ public class RepositorioPlanSaludImpl implements RepositorioPlanSalud {
 		this.session = session;
 	}
 
-	@Override
-	public LocalDate recuperarEdad(Integer id) {
-
-		Usuario usuario = recuperarUsuarioPorId(id);
-
-		return usuario.getEdad();
-	}
-
+	
 	@SuppressWarnings("deprecation")
 	private Usuario recuperarUsuarioPorId(Integer id) {
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))
 				.uniqueResult();
 	}
 
-	@Override
-	public Boolean corroborarExistenciaDePlan(Integer id) {
-
-		Usuario usuario = recuperarUsuarioPorId(id);
-		if (usuario.getPlan() == null) {
-			return false;
-		} else {
-			return true;
-		}
-
-	}
 
 	@SuppressWarnings("deprecation")
 	@Override
