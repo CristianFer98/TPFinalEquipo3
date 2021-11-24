@@ -7,7 +7,7 @@ public interface ServicioPlanSalud {
 
 
 
-	Boolean comprobarExistenciaDePlan(Integer id);
+
 	void registrarSubscripcion(Integer idPlan, Integer idUsuario);
 	PlanSalud obtenerPlan(Integer idPlan);
 	Usuario obtenerUsuario(Integer idUsuario);
