@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -22,6 +23,8 @@ public interface ServicioAmbulancia {
 //	void atenderConsulta(SolicitudUsuarioAmbulancia soli, Boolean bol);
 	SolicitudUsuarioAmbulancia obtenerConsultaSinAtenderPorUsuario(Usuario user);
 	void cambiarEstadoConsulta(SolicitudUsuarioAmbulancia soli, Boolean bol);
+	List<Ambulancia> obtenerTodasLasAmbulancias();
+	void eliminarAmbulancia(Ambulancia amb);
 	
 
 }
