@@ -75,15 +75,9 @@ public class ControladorUsuarioLogueado {
 
 	@RequestMapping(path = "pagoExitoso", method = RequestMethod.GET)
 	public ModelAndView reservarTurno(@RequestParam("idTurno") Integer idTurno,
-<<<<<<< HEAD
-									  @RequestParam("idUsuario") Integer idUsuario, 
-									  @RequestParam("status") String status       ,HttpServletRequest req) {
-		
-=======
 			@RequestParam("idUsuario") Integer idUsuario, @RequestParam("status") String status,
 			@RequestParam("payment_id") Integer paymentId) {
 
->>>>>>> main
 		ModelMap model = new ModelMap();
 		TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
 

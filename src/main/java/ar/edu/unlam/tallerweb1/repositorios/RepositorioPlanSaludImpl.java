@@ -31,8 +31,6 @@ public class RepositorioPlanSaludImpl implements RepositorioPlanSalud {
 	}
 
 
-
-
 	@SuppressWarnings("deprecation")
 	@Override
 	public PlanSalud obtenerPlanMedico(Integer idPlan) {

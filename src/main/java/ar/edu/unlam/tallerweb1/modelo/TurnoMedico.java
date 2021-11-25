@@ -121,10 +121,7 @@ public class TurnoMedico {
 	public void setPagado(Boolean pagado) {
 		this.pagado = pagado;
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 
 
 	public Double getValorFinal() {
@@ -147,11 +144,7 @@ public class TurnoMedico {
 //	}
 
 	
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> main
 	
 
 	

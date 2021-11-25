@@ -49,7 +49,6 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 			turno.setValorFinal(descuento);
 		}
 		
-		
 		return repositorio.reservarTurno(turno , idUsuario);
 	}
 
@@ -77,10 +76,7 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 	}
 
 	@Override
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 	public TurnoMedico getTurnoByID(Integer idTurno, Integer idUsuario) {
 		//aplicar descuento al turno si el usuario lo tiene.
 		Usuario usuario = obtenerMedico(idUsuario);
@@ -94,10 +90,7 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 		}
 		
 		return turno;	
-<<<<<<< HEAD
-=======
 
->>>>>>> main
 	}
 
 	@Override

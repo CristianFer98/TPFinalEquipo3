@@ -16,13 +16,9 @@ public interface ServicioUsuarioLogueado {
 	List<TurnoMedico> verMisTurnos(Integer id);
 	Usuario obtenerMedico(Integer idMedico);
 	void cancelarTurno(Integer idTurno);
-<<<<<<< HEAD
-	TurnoMedico getTurnoByID(Integer idTurno, Integer idUsuario);
-=======
 
 	TurnoMedico getTurnoByID(Integer idTurno, Integer idUsuario);
 
->>>>>>> main
 	void setPagadoTurno(TurnoMedico turno,Boolean estado);
 	TurnoMedico getTurnoByOnlyID(Integer idTurno);
 	

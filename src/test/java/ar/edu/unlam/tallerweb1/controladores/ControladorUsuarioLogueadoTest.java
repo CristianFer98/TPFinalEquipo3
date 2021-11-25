@@ -91,18 +91,6 @@ public class ControladorUsuarioLogueadoTest {
 
 //__________________________________________________________________________________________________________//
 
-<<<<<<< HEAD
-//	@Test
-//	public void testQueMePermitaReservarUnTurno() {
-//		HttpSession http = mock(HttpSession.class);
-//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
-//		when(mockedRequest.getSession()).thenReturn(http);
-//
-//		mav = controladorUsuarioLogueado.reservarTurno(1, 1, null, mockedRequest);
-//
-//		assertThat(mav.getViewName()).isEqualTo("reservaExitosa");
-//	}
-=======
 	@Test
 	public void testQueMePermitaReservarUnTurno() {
 		HttpSession http = mock(HttpSession.class);
@@ -123,7 +111,6 @@ public class ControladorUsuarioLogueadoTest {
 
 		assertThat(mav.getViewName()).isEqualTo("reservaExitosa");
 	}
->>>>>>> main
 
 //_________________________________________________________________________________________//
 	@Test
@@ -168,8 +155,4 @@ public class ControladorUsuarioLogueadoTest {
 		assertThat(mav.getViewName()).isEqualTo("misTurnos");
 
 	}
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main

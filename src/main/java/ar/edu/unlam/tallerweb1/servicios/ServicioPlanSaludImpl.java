@@ -9,8 +9,6 @@ import org.springframework.stereotype.Service;
 
 import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
-import ar.edu.unlam.tallerweb1.modelo.cotizacionExistenteException;
-
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPlanSalud;
 
 @Service
@@ -24,12 +22,6 @@ public class ServicioPlanSaludImpl implements ServicioPlanSalud {
 		this.repositorio = repositorio;
 	}
 
-
-
-
-
-
-	
 
 	@Override
 	public PlanSalud obtenerPlan(Integer idPlan) {

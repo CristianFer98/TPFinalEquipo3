@@ -1,21 +1,19 @@
 package ar.edu.unlam.tallerweb1.repositorio;
 
 
-
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-//import static org.assertj.core.api.Assertions.assertThat;
-//import static org.mockito.Mockito.mock;
-//import static org.mockito.Mockito.when;
-//import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
-//import ar.edu.unlam.tallerweb1.modelo.Usuario;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
+import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.persistencia.SpringTest;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioPlanSalud;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 
 public class RepositorioPlanSaludTest extends SpringTest {
 	
-
 
 	
 	@Autowired
@@ -44,7 +42,6 @@ public class RepositorioPlanSaludTest extends SpringTest {
 //		assertThat(usuarioDevuelto.getPlan().getIdPlanSalud()).isEqualTo(1);
 		
 	}
-
 
 
 

@@ -7,7 +7,6 @@ public interface ServicioPlanSalud {
 
 
 
-
 	void registrarSubscripcion(Integer idPlan, Integer idUsuario);
 	PlanSalud obtenerPlan(Integer idPlan);
 	Usuario obtenerUsuario(Integer idUsuario);
