@@ -1,4 +1,6 @@
 <jsp:include page="header.jsp"></jsp:include>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <style>
 main {
 	min-height: 90vh;
@@ -84,15 +86,59 @@ main {
             <div class="registro">
             <div>
             		<h3> AMBULANCIAS CONTROL PANEL</h3>
-            		<form action="registrarAmbulancia">
-            		 Patente: <input type="text" name="patente">
-            		 <input type="submit" value="DAR DE ALTA AMBULANCIA">
-            		</form>  
+            		
+            		<div class="tabla-ambulancias">
+            		<div>${msj} </div>
+            		
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Patente Ambulancia</th>
+      <th scope="col">Estado</th>
+      <th scope="col">Handle</th>
+      <th scope="col">Eliminar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <c:forEach var="ambulancia" items="${listaAmbulancia}" >
+    <tr>
+    	<th scope="row">${ambulancia.idAmbulancia}</th>      
+        <td>${ambulancia.patenteAmbulancia}</td>
+        <td>
+          <c:if test = "${ambulancia.disponible == true}">
+        		DISPONIBLE
+          </c:if>
+          <c:if test = "${ambulancia.disponible == false}">
+        		NO DISPONIBLE
+          </c:if>
+        </td>
+        <td>
+         <c:if test = "${ambulancia.disponible == true}">
+        		<a href="ocuparAmbulancia?patente=${ambulancia.patenteAmbulancia}" class="btn btn-outline-danger">OCUPAR</a>		
+          </c:if>
+          <c:if test = "${ambulancia.disponible == false}">
+        		<a href="registrarAmbulancia?patente=${ambulancia.patenteAmbulancia}" class="btn btn-success">DISPONIBLE</a>
+          </c:if>
+        </td>
+        <td><a href="eliminarAmbulancia?patente=${ambulancia.patenteAmbulancia}" class="btn btn-danger">ELIMINAR</a></td>
+    </tr>
+	</c:forEach>  
+  </tbody>
+</table>
+            		
+            		<div>
+            			<form action="registrarAmbulancia">
+            			 	Patente de Ambulancia a AGREGAR: <input type="text" name="patente">
+            		 		<input type="submit" value="AGREGAR">
+            			</form> 
+            		</div>
+            		
+            		</div>
             		<form action="activarUsuario">
             		 Email: <input type="text" name="email">
             		 <input type="submit" value="ATENDER CONSULTA DE ESTE USER">
-            		</form>               
-                   ${msj}   
+            		</form>     
                    </div>
             </div>
  

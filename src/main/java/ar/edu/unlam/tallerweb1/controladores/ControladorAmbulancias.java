@@ -1,6 +1,9 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +39,13 @@ public class ControladorAmbulancias {
 	
 	@RequestMapping (path = "formGestionAmbulancia", method = RequestMethod.GET)
 	public ModelAndView mostrarFormularioGestionAmbulancia() {
-		return new ModelAndView("ambulanciaControl");
+		ModelMap model = new ModelMap();
+		List<Ambulancia> ambulancias= servicioAmbulacia.obtenerTodasLasAmbulancias();
+		
+		
+		model.put("listaAmbulancia", ambulancias);
+		model.put("x", ambulancias.size());
+		return new ModelAndView("ambulanciaControl",model);
 		
 	}
 	
@@ -90,10 +99,14 @@ public class ControladorAmbulancias {
 	@RequestMapping(path = "registrarAmbulancia")
 	public ModelAndView adminPuedeREIngresarAmbulancia(@RequestParam("patente") String patenteAmbulancia) {
 		ModelMap modelo= new ModelMap();
-		Ambulancia amb= servicioAmbulacia.obtenerAmbulanciaPorPatente(patenteAmbulancia);
-		
+		Ambulancia amb= servicioAmbulacia.obtenerAmbulanciaPorPatente(patenteAmbulancia);		
 		String msj= servicioAmbulacia.reIngresoAmbulancia(amb, patenteAmbulancia);
 		
+
+		List<Ambulancia> ambulancias= servicioAmbulacia.obtenerTodasLasAmbulancias();
+		
+		
+		modelo.put("listaAmbulancia", ambulancias);		
 		modelo.put("msj", msj);
 		
 		return new ModelAndView("ambulanciaControl", modelo);
@@ -122,7 +135,7 @@ public class ControladorAmbulancias {
 		servicioAmbulacia.cambiarEstadoConsulta(soli, true);
 		msj= "Estado consulta cambiado con exito!";
 		modelo.put("msj", msj);
-		return new ModelAndView("paginaPrincipalAdmin", modelo);
+		return new ModelAndView("ambulanciaControl", modelo);
 	}
 	
 	
@@ -148,6 +161,24 @@ public class ControladorAmbulancias {
 		
 		
 		return new ModelAndView("cancelacionAmbulancia", modelo);
+	}
+	
+	@RequestMapping(path = "ocuparAmbulancia")
+	public ModelAndView ocuparAmbulancia(@RequestParam("patente") String patenteAmbulancia) {
+		Ambulancia amb= servicioAmbulacia.obtenerAmbulanciaPorPatente(patenteAmbulancia);		
+		
+		servicioAmbulacia.cambiarEstadoAmbulancia(amb, false);	
+		
+		return new ModelAndView("redirect: formGestionAmbulancia");
+	}
+	
+	@RequestMapping(path = "eliminarAmbulancia")
+	public ModelAndView eliminarAmbulancia(@RequestParam("patente") String patenteAmbulancia) {
+		Ambulancia amb= servicioAmbulacia.obtenerAmbulanciaPorPatente(patenteAmbulancia);		
+		
+		servicioAmbulacia.eliminarAmbulancia(amb);	
+		
+		return new ModelAndView("redirect: formGestionAmbulancia");
 	}
 
 }
