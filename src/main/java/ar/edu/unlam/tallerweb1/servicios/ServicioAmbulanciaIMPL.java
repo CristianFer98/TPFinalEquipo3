@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,18 +135,6 @@ public class ServicioAmbulanciaIMPL implements ServicioAmbulancia {
 		}
 		
 		return null;
-	}
-
-	@Override
-	public List<Ambulancia> obtenerTodasLasAmbulancias() {
-		// TODO Auto-generated method stub
-		return repositorioAmbulancia.obtenerTodasLasAmbulancias();
-	}
-
-	@Override
-	public void eliminarAmbulancia(Ambulancia amb) {
-		repositorioAmbulancia.eliminarAmbulancia(amb);
-		
 	}
 	
 	

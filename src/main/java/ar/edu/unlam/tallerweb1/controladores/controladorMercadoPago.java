@@ -26,13 +26,13 @@ import com.mercadopago.resources.datastructures.preference.BackUrls;
 import com.mercadopago.resources.datastructures.preference.Item;
 
 @Controller
-public class controladorMercadoPago {
+public class ControladorMercadoPago {
 	ServicioUsuarioLogueado servicioUsuario;
 	ServicioRegistroLogin servicioRegistroLogin;
 	ServicioPagos servicioPagos;
 
 	@Autowired
-	public controladorMercadoPago(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioRegistroLogin servicioRegistroLogin, ServicioPagos servicioPagos) {
+	public ControladorMercadoPago(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioRegistroLogin servicioRegistroLogin, ServicioPagos servicioPagos) {
 		this.servicioUsuario = servicioUsuarioLogueado;
 		this.servicioRegistroLogin = servicioRegistroLogin;
 		this.servicioPagos= servicioPagos;

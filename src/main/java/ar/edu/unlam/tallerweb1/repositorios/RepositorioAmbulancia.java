@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
@@ -16,8 +15,6 @@ public interface RepositorioAmbulancia {
 	List<SolicitudUsuarioAmbulancia> obtenerListaDeAmbulanciasQuePidioUsuario(Usuario user);
 	SolicitudUsuarioAmbulancia obtenerSolicitudDeAmbulanciaPORID(Integer id);
 	void actualizarRegistro(SolicitudUsuarioAmbulancia soli, Boolean bol);
-	List<Ambulancia> obtenerTodasLasAmbulancias();
-	void eliminarAmbulancia(Ambulancia amb);
 	
 
 }

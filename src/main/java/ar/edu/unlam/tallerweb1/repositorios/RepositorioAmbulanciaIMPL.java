@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -94,22 +93,6 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 		SolicitudUsuarioAmbulancia solicitud= sessionFactory.getCurrentSession().get(SolicitudUsuarioAmbulancia.class, soli.getIdSolicitud());
 		solicitud.setAtendido(bol);
 		sessionFactory.getCurrentSession().save(soli);
-	}
-
-
-	@Override
-	public List<Ambulancia> obtenerTodasLasAmbulancias() {
-		return sessionFactory
-			      .getCurrentSession()
-				  .createCriteria(Ambulancia.class)
-				  .list();
-	}
-
-
-	@Override
-	public void eliminarAmbulancia(Ambulancia amb) {
-		sessionFactory.getCurrentSession().remove(amb);
-		
 	}
 
 }
