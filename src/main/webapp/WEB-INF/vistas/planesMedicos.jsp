@@ -13,6 +13,7 @@
 			<img src="img/basic.jpg" style="height: 250px">
 			<div class="card-body">
 				<h5 class="card-title">Plan Basic</h5>
+				<h6 class="card-subtitle mb-2 text-muted">$1000</h6>
 				<p class="card-text">Solicita el plan Basico para obtener un 30%
 					de descuento en tus visitas medicas.</p>
 
@@ -49,6 +50,7 @@
 			<img src="img/silver.jpg" style="height: 250px">
 			<div class="card-body">
 				<h5 class="card-title">Plan Silver</h5>
+				<h6 class="card-subtitle mb-2 text-muted">$1700</h6>
 				<p class="card-text">Solicita el plan Basico para obtener un 60%
 					de descuento en tus visitas medicas</p>
 
@@ -83,6 +85,7 @@
 			<img src="img/golden.jpg" style="height: 250px">
 			<div class="card-body">
 				<h5 class="card-title">Plan Gold</h5>
+				<h6 class="card-subtitle mb-2 text-muted">$2500</h6>
 				<p class="card-text">Solicita el plan Basico para obtener un
 					100% de descuento en tus visitas medicas</p>
 

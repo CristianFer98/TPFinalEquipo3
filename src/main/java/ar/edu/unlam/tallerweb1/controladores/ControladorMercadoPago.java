@@ -21,7 +21,6 @@ import com.mercadopago.MercadoPago;
 import com.mercadopago.exceptions.MPException;
 import com.mercadopago.resources.Payment;
 import com.mercadopago.resources.Preference;
-import com.mercadopago.resources.datastructures.advancedpayment.Refund;
 import com.mercadopago.resources.datastructures.preference.BackUrls;
 import com.mercadopago.resources.datastructures.preference.Item;
 
@@ -39,7 +38,7 @@ public class ControladorMercadoPago {
 	}
 	
 	@RequestMapping(path = "reservarTurno", method = RequestMethod.GET)
-	public ModelAndView reservarTurno(@RequestParam("idTurno") Integer idTurno,
+	public ModelAndView reservarTurnooo(@RequestParam("idTurno") Integer idTurno,
 			@RequestParam("idUsuario") Integer idUsuario, HttpServletRequest req) throws MPException {
 		ModelMap model= new ModelMap();
 		
