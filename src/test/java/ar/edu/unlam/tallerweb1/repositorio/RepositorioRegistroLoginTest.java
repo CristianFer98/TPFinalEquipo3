@@ -15,7 +15,7 @@ import ar.edu.unlam.tallerweb1.repositorios.emailExistenteException;
 
 public class RepositorioRegistroLoginTest extends SpringTest { // levanto el entorno de Spring
 
-	private String email = "Cristian@gmail.com";
+	private String email = "UsuarioWachin@gmail.com";
 	private String clave = "123456789";
 	Usuario usuario = new Usuario();
 

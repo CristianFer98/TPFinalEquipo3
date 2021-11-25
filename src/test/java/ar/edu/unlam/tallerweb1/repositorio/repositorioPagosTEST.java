@@ -18,26 +18,7 @@ public class repositorioPagosTEST extends SpringTest{
 	@Inject
 	RepositorioPagos repositorio;
 
-	@Test
-	@Transactional
-	@Rollback
-	public void testObtenerPago() {
-		TurnoMedico turno= new TurnoMedico();
-		TurnoMedico turno2= new TurnoMedico();
-		Usuario user= new Usuario();
-		
-		Pagos pago1 = new Pagos(123, user, turno, (float)1500);
-		repositorio.registrarPago(pago1);
-		
-		Pagos pago2 = new Pagos(123, user, turno2, (float)1500);
-		repositorio.registrarPago(pago2);
-		
-		
-//		Pagos pagoObtenido= repositorio.getPagoByIDTurnoandIdUser(turno ,user);
-//		
-//		assertNotNull(pagoObtenido);
-		
-	}
+
 	
 	@Test
 	@Transactional
@@ -50,7 +31,7 @@ public class repositorioPagosTEST extends SpringTest{
 		
 		Pagos pagoObtenido = repositorio.getPagoByIdPago(pago1.getIdPago());
 		
-		assertNull(pagoObtenido);
+		assertNotNull(pagoObtenido);
 		
 		
 	}

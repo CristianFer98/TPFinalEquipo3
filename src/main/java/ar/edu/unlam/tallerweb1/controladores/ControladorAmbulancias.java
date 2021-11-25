@@ -122,7 +122,7 @@ public class ControladorAmbulancias {
 		if (user == null) {
 			msj="Usuario Inexistente";
 			modelo.put("msj", msj);
-			return new ModelAndView("paginaPrincipalAdmin", modelo);
+			return new ModelAndView("ambulanciaControl", modelo);
 		}
 		
 		SolicitudUsuarioAmbulancia soli = servicioAmbulacia.obtenerConsultaSinAtenderPorUsuario(user);
