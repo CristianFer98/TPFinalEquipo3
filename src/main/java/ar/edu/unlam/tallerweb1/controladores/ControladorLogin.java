@@ -37,6 +37,11 @@ public class ControladorLogin {
 		return new ModelAndView("index"); // simplemente muestro el index
 
 	}
+	
+	@RequestMapping(path = "signInOut")
+	public ModelAndView mostrarSignInSignOut() {
+		return new ModelAndView("loginRegistro");
+	}
 
 //lo unico que me va a impedir registrarme es si el usuario no existe. 
 //sin embargo el login es para doctores, admin y usuario comun. Tengo que validar estas posibilidades.
@@ -51,8 +56,8 @@ public class ControladorLogin {
 			 usuario = servicio.iniciarSesion(datos);// cuando inicio sesion traigo un usuario
 		} catch (UsuarioInexistenteException e) { // valido que exista
 			mensaje = "Usuario Inexistente";
-			model.put("error", mensaje);
-			return new ModelAndView("index", model);
+			model.put("errorLogin", mensaje);
+			return new ModelAndView("loginRegistro", model);
 		}
 
 		return  comprobarTipoUsuario(usuario, req);// devuelvo el modelAndView dependiendo el tipo de Usuario.
@@ -80,7 +85,7 @@ public class ControladorLogin {
 				return new ModelAndView("paginaPrincipalAdmin", model);
 			}
 		
-		return new ModelAndView("index");
+		return new ModelAndView("loginRegistro");
 	}
 	
 	

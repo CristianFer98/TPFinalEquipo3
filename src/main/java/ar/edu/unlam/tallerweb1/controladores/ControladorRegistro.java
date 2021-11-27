@@ -50,15 +50,15 @@ public class ControladorRegistro {
 		}catch(ClavesDistintasException exception){
 			 mensaje = "las claves deben ser iguales"; 
 			 model.put("error", mensaje);
-			 return new ModelAndView ("registro", model);
+			 return new ModelAndView ("loginRegistro", model);
 		}catch(ClavesCortasException exception1) {
 			 mensaje = "Debe tener al menos 8 caracteres";
 			 model.put("error", mensaje);
-			 return new ModelAndView ("registro", model);
+			 return new ModelAndView ("loginRegistro", model);
 		}catch (emailExistenteException exception2) {
 			mensaje = "Ese usuario es Existente";
 			model.put("error", mensaje);
-			return new ModelAndView ("registro", model);
+			return new ModelAndView ("loginRegistro", model);
 	}
 		model.put("id", idRecibida);
 

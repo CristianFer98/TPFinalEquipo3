@@ -90,7 +90,7 @@ public class ControladorMercadoPago {
 		
 		Payment payment= Payment.findById(paymentId);
 		
-		//ArrayList<com.mercadopago.resources.Refund> devoluciones = payment.getRefunds();
+		//ArrayList<Refund> devoluciones = payment.getRefunds();
 		
 		
 		model.put("p", payment);
