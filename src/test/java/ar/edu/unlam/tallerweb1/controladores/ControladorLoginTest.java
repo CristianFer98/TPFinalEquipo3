@@ -44,7 +44,6 @@ public class ControladorLoginTest {
 		datos.setEmail("Cris@gmail.com");
 		datos.setContrasenia("123456789");
 
-
 		Usuario usuario = mock(Usuario.class);
 
 		when(servicioUsuario.iniciarSesion(datos)).thenReturn(usuario);// este usuario es el que mockee
@@ -64,81 +63,81 @@ public class ControladorLoginTest {
 	private void thenLogueoElUsuarioComun(ModelAndView mav) {
 		assertThat(mav.getViewName()).isEqualTo("paginaPrincipal");
 	}
-}
-//_______________________________________________________________________________________________________________//
-//
-//	@Test
-//	public void testQueMePermiteLoguearUnMedico() {
-//		datos.setEmail("Cris@gmail.com");
-//		datos.setContrasenia("123456789");
-//
-//		Usuario usuario = mock(Usuario.class);
-//
-//		when(servicioUsuario.iniciarSesion(datos)).thenReturn(usuario);// este usuario es el que mockee
-//
-//		HttpSession http = mock(HttpSession.class);
-//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
-//		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
-//		when(usuario.getNumeroDeTipoDeUsuario()).thenReturn(2);// cuando haga getNumero que siempre devuelva 1 (esto
-//																	// faltaba)
-//
-//		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
-//
-//		thenLogueoElUsuarioMedico(mav);
-//
-//	}
-//
-//	private void thenLogueoElUsuarioMedico(ModelAndView mav) {
-//		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalMedicos");
-//	}
-//
+
+//___________________________________________________________________________//
+
+	@Test
+	public void testQueMePermiteLoguearUnMedico() {
+		datos.setEmail("Cris@gmail.com");
+		datos.setContrasenia("123456789");
+
+		Usuario usuario = mock(Usuario.class);
+
+		when(servicioUsuario.iniciarSesion(datos)).thenReturn(usuario);// este usuario es el que mockee
+
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
+		when(usuario.getNumeroDeTipoDeUsuario()).thenReturn(2);// cuando haga getNumero que siempre devuelva 1 (esto
+																	// faltaba)
+
+		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
+
+		thenLogueoElUsuarioMedico(mav);
+
+	}
+
+	private void thenLogueoElUsuarioMedico(ModelAndView mav) {
+		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalMedicos");
+	}
+
 ////___________________________________________________________________________________________________________________//
-//
-//	@Test
-//	public void testQueMePermiteLoguearUnAdmin() {
-//		datos.setEmail("Cris@gmail.com");
-//		datos.setContrasenia("123456789");
-//
-//		Usuario usuario = mock(Usuario.class);
-//
-//		when(servicioUsuario.iniciarSesion(datos)).thenReturn(usuario);// este usuario es el que mockee
-//
-//		HttpSession http = mock(HttpSession.class);
-//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
-//		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
-//		when(usuario.getNumeroDeTipoDeUsuario()).thenReturn(3);// cuando haga getNumero que siempre devuelva 1 (esto
-//																	// faltaba)
-//
-//		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
-//
-//		thenLogueoElUsuarioAdmin(mav);
-//
-//	}
-//
-//	private void thenLogueoElUsuarioAdmin(ModelAndView mav) {
-//		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalAdmin");
-//	}
-//
+
+	@Test
+	public void testQueMePermiteLoguearUnAdmin() {
+		datos.setEmail("Cris@gmail.com");
+		datos.setContrasenia("123456789");
+
+		Usuario usuario = mock(Usuario.class);
+
+		when(servicioUsuario.iniciarSesion(datos)).thenReturn(usuario);// este usuario es el que mockee
+
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
+		when(usuario.getNumeroDeTipoDeUsuario()).thenReturn(3);// cuando haga getNumero que siempre devuelva 1 (esto
+																	// faltaba)
+
+		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
+
+		thenLogueoElUsuarioAdmin(mav);
+
+	}
+
+	private void thenLogueoElUsuarioAdmin(ModelAndView mav) {
+		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalAdmin");
+	}
+
 ////__________________________________________________________________________________________________________________//
-//
-//	@Test
-//	public void testQueNoMePermitaLoguearUnUsuarioInexistente() {
-//		datos.setEmail("Cris@gmail.com");
-//		datos.setContrasenia("123456789");
-//
-//		doThrow(UsuarioInexistenteException.class).when(servicioUsuario).iniciarSesion(datos);
-//
-//		HttpSession http = mock(HttpSession.class);
-//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
-//		when(mockedRequest.getSession()).thenReturn(http);
-//
-//		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
-//
-//		thenInicioSesionConUsuarioInexistente(mav);
-//	}
-//
-//	private void thenInicioSesionConUsuarioInexistente(ModelAndView mav2) {
-//		assertThat(mav2.getViewName()).isEqualTo("index");
-//
-//	}
-//}
+
+	@Test
+	public void testQueNoMePermitaLoguearUnUsuarioInexistente() {
+		datos.setEmail("Cris@gmail.com");
+		datos.setContrasenia("123456789");
+
+		doThrow(UsuarioInexistenteException.class).when(servicioUsuario).iniciarSesion(datos);
+
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+		when(mockedRequest.getSession()).thenReturn(http);
+
+		mav = controladorLogin.iniciarSesion(datos, mockedRequest);
+
+		thenInicioSesionConUsuarioInexistente(mav);
+	}
+
+	private void thenInicioSesionConUsuarioInexistente(ModelAndView mav2) {
+		assertThat(mav2.getViewName()).isEqualTo("index");
+
+	}
+}
