@@ -1,4 +1,11 @@
-language: java
-script: mvn clean test
-jdk:
-  - oraclejdk11
+  "language": "java",
+  "os": [
+    "linux"
+  ],
+  "dist": "xenial",
+  "script": [
+    "mvn clean test"
+  ],
+  "jdk": [
+    "oraclejdk11"
+  ]
