@@ -130,7 +130,8 @@ public class ControladorAmbulancias {
 	}
 
 	@RequestMapping(path = "activarUsuario")
-	public ModelAndView adminPuedeAtenderConsulta(@RequestParam("email") String emailUsuario, HttpServletRequest req) {
+	public ModelAndView darDeAltaSolicitud(@RequestParam("email") String emailUsuario, HttpServletRequest req) {
+		
 		if (req.getSession().getAttribute("idUsuario") != null) {
 
 			ModelMap modelo = new ModelMap();
