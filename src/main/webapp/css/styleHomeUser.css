@@ -1,0 +1,147 @@
+    @import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Nunito', sans-serif;
+    }
+    
+    .section {
+        position: relative;
+        min-height: 100vh;
+        width: 100%;
+        display: flex;
+    }
+    
+    .section-left {
+        position: relative;
+        width: 70%;
+        background-color: rgb(251, 251, 251);
+    }
+    
+    .section-left nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 40px;
+        -webkit-box-shadow: 0px 8px 7px -10px rgba(0, 0, 0, 0.65);
+        -moz-box-shadow: 0px 8px 7px -10px rgba(0, 0, 0, 0.65);
+        box-shadow: 0px 8px 7px -10px rgba(0, 0, 0, 0.65);
+    }
+    
+    .section-left nav h3 {
+        font-size: 3em;
+        color: #0169b2;
+        font-weight: 800;
+    }
+    
+    .section-left nav ul {
+        display: flex;
+        font-size: 2em;
+    }
+    
+    .section-left nav ul li {
+        list-style: none;
+        margin-left: 60px;
+    }
+    
+    .section-left nav ul li a {
+        text-decoration: none;
+        color: black;
+    }
+    /* CONENTENIDO IZQUIERDA */
+    
+    .section-content {
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .section-content h2 {
+        margin-bottom: 20px;
+        font-size: 2em;
+    }
+    
+    .section-content .content-buttons {}
+    
+    .content-buttons h5 {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+    }
+    
+    .content-buttons .btns {
+        margin-bottom: 20px;
+        padding: 20px 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 20px;
+        background-color: white;
+    }
+    
+    .content-buttons .btns a {
+        text-decoration: none;
+        color: black;
+        font-weight: 800;
+    }
+    /* nav derecho */
+    
+    .section-right {
+        position: relative;
+        width: 30%;
+        min-height: 100vh;
+    }
+    
+    .section-right .nav-right {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 40px;
+    }
+    
+    .nav-right .info-user {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+        color: black;
+        text-decoration: none;
+        background-color: lightcoral;
+        border-radius: 30px;
+        padding: 10px;
+        transition: 0.8s;
+    }
+    
+    .nav-right .info-user div {
+        margin-right: 20px;
+        font-weight: 800;
+    }
+    
+    .lista-turnos {
+        margin: 20px;
+    }
+    
+    .lista-turnos h3 {
+        font-size: 1.5em;
+    }
+    
+    .turno-card {
+        margin-top: 10px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: #0169b2;
+        color: white;
+        padding: 5px;
+        -webkit-box-shadow: 0px 8px 7px -6px rgba(0, 0, 0, 0.65);
+        -moz-box-shadow: 0px 8px 7px -6px rgba(0, 0, 0, 0.65);
+        box-shadow: 0px 8px 7px -6px rgba(0, 0, 0, 0.65);
+    }
+    
+    .turno-card a {
+        color: white;
+    }
+    
+    .info-user:hover {
+        background-color: red;
+    }

@@ -133,13 +133,19 @@ public class ControladorUsuarioLogueado {
 		List<TurnoMedico> turnos = servicio.verMisTurnos(id);
 
 		model.put("lista", turnos);
-		return new ModelAndView("misTurnos", model);
+		return new ModelAndView("redirect: homeUser", model);
 	}
 
-	@RequestMapping(path = "paginaPrincipal", method = RequestMethod.GET)
-	public ModelAndView getPaginaPrincipal() {
+	@RequestMapping(path = "homeUser", method = RequestMethod.GET)
+	public ModelAndView getPaginaPrincipal(HttpServletRequest req) {
 
-		return new ModelAndView("paginaPrincipal");
+		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+		ModelMap model = new ModelMap();
+
+		List<TurnoMedico> turnos = servicio.verMisTurnos(id);
+
+		model.put("lista", turnos);
+		return new ModelAndView("homeUser", model);
 	}
 
 	@RequestMapping(path = "paginaPrincipalMedicos", method = RequestMethod.GET)

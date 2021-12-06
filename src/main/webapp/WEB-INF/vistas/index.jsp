@@ -14,9 +14,9 @@
     <div class="section">
         <img src="img/hosp4k.png" class="img_hosp">
         <nav>
-            <a href="#" class="logo">Hospital Florencia</a>
+            <a href="" class="logo">Hospital Florencia</a>
             <ul>
-                <li><a href="#" style="--i:1;">HOME</a></li>
+                <li><a href="" style="--i:1;">HOME</a></li>
                 <li><a href="#" style="--i:2;">CONTACTO</a></li>
                 <li><a href="#" style="--i:3;">SERVICIOS</a></li>
                 <li><a href="signInOut" style="--i:4;" class="active">LOGIN</a></li>

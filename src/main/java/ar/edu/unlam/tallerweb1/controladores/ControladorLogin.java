@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,16 +14,21 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
+import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioLogueado;
+import ar.edu.unlam.tallerweb1.servicios.ServicioUsuarioLogueadoImpl;
 
 @Controller
 public class ControladorLogin {
 
 	private ServicioRegistroLogin servicio;
+	private ServicioUsuarioLogueado servicioUsuarioLogueado;
 
 	@Autowired
-	public ControladorLogin(ServicioRegistroLogin servicio) {
+	public ControladorLogin(ServicioRegistroLogin servicio, ServicioUsuarioLogueado servicioUsuarioLogueado) {
 		this.servicio = servicio;
+		this.servicioUsuarioLogueado= servicioUsuarioLogueado;
 	}
 
 	// como es el controlador del login, es el primer metodo que se carga, me
@@ -73,8 +80,14 @@ public class ControladorLogin {
 			req.getSession().setAttribute("nombre", usuario.getNombre());
 
 			if (usuario.getNumeroDeTipoDeUsuario() == 1) {
+				Integer id = usuario.getIdUsuario();
+
+				List<TurnoMedico> turnos = servicioUsuarioLogueado.verMisTurnos(id);
+				
+				model.put("lista", turnos);
+				
 				model.put("usuario", usuario);
-				return new ModelAndView("paginaPrincipal", model);
+				return new ModelAndView("homeUser", model);
 			} else if (usuario.getNumeroDeTipoDeUsuario() == 2) {
 				model.put("usuario", usuario);
 				
