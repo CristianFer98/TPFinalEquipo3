@@ -110,7 +110,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 	}
 
 	@SuppressWarnings("deprecation")
-	private Usuario buscarMedicoPorId(Integer id) {
+	public Usuario buscarMedicoPorId(Integer id) {
 
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))
 				.uniqueResult();
@@ -127,7 +127,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 	}
 
 	@SuppressWarnings("deprecation")
-	private TurnoMedico buscarTurnoPorId(Integer idTurno) {
+	public TurnoMedico buscarTurnoPorId(Integer idTurno) {
 		return (TurnoMedico) session.getCurrentSession().createCriteria(TurnoMedico.class)
 				.add(Restrictions.eq("id", idTurno)).uniqueResult();
 	}

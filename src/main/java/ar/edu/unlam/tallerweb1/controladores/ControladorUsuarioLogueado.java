@@ -29,7 +29,7 @@ public class ControladorUsuarioLogueado {
 
 	@Autowired
 	public ControladorUsuarioLogueado(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioPagos servicioPagos) {
-		this.servicio = servicioUsuarioLogueado;
+		this.servicio = servicioUsuarioLogueado; 
 		this.servicioPagos = servicioPagos;
 	}
 

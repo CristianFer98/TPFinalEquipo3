@@ -26,7 +26,7 @@ public class RepositorioRegistroLoginImpl implements RepositorioRegistroLogin {
 			  Usuario usuario1 = obtenerUsuarioPorEmail(usuario.getEmail());
 			  return usuario1.getIdUsuario();
 		}
-	}
+	} 
 
 	@SuppressWarnings("deprecation")
 	@Override

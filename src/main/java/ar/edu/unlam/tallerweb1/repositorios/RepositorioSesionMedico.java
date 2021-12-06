@@ -19,4 +19,5 @@ public interface RepositorioSesionMedico {
 		List<TurnoMedico> verCompromisos(Integer id);
 		void darDeBajaTurno(Integer idTurno);
 		List<TurnoMedico> obtenerCalificacionDeMedico(Integer id);
+		Especialidad buscarEspecialidadPorId(Integer idEspecialidad);
 }

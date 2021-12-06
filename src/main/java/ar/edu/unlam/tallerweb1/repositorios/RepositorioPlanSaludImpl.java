@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.time.LocalDate;
 
 import javax.transaction.Transactional;
 
@@ -48,7 +47,7 @@ public class RepositorioPlanSaludImpl implements RepositorioPlanSalud {
 		usuario.setPlan(planAsignado);
 
 		session.getCurrentSession().update(usuario);
-
+ 
 	}
 
 	@SuppressWarnings("deprecation")
