@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-
 import com.mercadopago.MercadoPago;
 import com.mercadopago.exceptions.MPConfException;
 import com.mercadopago.exceptions.MPException;
@@ -37,40 +36,53 @@ public class ControladorPlanSalud {
 		// segun la edad del usuario el descuento al subscribirse al plan será
 		// diferente//
 
-		ModelMap model = new ModelMap();
-		Integer idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
+		if (req.getSession().getAttribute("idUsuario") != null) {
 
-		Usuario usuario = servicio.obtenerUsuario(idUsuario);
-		
-		Integer idPlanBasico = 1;
-		Integer idPlanSilver = 2;
-		Integer idPlanGold = 3;
+			ModelMap model = new ModelMap();
+			Integer idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
 
-		PlanSalud planBasico = servicio.obtenerPlan(idPlanBasico);
-		PlanSalud planSilver = servicio.obtenerPlan(idPlanSilver);
-		PlanSalud planGold = servicio.obtenerPlan(idPlanGold);
+			Usuario usuario = servicio.obtenerUsuario(idUsuario);
 
-		Preference PreferenciaBasico = generarPreferenciaBasico(planBasico);
-		Preference PreferenciaSilver = generarPreferenciaSilver(planSilver);
-		Preference PreferenciaGold = generarPreferenciaGold(planGold);
+			Integer idPlanBasico = 1;
+			Integer idPlanSilver = 2;
+			Integer idPlanGold = 3;
 
-		model.put("preferenciaBasico", PreferenciaBasico);
-		model.put("preferenciaSilver", PreferenciaSilver);
-		model.put("preferenciaGold", PreferenciaGold);
-		model.put("usuario", usuario);
+			PlanSalud planBasico = servicio.obtenerPlan(idPlanBasico);
+			PlanSalud planSilver = servicio.obtenerPlan(idPlanSilver);
+			PlanSalud planGold = servicio.obtenerPlan(idPlanGold);
 
-		return new ModelAndView("planesMedicos", model);
+			Preference PreferenciaBasico = generarPreferenciaBasico(planBasico);
+			Preference PreferenciaSilver = generarPreferenciaSilver(planSilver);
+			Preference PreferenciaGold = generarPreferenciaGold(planGold);
+
+			model.put("preferenciaBasico", PreferenciaBasico);
+			model.put("preferenciaSilver", PreferenciaSilver);
+			model.put("preferenciaGold", PreferenciaGold);
+			model.put("usuario", usuario);
+
+			return new ModelAndView("planesMedicos", model);
+		} else {
+			return new ModelAndView("index");
+
+		}
 
 	}
 
 	@RequestMapping(path = "registrarPlan", method = RequestMethod.GET)
 	public ModelAndView registrarSubscripcionSalud(@RequestParam("idPlanSalud") Integer idPlan,
 			HttpServletRequest req) {
-		Integer idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
 
-		servicio.registrarSubscripcion(idPlan, idUsuario);
+		if (req.getSession().getAttribute("idUsuario") != null) {
 
-		return new ModelAndView("subscripcionExitosa");
+			Integer idUsuario = (Integer) req.getSession().getAttribute("idUsuario");
+
+			servicio.registrarSubscripcion(idPlan, idUsuario);
+
+			return new ModelAndView("subscripcionExitosa");
+		} else {
+			return new ModelAndView("index");
+
+		}
 	}
 
 	public Preference generarPreferenciaBasico(PlanSalud planBasico) {
@@ -90,7 +102,7 @@ public class ControladorPlanSalud {
 		item.setTitle(planBasico.getNombre()).setQuantity(1).setId("1") // porque es el plan con id uno.
 				.setUnitPrice(planBasico.getPrecioDelPlan());
 		preference.appendItem(item);
-		
+
 		preference.setBackUrls(
 				new BackUrls().setSuccess("http://localhost:8080/proyecto-limpio-spring/registrarPlan?idPlanSalud="
 						+ planBasico.getIdPlanSalud()));
@@ -100,7 +112,6 @@ public class ControladorPlanSalud {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
 		return preference;
 	}
@@ -122,7 +133,7 @@ public class ControladorPlanSalud {
 		item.setTitle(planSilver.getNombre()).setQuantity(1).setId("2") // porque es el plan con id uno.
 				.setUnitPrice(planSilver.getPrecioDelPlan());
 		preference.appendItem(item);
-		
+
 		preference.setBackUrls(
 				new BackUrls().setSuccess("http://localhost:8080/proyecto-limpio-spring/registrarPlan?idPlanSalud="
 						+ planSilver.getIdPlanSalud()));
@@ -132,8 +143,6 @@ public class ControladorPlanSalud {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		
 
 		return preference;
 	}
@@ -164,7 +173,7 @@ public class ControladorPlanSalud {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		return preference;
 
 	}

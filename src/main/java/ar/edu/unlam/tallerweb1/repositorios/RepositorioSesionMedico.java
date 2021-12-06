@@ -17,4 +17,6 @@ public interface RepositorioSesionMedico {
 		List<Dias> obtenerDiasDeLaSemana();
 		boolean cargarAgenda(ArrayList<TurnoMedico> turnosNuevos, Integer id);
 		List<TurnoMedico> verCompromisos(Integer id);
+		void darDeBajaTurno(Integer idTurno);
+		List<TurnoMedico> obtenerCalificacionDeMedico(Integer id);
 }

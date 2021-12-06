@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.unlam.tallerweb1.modelo.Calificacion;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
 import ar.edu.unlam.tallerweb1.modelo.Pagos;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
@@ -33,74 +35,96 @@ public class ControladorUsuarioLogueado {
 
 	@RequestMapping(path = "listarEspecialidad", method = RequestMethod.GET)
 	public ModelAndView listarEspecialidades(HttpServletRequest req) {
-		req.getSession().getAttribute("nombre");
-		ModelMap model = new ModelMap();
-		List<Especialidad> especialidades = servicio.listarEspecialidades();
 
-		model.put("lista", especialidades);
-		return new ModelAndView("especialidades", model);
+		if (req.getSession().getAttribute("idUsuario") != null) {
+
+			req.getSession().getAttribute("nombre");
+			ModelMap model = new ModelMap();
+			List<Especialidad> especialidades = servicio.listarEspecialidades();
+
+			model.put("lista", especialidades);
+			return new ModelAndView("especialidades", model);
+		} else {
+			return new ModelAndView("index");
+		}
 
 	}
 
 	@RequestMapping(path = "listarMedicosPorEspecialidad", method = RequestMethod.GET)
 	public ModelAndView listarMedicosPorEspecialidad(@RequestParam("valor") Integer idEspecialidad,
 			HttpServletRequest req) {
-		ModelMap model = new ModelMap();
 
-		req.getSession().getAttribute("nombre");
-		List<Usuario> especialistas = servicio.listarMedicosPorEspecialidad(idEspecialidad);
+		if (req.getSession().getAttribute("idUsuario") != null) {
 
-		model.put("lista", especialistas);
-		return new ModelAndView("listaDeMedicos", model);
+			ModelMap model = new ModelMap();
+
+			req.getSession().getAttribute("nombre");
+			List<Usuario> especialistas = servicio.listarMedicosPorEspecialidad(idEspecialidad);
+
+			model.put("lista", especialistas);
+			return new ModelAndView("listaDeMedicos", model);
+		} else {
+			return new ModelAndView("index");
+		}
 
 	}
 
-	// me tiene que mostrar todos los turnos disponibles para ese Medico
-	// seleccionado
-	// asi que tengo que recuperar de ese medico su ID.
 	@RequestMapping(path = "mostrarTurnos", method = RequestMethod.GET)
 	public ModelAndView listarTurnosDisponiblesDeUnMedico(@RequestParam("idUsuario") Integer idMedico,
 			HttpServletRequest req) {
-		ModelMap model = new ModelMap();
-		req.getSession().getAttribute("nombre");
-		req.getSession().getAttribute("idUsuario");
 
-		List<TurnoMedico> listaDeTurnosDisponibles = servicio.listarTurnos(idMedico);
-		Usuario medico = servicio.obtenerMedico(idMedico);
-		model.put("medico", medico);
-		model.put("lista", listaDeTurnosDisponibles);
+		if (req.getSession().getAttribute("idUsuario") != null) {
 
-		return new ModelAndView("turnosDisponiblesMedico", model);
+			ModelMap model = new ModelMap();
+			req.getSession().getAttribute("nombre");
+			req.getSession().getAttribute("idUsuario");
+
+			List<TurnoMedico> listaDeTurnosDisponibles = servicio.listarTurnos(idMedico);
+			Usuario medico = servicio.obtenerMedico(idMedico);
+			model.put("medico", medico);
+			model.put("lista", listaDeTurnosDisponibles);
+
+			return new ModelAndView("turnosDisponiblesMedico", model);
+		} else {
+			return new ModelAndView("index");
+		}
+
 	}
 
 	@RequestMapping(path = "pagoExitoso", method = RequestMethod.GET)
 	public ModelAndView reservarTurno(@RequestParam("idTurno") Integer idTurno,
 			@RequestParam("idUsuario") Integer idUsuario, @RequestParam("status") String status,
-			@RequestParam("payment_id") Integer paymentId) {
+			@RequestParam("payment_id") Integer paymentId, HttpServletRequest req) {
 
-		ModelMap model = new ModelMap();
-		TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
+		if (req.getSession().getAttribute("idUsuario") != null) {
 
-		// verificar si existe el pago de este usuario sobre este turno
-		Pagos pago = servicioPagos.getPagoByIDTurnoandIdUser(idTurno, idUsuario);
+			ModelMap model = new ModelMap();
+			TurnoMedico turnoNuevo = servicio.reservarTurno(idTurno, idUsuario);
 
-		if (pago == null) {
-			pago = crearNuevoComprobanteDePago(paymentId, turnoNuevo, status);
-			servicioPagos.guardarDatosDePagos(pago);
+			// verificar si existe el pago de este usuario sobre este turno
+			Pagos pago = servicioPagos.getPagoByIDTurnoandIdUser(idTurno, idUsuario);
+
+			if (pago == null) {
+				pago = crearNuevoComprobanteDePago(paymentId, turnoNuevo, status);
+				servicioPagos.guardarDatosDePagos(pago);
+			} else {
+				actualizarComprobanteDePago(pago, status);
+			}
+
+			// Manejo del model
+			if (status.equals("approved")) {
+				model.put("estadoPago", "Pago realizado con exito");
+				servicio.setPagadoTurno(turnoNuevo, true);
+			} else {
+				model.put("estadoPago", "Debes pagar la consulta en el hospital");
+			}
+
+			model.put("turno", turnoNuevo);
+			return new ModelAndView("reservaExitosa", model);
 		} else {
-			actualizarComprobanteDePago(pago, status);
+			return new ModelAndView("index");
 		}
 
-		// Manejo del model
-		if (status.equals("approved")) {
-			model.put("estadoPago", "Pago realizado con exito");
-			servicio.setPagadoTurno(turnoNuevo, true);
-		} else {
-			model.put("estadoPago", "Debes pagar la consulta en el hospital");
-		}
-
-		model.put("turno", turnoNuevo);
-		return new ModelAndView("reservaExitosa", model);
 	}
 
 	private void actualizarComprobanteDePago(Pagos pago, String status) {
@@ -127,56 +151,87 @@ public class ControladorUsuarioLogueado {
 	@RequestMapping(path = "verMisTurnos", method = RequestMethod.GET)
 	public ModelAndView verMisTurnos(HttpServletRequest req) {
 
-		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
-		ModelMap model = new ModelMap();
+		if (req.getSession().getAttribute("idUsuario") != null) {
 
-		List<TurnoMedico> turnos = servicio.verMisTurnos(id);
+			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+			ModelMap model = new ModelMap();
 
-		model.put("lista", turnos);
-		return new ModelAndView("misTurnos", model);
+			List<TurnoMedico> turnos = servicio.verMisTurnos(id);
+
+			model.put("lista", turnos);
+			return new ModelAndView("misTurnos", model);
+		} else {
+			return new ModelAndView("index");
+		}
+
 	}
 
 	@RequestMapping(path = "paginaPrincipal", method = RequestMethod.GET)
-	public ModelAndView getPaginaPrincipal() {
+	public ModelAndView getPaginaPrincipal(HttpServletRequest req) {
 
-		return new ModelAndView("paginaPrincipal");
+		if (req.getSession().getAttribute("idUsuario") != null) {
+
+			return new ModelAndView("paginaPrincipal");
+		} else {
+			return new ModelAndView("index");
+
+		}
 	}
 
 	@RequestMapping(path = "paginaPrincipalMedicos", method = RequestMethod.GET)
-	public ModelAndView getPaginaPrincipalMedicos() {
+	public ModelAndView getPaginaPrincipalMedicos(HttpServletRequest req) {
 
-		return new ModelAndView("paginaPrincipalMedicos");
+		if (req.getSession().getAttribute("idUsuario") != null) {
+
+			return new ModelAndView("paginaPrincipalMedicos");
+		} else {
+			return new ModelAndView("index");
+
+		}
 	}
 
 	@RequestMapping(path = "paginaPrincipalAdmin", method = RequestMethod.GET)
-	public ModelAndView getPaginaPrincipalAdmin() {
+	public ModelAndView getPaginaPrincipalAdmin(HttpServletRequest req) {
+		if (req.getSession().getAttribute("idUsuario") != null) {
 
-		return new ModelAndView("paginaPrincipalAdmin");
+			return new ModelAndView("paginaPrincipalAdmin");
+		} else {
+			return new ModelAndView("index");
+
+		}
 	}
 
 	@RequestMapping(path = "pagofallido", method = RequestMethod.GET)
 	public ModelAndView reservarTurno(@RequestParam("status") String status, @RequestParam("idTurno") Integer idTurno,
-			@RequestParam("idUsuario") Integer idUsuario) {
-		Integer problema = 0;
-		ModelMap model = new ModelMap();
+			@RequestParam("idUsuario") Integer idUsuario, HttpServletRequest req) {
 
-		switch (status) {
-		case "rejected":
-			problema = 1;
-			guardarDatos(model, problema, "Pago Rechazado");
-			break;
-		case "in_process":
-			problema = 2;
-			guardarDatos(model, problema, "Pago Pendiente");
-			break;
-		default:
-			model.put("msj", "Error inesperado");
-			break;
+		if (req.getSession().getAttribute("idUsuario") != null) {
+
+			Integer problema = 0;
+			ModelMap model = new ModelMap();
+
+			switch (status) {
+			case "rejected":
+				problema = 1;
+				guardarDatos(model, problema, "Pago Rechazado");
+				break;
+			case "in_process":
+				problema = 2;
+				guardarDatos(model, problema, "Pago Pendiente");
+				break;
+			default:
+				model.put("msj", "Error inesperado");
+				break;
+			}
+			TurnoMedico turnoNuevo = servicio.getTurnoByID(idTurno, idUsuario);
+			model.put("turno", turnoNuevo);
+
+			return new ModelAndView("reservaFallida", model);
+
+		} else {
+			return new ModelAndView("index");
+
 		}
-		TurnoMedico turnoNuevo = servicio.getTurnoByID(idTurno, idUsuario);
-		model.put("turno", turnoNuevo);
-
-		return new ModelAndView("reservaFallida", model);
 	}
 
 	private void guardarDatos(ModelMap model, Integer problema, String string) {
@@ -201,6 +256,21 @@ public class ControladorUsuarioLogueado {
 			model.put("turno", turno);
 			return new ModelAndView("devolucionDinero", model);
 		}
+	}
+
+	@RequestMapping(path = "calificar", method = RequestMethod.POST)
+	public ModelAndView calificarTurnoMedico(@ModelAttribute("Calificacion") Calificacion calificacion,
+			HttpServletRequest req) {
+
+		if (req.getSession().getAttribute("idUsuario") != null) {
+
+			servicio.calificarTurno(calificacion);
+
+			return verMisTurnos(req);
+		} else {
+			return new ModelAndView("index");
+		}
+
 	}
 
 }

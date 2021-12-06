@@ -122,29 +122,29 @@ public class ControladorAmbulanciaTest{
 		
 	}
 	
-	@Test
-	public void adminPuedeMarcarSolicitudComoAtendida() throws ParseException {
-		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
-		SolicitudUsuarioAmbulancia soli=new SolicitudUsuarioAmbulancia();
-		soli.setAtendido(false);
-
-		
-		
-		HttpSession http = mock(HttpSession.class);
-		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
-		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)		
-		when(servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com")).thenReturn(user);
-		when(servicioAmbulancia.obtenerConsultaSinAtenderPorUsuario(user)).thenReturn(soli);
-//		when(servicioAmbulancia.cambiarEstadoConsulta(soli, true))
-		servicioAmbulancia.cambiarEstadoConsulta(soli, true);
-
-		
-		ModelAndView mav= controladorAmbulancia.adminPuedeAtenderConsulta("test@gmail.com");
-		
-		assertThat(mav.getModel().get("msj")).isEqualTo("Estado consulta cambiado con exito!");
-		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalAdmin");	
-		
-	}
+//	@Test
+//	public void adminPuedeMarcarSolicitudComoAtendida() throws ParseException {
+//		Usuario user=new Usuario("123456789", "test@gmail.com", 1);
+//		SolicitudUsuarioAmbulancia soli=new SolicitudUsuarioAmbulancia();
+//		soli.setAtendido(false);
+//
+//		
+//		
+//		HttpSession http = mock(HttpSession.class);
+//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+//		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)		
+//		when(servicioRegistroLogin.obtenerUsuarioPorMail("test@gmail.com")).thenReturn(user);
+//		when(servicioAmbulancia.obtenerConsultaSinAtenderPorUsuario(user)).thenReturn(soli);
+////		when(servicioAmbulancia.cambiarEstadoConsulta(soli, true))
+//		servicioAmbulancia.cambiarEstadoConsulta(soli, true);
+//
+//		
+//		ModelAndView mav= controladorAmbulancia.adminPuedeAtenderConsulta("test@gmail.com");
+//		
+//		assertThat(mav.getModel().get("msj")).isEqualTo("Estado consulta cambiado con exito!");
+//		assertThat(mav.getViewName()).isEqualTo("paginaPrincipalAdmin");	
+//		
+//	}
 
 
 

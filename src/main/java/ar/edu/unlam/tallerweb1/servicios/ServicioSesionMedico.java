@@ -18,5 +18,7 @@ public interface ServicioSesionMedico {
 	List<Dias> obtenerDiasDeLaSemana();
 	boolean cargarAgenda(DatosAgendaMesMedico datos, Integer id, Time horarioComienzoJornada, Time horarioFinJornada, Time duracionDeTurno);
 	List<TurnoMedico> verCompromisos(Integer id);
+	void darDeBaja(Integer idTurno);
+	Double obtenerCalificacion(Integer id);
 	
 }

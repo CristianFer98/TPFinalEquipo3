@@ -2,7 +2,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.util.List;
 
-
+import ar.edu.unlam.tallerweb1.modelo.Calificacion;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -21,6 +21,7 @@ public interface ServicioUsuarioLogueado {
 
 	void setPagadoTurno(TurnoMedico turno,Boolean estado);
 	TurnoMedico getTurnoByOnlyID(Integer idTurno);
+	void calificarTurno(Calificacion calificacion);
 	
 	
 }

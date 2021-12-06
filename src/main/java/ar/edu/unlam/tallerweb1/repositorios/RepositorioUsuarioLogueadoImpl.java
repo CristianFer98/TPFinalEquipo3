@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -50,9 +51,19 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 	@Override
 	public List<TurnoMedico> listarTurnosDisponibles(Integer idMedico) {
 		Usuario medico = buscarMedicoPorId(idMedico);
-
-		return (List<TurnoMedico>) session.getCurrentSession().createCriteria(TurnoMedico.class)
+		
+		LocalDateTime fechaActual = LocalDateTime.now();
+		List<TurnoMedico> listaDeCompromisos =  (List<TurnoMedico>) session.getCurrentSession().createCriteria(TurnoMedico.class)
 				.add(Restrictions.eq("medicoAsignado", medico)).add(Restrictions.eq("estado", true)).list();
+	
+		for (TurnoMedico turnoMedico : listaDeCompromisos) {
+			if (fechaActual.isAfter(turnoMedico.getFecha())) {
+				turnoMedico.setRealizado(true);
+				session.getCurrentSession().update(turnoMedico);
+			}
+		}
+		
+		return listaDeCompromisos;
 	}
 
 	@SuppressWarnings("deprecation")
@@ -126,6 +137,15 @@ public class RepositorioUsuarioLogueadoImpl implements RepositorioUsuarioLoguead
 		TurnoMedico t=session.getCurrentSession().get(TurnoMedico.class, turno.getId());
 		t.setPagado(estado);
 		session.getCurrentSession().save(t);	 
+	}
+
+	@Override
+	public void calificarTurno(Integer idTurno, Integer calif) {
+		TurnoMedico turno = obtenerTurno(idTurno);
+		
+		turno.setCalificacion(calif);
+		session.getCurrentSession().update(turno); 
+		
 	}
 
 }

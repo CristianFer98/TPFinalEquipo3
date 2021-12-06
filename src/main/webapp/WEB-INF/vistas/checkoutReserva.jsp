@@ -17,7 +17,8 @@
 							<span class="widget-49-date-day">${turno.fecha.dayOfMonth}/${turno.fecha.monthValue}</span>
 						</div>
 						<div class="widget-49-meeting-info">
-							<span class="widget-49-pro-title">Nombre Paciente: ${turno.clienteAsignado.nombre}</span>
+							<span class="widget-49-pro-title">Nombre Paciente:
+								${turno.clienteAsignado.nombre}</span>
 						</div>
 					</div>
 					<ol class="widget-49-meeting-points">
@@ -31,62 +32,50 @@
 								Asignado: ${turno.medicoAsignado.nombre}</span></li>
 						<li class="widget-49-meeting-item"><span>Contacto con
 								el Medico : ${turno.medicoAsignado.telefono}</span></li>
-						<li class="widget-49-meeting-item"><span>Especialidad : ${turno.medicoAsignado.especialidad.especialidad}</span></li>
+						<li class="widget-49-meeting-item"><span>Especialidad
+								: ${turno.medicoAsignado.especialidad.especialidad}</span></li>
 					</ol>
 
 				</div>
 			</div>
-			
-			<c:set var = "problema" scope = "session" value = "0"/>
-			 
-	         <c:if test="${problema == 1}">
-	         <div class="alert alert-danger">${msj}</div>
-	         </c:if>
-	         
-	         <c:if test="${problema == 2}">
-	         <div class="alert alert-warning">${msj}</div>
-	         </c:if>
-	         
-             
+
+			<c:set var="problema" scope="session" value="0" />
+
+			<c:if test="${problema == 1}">
+				<div class="alert alert-danger">${msj}</div>
+			</c:if>
+
+			<c:if test="${problema == 2}">
+				<div class="alert alert-warning">${msj}</div>
+			</c:if>
+
+
 
 
 			<script
-  				src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-  				data-preference-id="${preference.id}">
+				src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+				data-preference-id="${preference.id}">
+				
 			</script>
-			 
 
-			 <div class="btn btn-secondary" >
-			 	<a href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no&payment_id=0" style="color:white">Pagar en la clinica</a>
-			 </div>
-			
+
+			<div class="btn btn-secondary">
+				<a
+					href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no&payment_id=0"
+					style="color: white">Pagar en la clinica</a>
 			</div>
-			
+
 		</div>
 
-	
-	
+	</div>
 
-	
-	
+
+
+
+
+
 	<script src="https://sdk.mercadopago.com/js/v2"></script>
-	<script>
-		// Agrega credenciales de SDK
-		const mp = new MercadoPago('TEST-734025de-7dce-4565-ae60-d940bcca5b07', {
-			locale : 'es-AR'
-		});
 
-		// Inicializa el checkout
-		mp.checkout({
-			preference : {
-				id : '${preferenceId}'
-			},
-			render : {
-				container : '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
-				label : 'Pagar', // Cambia el texto del botón de pago (opcional)
-			}
-		});
-	</script>
 
 </main>
 

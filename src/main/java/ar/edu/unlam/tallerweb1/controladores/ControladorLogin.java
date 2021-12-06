@@ -31,7 +31,7 @@ public class ControladorLogin {
 		return new ModelAndView("index"); // simplemente muestro el index
 
 	}
-	
+
 	@RequestMapping(path = "/index", method = RequestMethod.GET)
 	public ModelAndView mostrarHome2() {
 		return new ModelAndView("index"); // simplemente muestro el index
@@ -41,49 +41,51 @@ public class ControladorLogin {
 //lo unico que me va a impedir registrarme es si el usuario no existe. 
 //sin embargo el login es para doctores, admin y usuario comun. Tengo que validar estas posibilidades.
 	@RequestMapping(path = "loguearse", method = RequestMethod.POST)
-	public ModelAndView iniciarSesion(@ModelAttribute("datosDeInicioSesion") DatosDeInicioDeSesion datos, HttpServletRequest req) {
+	public ModelAndView iniciarSesion(@ModelAttribute("datosDeInicioSesion") DatosDeInicioDeSesion datos,
+			HttpServletRequest req) {
 		String mensaje;
 		ModelMap model = new ModelMap();
 		Usuario usuario = new Usuario();
-		
 
 		try {
-			 usuario = servicio.iniciarSesion(datos);// cuando inicio sesion traigo un usuario
+			usuario = servicio.iniciarSesion(datos);// cuando inicio sesion traigo un usuario
 		} catch (UsuarioInexistenteException e) { // valido que exista
 			mensaje = "Usuario Inexistente";
 			model.put("error", mensaje);
 			return new ModelAndView("index", model);
 		}
 
-		return  comprobarTipoUsuario(usuario, req);// devuelvo el modelAndView dependiendo el tipo de Usuario.
+		return comprobarTipoUsuario(usuario, req);// devuelvo el modelAndView dependiendo el tipo de Usuario.
 
 	}
-	
-	
-	
+
 	private ModelAndView comprobarTipoUsuario(Usuario usuario, HttpServletRequest req) {
 		ModelMap model = new ModelMap();
-		
-			req.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
-			req.getSession().setAttribute("nombre", usuario.getNombre());
 
-			if (usuario.getNumeroDeTipoDeUsuario() == 1) {
-				model.put("usuario", usuario);
-				return new ModelAndView("paginaPrincipal", model);
-			} else if (usuario.getNumeroDeTipoDeUsuario() == 2) {
-				model.put("usuario", usuario);
-				
-				return new ModelAndView("paginaPrincipalMedicos", model);
-			} else if (usuario.getNumeroDeTipoDeUsuario() == 3) {
-				model.put("usuario", usuario);
+		req.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
+		req.getSession().setAttribute("nombre", usuario.getNombre());
 
-				return new ModelAndView("paginaPrincipalAdmin", model);
-			}
-		
+		if (usuario.getNumeroDeTipoDeUsuario() == 1) {
+			model.put("usuario", usuario);
+			return new ModelAndView("paginaPrincipal", model);
+		} else if (usuario.getNumeroDeTipoDeUsuario() == 2) {
+			model.put("usuario", usuario);
+
+			return new ModelAndView("paginaPrincipalMedicos", model);
+		} else if (usuario.getNumeroDeTipoDeUsuario() == 3) {
+			model.put("usuario", usuario);
+
+			return new ModelAndView("paginaPrincipalAdmin", model);
+		}
+
 		return new ModelAndView("index");
 	}
 	
 	
-	
+	@RequestMapping(path="cerrarSesion")
+	public ModelAndView cerrarSesion (HttpServletRequest req) {
+		req.getSession().invalidate();
+		return new ModelAndView ("SesionFinalizada");
+	}
 
 }

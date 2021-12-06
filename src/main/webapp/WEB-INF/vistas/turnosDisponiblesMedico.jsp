@@ -12,22 +12,27 @@
 <div style="display:flex">
 
 		<c:if test="${not empty lista}">
-
+	
+		
 
 			<div style="width: 50%; overflow: auto; height: 400px; margin: 20px">
 				<div class="card-header" style="background-color: grey">Turnos
 					Disponibles</div>
 				<c:forEach var="lista" items="${lista}">
-					<a
-						href="reservarTurno?idTurno=${lista.id}&idUsuario=${sessionScope.get('idUsuario')}">
+				
+				<c:if test="${lista.realizado != true}">
+	        						
+					<a href="reservarTurno?idTurno=${lista.id}&idUsuario=${sessionScope.get('idUsuario')}">
+						
 						<div class="list-group-item">
+						
 							<p style="color: #252440; font-size: 20px">
 								${lista.fecha.year}/${lista.fecha.monthValue}/${lista.fecha.dayOfMonth}
 								- ${lista.fecha.hour}:${lista.fecha.minute} HS. Precio $${lista.valorDeLaConsulta}
 							<p>
 						</div>
 					</a>
-					
+					</c:if>
 				</c:forEach>
 
 			</div>

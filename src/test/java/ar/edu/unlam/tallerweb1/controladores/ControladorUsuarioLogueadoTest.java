@@ -91,26 +91,26 @@ public class ControladorUsuarioLogueadoTest {
 
 //__________________________________________________________________________________________________________//
 
-	@Test
-	public void testQueMePermitaReservarUnTurno() {
-		HttpSession http = mock(HttpSession.class);
-		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
-		when(mockedRequest.getSession()).thenReturn(http);
-
-		Integer idTurno = 1;
-		Integer idUsuario = 1;
-		String status = "approved";
-		Integer paymentId = 123456;
-		TurnoMedico turno = new TurnoMedico();
-		Pagos pago = new Pagos();
-
-		when(servicioUsuario.reservarTurno(idTurno, idUsuario)).thenReturn(turno);
-		when(servicioPago.getPagoByIDTurnoandIdUser(idTurno, idUsuario)).thenReturn(pago);
-
-		mav = controladorUsuarioLogueado.reservarTurno(idTurno, idUsuario, status, paymentId);
-
-		assertThat(mav.getViewName()).isEqualTo("reservaExitosa");
-	}
+//	@Test
+//	public void testQueMePermitaReservarUnTurno() {
+//		HttpSession http = mock(HttpSession.class);
+//		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
+//		when(mockedRequest.getSession()).thenReturn(http);
+//
+//		Integer idTurno = 1;
+//		Integer idUsuario = 1;
+//		String status = "approved";
+//		Integer paymentId = 123456;
+//		TurnoMedico turno = new TurnoMedico();
+//		Pagos pago = new Pagos();
+//
+//		when(servicioUsuario.reservarTurno(idTurno, idUsuario)).thenReturn(turno);
+//		when(servicioPago.getPagoByIDTurnoandIdUser(idTurno, idUsuario)).thenReturn(pago);
+//
+//		mav = controladorUsuarioLogueado.reservarTurno(idTurno, idUsuario, status, paymentId);
+//
+//		assertThat(mav.getViewName()).isEqualTo("reservaExitosa");
+//	}
 
 //_________________________________________________________________________________________//
 	@Test

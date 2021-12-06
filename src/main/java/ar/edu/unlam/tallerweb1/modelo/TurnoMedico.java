@@ -43,10 +43,15 @@ public class TurnoMedico {
 	@Column
 	private Boolean pagado;
 	
-//	@ManyToOne
-//	private Pagos pagos;
-//	
- 
+	@Column
+	private Boolean realizado;
+	
+	@Column
+	private Boolean turnoDadoDeAlta;
+	
+	@Column
+	private Integer calificacion;
+	
 	
 	public TurnoMedico() {
 		
@@ -134,14 +139,38 @@ public class TurnoMedico {
 	}
 
 
-//	public Pagos getPagos() {
-//		return pagos;
-//	}
-//
-//
-//	public void setPagos(Pagos pagos) {
-//		this.pagos = pagos;
-//	}
+	public Boolean getRealizado() {
+		return realizado;
+	}
+
+
+	public void setRealizado(Boolean realizado) {
+		this.realizado = realizado;
+	}
+
+
+	public Boolean getTurnoDadoDeAlta() {
+		return turnoDadoDeAlta;
+	}
+
+
+	public void setTurnoDadoDeAlta(Boolean turnoDadoDeAlta) {
+		this.turnoDadoDeAlta = turnoDadoDeAlta;
+	}
+
+
+	public Integer getCalificacion() {
+		return calificacion;
+	}
+
+
+	public void setCalificacion(Integer calificacion) {
+		this.calificacion = calificacion;
+	}
+	
+	
+
+	
 
 	
 

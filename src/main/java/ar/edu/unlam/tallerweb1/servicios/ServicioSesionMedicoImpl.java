@@ -107,17 +107,19 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 
 		return repositorio.verCompromisos(id);
 	}
+	
+	
 
 	@SuppressWarnings("deprecation")
 	private LocalTime obtenerDuracionConsulta(Time duracionDeTurno) {
 		return LocalTime.of(duracionDeTurno.getHours(), duracionDeTurno.getMinutes());
-//la BD le suma 3 horas F.
+
 	}
 
 	@SuppressWarnings("deprecation")
 	private LocalDateTime obtenerFinDeActividadMensual(Time horarioComienzoJornada, Time horarioFinJornada) {
 		LocalDateTime tiempoActual = LocalDateTime.now();
-		return LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth().plus(1), tiempoActual.getDayOfMonth(),
+		return LocalDateTime.of(tiempoActual.getYear()+1, tiempoActual.getMonth().plus(1), tiempoActual.getDayOfMonth(),
 				horarioFinJornada.getHours(), horarioFinJornada.getHours());
 
 	}
@@ -127,6 +129,23 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 		LocalDateTime tiempoActual = LocalDateTime.now();
 		return LocalDateTime.of(tiempoActual.getYear(), tiempoActual.getMonth(), tiempoActual.getDayOfMonth(),
 				horarioComienzoJornada.getHours(), horarioComienzoJornada.getMinutes());
+	}
+
+	@Override
+	public void darDeBaja(Integer idTurno) {
+		repositorio.darDeBajaTurno(idTurno);
+	}
+
+	@Override
+	public Double obtenerCalificacion(Integer id) {
+		List<TurnoMedico> turnosCalificados= repositorio.obtenerCalificacionDeMedico(id);
+		Double sumaDeCalificaciones=0.0;
+		for (TurnoMedico turnoMedico : turnosCalificados) {
+			sumaDeCalificaciones+=turnoMedico.getCalificacion();
+		}
+		
+		Double calificacionFinal = sumaDeCalificaciones/turnosCalificados.size();
+		return calificacionFinal;
 	}
 
 }

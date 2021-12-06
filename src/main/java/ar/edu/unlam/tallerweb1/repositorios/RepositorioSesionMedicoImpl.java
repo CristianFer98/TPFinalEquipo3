@@ -1,5 +1,6 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,17 +29,16 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 
 	@Override
 	public Usuario cargarDatos(DatosDeActualizacionPerfilMedico datos, Integer id) {
-		
 
-		 	Usuario usuario = obtenerUsuarioPorId(id);
+		Usuario usuario = obtenerUsuarioPorId(id);
 
-			Especialidad especialidad = buscarEspecialidadPorId(datos.getEspecialidad());
-			usuario.setEspecialidad(especialidad);
-			usuario.setTelefono(datos.getTelefono());
-			usuario.setPaginaPersonal(datos.getPaginaPersonal());
-			session.getCurrentSession().update(usuario);
-			return usuario;
-		
+		Especialidad especialidad = buscarEspecialidadPorId(datos.getEspecialidad());
+		usuario.setEspecialidad(especialidad);
+		usuario.setTelefono(datos.getTelefono());
+		usuario.setPaginaPersonal(datos.getPaginaPersonal());
+		session.getCurrentSession().update(usuario);
+		return usuario;
+
 	}
 
 	@SuppressWarnings("deprecation")
@@ -88,8 +88,23 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 	@Override
 	public List<TurnoMedico> verCompromisos(Integer id) {
 
-		Usuario Medico = buscarMedicoPorId(id);
+		LocalDateTime fechaActual = LocalDateTime.now();
 
+		List<TurnoMedico> listaDeCompromisos = obtenerListaDeCompromisosMedicos(id);
+
+		for (TurnoMedico turnoMedico : listaDeCompromisos) {
+			if (fechaActual.isAfter(turnoMedico.getFecha())) {
+				turnoMedico.setRealizado(true);
+				session.getCurrentSession().update(turnoMedico);
+			}
+		}
+
+		return listaDeCompromisos;
+	}
+
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	private List<TurnoMedico> obtenerListaDeCompromisosMedicos(Integer id) {
+		Usuario Medico = buscarMedicoPorId(id);
 		return (List<TurnoMedico>) session.getCurrentSession().createCriteria(TurnoMedico.class)
 				.add(Restrictions.eq("medicoAsignado", Medico)).add(Restrictions.eq("estado", false)).list();
 	}
@@ -99,6 +114,33 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 
 		return (Usuario) session.getCurrentSession().createCriteria(Usuario.class).add(Restrictions.eq("idUsuario", id))
 				.uniqueResult();
+	}
+
+	@Override
+	public void darDeBajaTurno(Integer idTurno) {
+
+		TurnoMedico turno = buscarTurnoPorId(idTurno);
+		turno.setTurnoDadoDeAlta(true);
+		turno.setPagado(true);
+		session.getCurrentSession().update(turno);
+
+	}
+
+	@SuppressWarnings("deprecation")
+	private TurnoMedico buscarTurnoPorId(Integer idTurno) {
+		return (TurnoMedico) session.getCurrentSession().createCriteria(TurnoMedico.class)
+				.add(Restrictions.eq("id", idTurno)).uniqueResult();
+	}
+
+	@SuppressWarnings({ "unchecked", "deprecation" })
+	@Override
+	public List<TurnoMedico> obtenerCalificacionDeMedico(Integer id) {
+
+		Usuario medico = buscarMedicoPorId(id);
+		
+		return (List<TurnoMedico>) session.getCurrentSession().createCriteria(TurnoMedico.class)
+				.add(Restrictions.eq("medicoAsignado", medico)).add(Restrictions.isNotNull("calificacion")).list();
+
 	}
 
 }

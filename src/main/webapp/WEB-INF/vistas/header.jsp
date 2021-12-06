@@ -79,4 +79,5 @@ height:auto;
             <a href="" class="linkNav">Acerca del Hospital</a>
             <a href="" class="linkNav">Areas</a>
             <a href="" class="linkNav">Contacto</a>
+            <a href= "cerrarSesion" style="color:black"> CERRAR SESION</a>
         </nav>

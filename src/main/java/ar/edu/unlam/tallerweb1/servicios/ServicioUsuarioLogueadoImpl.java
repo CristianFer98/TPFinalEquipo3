@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unlam.tallerweb1.modelo.Calificacion;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -101,6 +102,16 @@ public class ServicioUsuarioLogueadoImpl implements ServicioUsuarioLogueado {
 	@Override
 	public TurnoMedico getTurnoByOnlyID(Integer idTurno) {
 		return repositorio.obtenerTurno(idTurno);
+	}
+
+	@Override
+	public void calificarTurno(Calificacion calificacion) {
+		Integer idTurno = calificacion.getIdTurno();
+		
+		
+		Integer calif = Integer.parseInt(calificacion.getCalificacion());
+		repositorio.calificarTurno(idTurno, calif);
+		
 	}
 	
 	

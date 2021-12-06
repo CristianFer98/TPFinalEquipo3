@@ -7,7 +7,7 @@
 	<div style="display: flex; justify-content: center">
 		<div class="card card-margin" style="width:50%; height:300px; margin:20px">
 			<div class="card-header no-border">
-				<h5 class="card-title">Perfil</h5>
+				<h5 class="card-title">Perfil - Calificacion promedio: <img style="heigth:70px; width:150px" src="img/${calificacionSP}.jpg">  ${calificacion}</h5>
 			</div>
 			<div class="card-body pt-0">
 				<div class="widget-49">
@@ -34,10 +34,15 @@
 					</ol>
 					<div class="widget-49-meeting-action">
 						<a href="EditarPerfil" class="btn btn-sm btn-flash-border-primary">Editar Pefil</a>
+					
 					</div>
+				
 				</div>
+				
 			</div>
 		</div>
+		
+		
 	</div>
 </main>
 
