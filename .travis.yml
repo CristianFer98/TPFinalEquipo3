@@ -1,6 +1,6 @@
   "language": "java",
   "os": [
-    "linux"
+    "windows"
   ],
   "dist": "xenial",
   "script": [
