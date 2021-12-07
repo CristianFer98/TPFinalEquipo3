@@ -51,7 +51,7 @@
 			 
 
 			 <div class="btn btn-secondary" >
-			 	<a href="paginaPrincipal" style="color:white">VOLVER A LA PAGINA PRINCIPAL</a>
+			 	<a href="homeUser" style="color:white">VOLVER A LA PAGINA PRINCIPAL</a>
 			 </div>
 			
 		</div>
