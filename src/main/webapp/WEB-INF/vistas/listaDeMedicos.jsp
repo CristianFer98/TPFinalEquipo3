@@ -12,8 +12,8 @@
 
 		<c:forEach var="lista" items="${lista}">
 			
-			<div style="display:flex; justify-content:center; margin:15px">
-			<div class="card w-75" >
+			<div style="display:flex; justify-content:center; margin:15px; ">
+			<div class="card w-75" style="box-shadow: 0px 8px 20px -7px rgba(0,0,0,0.75);">
 				<div class="card-body">
 					<h5 class="card-title">${lista.nombre}</h5>
 					<p class="card-text">Telefono: ${lista.telefono} - Pagina web: ${lista.paginaPersonal}</p>

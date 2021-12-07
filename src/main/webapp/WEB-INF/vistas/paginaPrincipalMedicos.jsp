@@ -1,4 +1,4 @@
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="headerMedico.jsp"></jsp:include>
 
 <style>
 			main{

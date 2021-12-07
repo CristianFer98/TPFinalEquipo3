@@ -69,11 +69,11 @@
 									<li class="widget-49-meeting-item">
 									
 									<c:if test="${lista.pagado == null}">
-	        							 <span  style="display: flex"> Estado:  <div style="background-color: yellow;"> Pendiente De Pago</div> </span>
+	        							 <div style="background-color: yellow;"> Pendiente De Pago</div> 
 	        						</c:if>
 	        						<c:if test="${lista.pagado != null}">
-	        							 <span style="display: flex"> Estado:  <div style="background-color: green; color: white" > PAGADO</div> </span>
-	        						 </c:if>
+	        							 <div style="background-color: green; color: white" > PAGADO</div> 
+	        						</c:if>
 									
 									</li>			
 								</ol>

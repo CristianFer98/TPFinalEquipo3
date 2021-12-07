@@ -6,7 +6,7 @@
 
 	<div style="display: flex; justify-content: center">
 		<div class="card card-margin"
-			style="width: 50%; height: auto; margin: 20px">
+			style="width: 50%; height: auto; margin: 20px; ">
 			<div class="card-header no-border">
 				<h5 class="card-title">Checkout de Su reserva</h5>
 			</div>

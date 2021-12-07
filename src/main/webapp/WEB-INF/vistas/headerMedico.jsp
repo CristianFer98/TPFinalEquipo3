@@ -75,8 +75,9 @@
     </div>
     <div>
         <ul>
-            <li><a href="showFormNewMedic">MEDICOS</a></li>
-            <li><a href="formGestionAmbulancia">AMBULANCIAS</a></li>
+            <li><a href="MyPerfil">PERFIL</a> </li>
+            <li><a href="FormAgenda">AGENDA</a></li>
+            <li><a href="verTurnos">COMPROMISOS</a></li>
         </ul>
     </div>
     <div>

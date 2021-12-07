@@ -1,4 +1,4 @@
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="headerMedico.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 		<style>
