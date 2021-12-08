@@ -35,16 +35,13 @@ values (123456789, 19800505,"Maria@gmail.com", "Maria", 2,1,46515676,"Maria.com"
 (123456789, 19800505,"Roberta@gmail.com", "Roberta", 2,4,4848954,"Roberta.com","F"),(123456789, 19980505,"Alejando@gmail.com", "Alejandro", 2,5,11374656,"Alejandro.com","M");
 
 /* agrego turnos con fecha vieja para calificarlos*/
-
+select * from usuario;
 select * from turnomedico;
-
-update turnomedico set calificacion = null;
-
-update turnomedico set fecha = '2021-10-07 08:00:00',estado = false ,  pagado = true, clienteAsignado_idusuario = 2 where id =1;
-update turnomedico set fecha = '2021-10-07 08:50:00',estado = false,pagado = true, clienteAsignado_idusuario = 2 where id =2;
-update turnomedico set fecha = '2021-10-07 09:30:00',estado = false ,pagado = true, clienteAsignado_idusuario = 2 where id =3;
-update turnomedico set fecha = '2021-10-07 10:00:00',estado = false,pagado = true, clienteAsignado_idusuario = 2 where id =4;
-update turnomedico set fecha = '2021-10-07 11:00:00',estado = false,pagado = true, clienteAsignado_idusuario = 2 where id =5;
+update turnomedico set fecha = '2021-10-07 08:00:00',estado = false ,pagado = true,realizado = true , clienteAsignado_idusuario = 24 where id =1;
+update turnomedico set fecha = '2021-10-07 08:50:00',estado = false,pagado = true, realizado = true, clienteAsignado_idusuario = 24 where id =2;
+update turnomedico set fecha = '2021-10-07 09:30:00',estado = false ,pagado = true,realizado = true , clienteAsignado_idusuario = 24 where id =3;
+update turnomedico set fecha = '2021-10-07 10:00:00',estado = false,pagado = true,realizado = true, clienteAsignado_idusuario = 25 where id =4;
+update turnomedico set fecha = '2021-10-07 11:00:00',estado = false,pagado = true,realizado = true, clienteAsignado_idusuario = 25 where id =5;
 
 
 

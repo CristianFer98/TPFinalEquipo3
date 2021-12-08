@@ -13,8 +13,12 @@ import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.text.ParseException;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class ControladorRegistroTest {
 
@@ -72,7 +76,13 @@ public class ControladorRegistroTest {
 
 	private void whenRegistroUnUsuarioConContraseniaDiferente(DatosRegistroUsuario datosRegistroConContraDiferente)
 			throws ParseException {
-		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConContraDiferente); // esto me devuelve un
+		datosRegistroConContraDiferente.setNumeroDeTipoDeUsuario(1);
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
+		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(1);
+		
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConContraDiferente, mockedRequest); // esto me devuelve un
 																							// MAV
 
 	}
@@ -95,7 +105,12 @@ public class ControladorRegistroTest {
 	}
 
 	private void whenRegistroUnUsuarioConContraseniaCorta(DatosRegistroUsuario datosRegistro2) throws ParseException {
-		mav = controladorRegistro.registrarNuevoUsuario(datosRegistro2);
+		datosRegistro2.setNumeroDeTipoDeUsuario(1);
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
+		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(1);
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistro2, mockedRequest);
 	}
 
 	private void thenRegistroUnUsuarioConContraseniaCorta(String string) {
@@ -115,12 +130,17 @@ public class ControladorRegistroTest {
 
 	private void whenRegistroUsuarioComunConContraseniaBien(DatosRegistroUsuario datosRegistroConDatosCorrectos)
 			throws ParseException {
-
-		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConDatosCorrectos);
+		datosRegistroConDatosCorrectos.setNumeroDeTipoDeUsuario(1);
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
+		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(1);
+		
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroConDatosCorrectos, mockedRequest);
 	}
 
 	private void thenRegistroUsuarioComun() {
-		assertThat(mav.getViewName()).isEqualTo("index");
+		assertThat(mav.getViewName()).isEqualTo("registro");
 	}
 
 //_____________________________________________________________________________________________________________//	
@@ -133,12 +153,17 @@ public class ControladorRegistroTest {
 	}
 
 	private void thenRegistroUnMedico() {
-		assertThat(mav.getViewName()).isEqualTo("index");
+		assertThat(mav.getViewName()).isEqualTo("darDeAltaNuevoMedico");
 
 	}
 
 	private void whenRegistroUnMedico(DatosRegistroUsuario datosRegistroMedico) throws ParseException {
-		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroMedico);
+		datosRegistroMedico.setNumeroDeTipoDeUsuario(2);
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
+		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(1);
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistroMedico, mockedRequest);
 	}
 
 //______________________________________________________________________________________________________________//
@@ -153,7 +178,12 @@ public class ControladorRegistroTest {
 	}
 
 	private void whenRegistroUnUsuarioConEmailExistente(DatosRegistroUsuario datosRegistro2) throws ParseException {
-		mav = controladorRegistro.registrarNuevoUsuario(datosRegistro2);
+		datosRegistro2.setNumeroDeTipoDeUsuario(1);
+		HttpSession http = mock(HttpSession.class);
+		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);// necesito hacer estos mock
+		when(mockedRequest.getSession()).thenReturn(http);// cuando hago HttpServlet que me devuelva una Session (HTTP)
+		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(1);
+		mav = controladorRegistro.registrarNuevoUsuario(datosRegistro2, mockedRequest);
 	}
 
 	private void thenRegistroUnUsuarioConEmailExistente(String string) {

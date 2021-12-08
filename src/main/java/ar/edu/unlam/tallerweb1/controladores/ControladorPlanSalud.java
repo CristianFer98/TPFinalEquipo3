@@ -104,7 +104,7 @@ public class ControladorPlanSalud {
 		preference.appendItem(item);
 
 		preference.setBackUrls(
-				new BackUrls().setSuccess("http://localhost:8080/proyecto-limpio-spring/registrarPlan?idPlanSalud="
+				new BackUrls().setSuccess("http://localhost:8080/proyecto-limpio-spring2/registrarPlan?idPlanSalud="
 						+ planBasico.getIdPlanSalud()));
 		try {
 			preference.save();
@@ -135,7 +135,7 @@ public class ControladorPlanSalud {
 		preference.appendItem(item);
 
 		preference.setBackUrls(
-				new BackUrls().setSuccess("http://localhost:8080/proyecto-limpio-spring/registrarPlan?idPlanSalud="
+				new BackUrls().setSuccess("http://localhost:8080/proyecto-limpio-spring2/registrarPlan?idPlanSalud="
 						+ planSilver.getIdPlanSalud()));
 		try {
 			preference.save();
@@ -165,7 +165,7 @@ public class ControladorPlanSalud {
 				.setUnitPrice(planGold.getPrecioDelPlan());
 		preference.appendItem(item);
 		preference.setBackUrls(new BackUrls().setSuccess(
-				"http://localhost:8080/proyecto-limpio-spring/registrarPlan?idPlanSalud=" + planGold.getIdPlanSalud()));
+				"http://localhost:8080/proyecto-limpio-spring2/registrarPlan?idPlanSalud=" + planGold.getIdPlanSalud()));
 
 		try {
 			preference.save();

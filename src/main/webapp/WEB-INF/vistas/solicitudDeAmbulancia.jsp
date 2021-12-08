@@ -3,35 +3,41 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <main>
-	<div
-		style="display: flex; justify-content: center; height: 400px; align-items: center">
-		<div
-			style="height: auto; width: 80%; display: flex; flex-direction: column; justify-content: center; background-color: beige; border-radius: 15px">
-			<h2 style="text-align: center">${sessionScope.get("nombre")}:Tu
-				ambulancia llegara lo mas pronto posible</h2>
 
-			<h4>Nombre: ${soli.getUsuarioSolicitante().getNombre()}</h4>
-			<h4>Direccion: ${soli.getDireccion()}</h4>
+	<div style="display:flex; justify-content:center">
+	<div class="card card-margin" style="width: 50%; height: auto; margin: 20px">
+		<div class="card-header no-border" style="background-color: #EBE9E8;">
+			<h5 class="card-title">${soli.getUsuarioSolicitante().getNombre()}
+				tu ambulancia llegará lo antes posible</h5>
+		</div>
+		<div class="card-body pt-0" style="background-color: #FCFAF9;">
+			<div class="widget-49">
+				<div class="widget-49-title-wrapper">
 
-			<h4>LA PATENTE DE SU AMBULANCIA ES=
-				${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()}</h4>
-			<h4>Asegurate que sea la ambulancia correcta para evitar
-				incidentes</h4>
-
-
-			<div style="display: flex; justify-content: center">
-				<a href="paginaPrincipal"><button type="button"
-						class="btn btn-primary" style="width: 100%; align-self: center">Volver
-						a la pagina principal</button></a>
-			</div>
-			
-			<div style="display: flex; justify-content: center">
-				<form action="canceloAmbulancia">
-        	 	<input type="text" name="ambulanciaCancelada" value="${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()}" style="display:none">
-        		<button type="submit">CANCELAR</button>
-        	</form>
+					<div class="widget-49-meeting-info"></div>
+				</div>
+				<ol class="widget-49-meeting-points">
+					<li class="widget-49-meeting-item"><span>Direccion:
+							${soli.getDireccion()}</span></li>
+					<li class="widget-49-meeting-item"><span>Patente de
+							Ambulancia ${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()}</span></li>
+							
+				</ol>
+				<h4 style ="text-align:center; font-weight:bold">Asegurese de que sea la ambulancia correcta para evitar inconvenientes</h4>
+				
+				<div class="widget-49-meeting-action">
+					<div style="display: flex; justify-content: center">
+						<form action="canceloAmbulancia">
+							<input type="text" name="ambulanciaCancelada"
+								value="${soli.getAmbulanciaEnCamino().getPatenteAmbulancia()}"
+								style="display: none">
+							<button class="btn btn-primary" type="submit">CANCELAR</button>
+						</form>
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 </main>
 

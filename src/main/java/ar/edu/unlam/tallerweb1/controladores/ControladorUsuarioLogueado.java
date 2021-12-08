@@ -7,13 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Calificacion;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
 import ar.edu.unlam.tallerweb1.modelo.Pagos;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
@@ -29,7 +27,7 @@ public class ControladorUsuarioLogueado {
 
 	@Autowired
 	public ControladorUsuarioLogueado(ServicioUsuarioLogueado servicioUsuarioLogueado, ServicioPagos servicioPagos) {
-		this.servicio = servicioUsuarioLogueado; 
+		this.servicio = servicioUsuarioLogueado;
 		this.servicioPagos = servicioPagos;
 	}
 
@@ -171,24 +169,21 @@ public class ControladorUsuarioLogueado {
 
 		if (req.getSession().getAttribute("idUsuario") != null) {
 
-			return new ModelAndView("paginaPrincipal");
+			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+			ModelMap model = new ModelMap();
+
+			List<TurnoMedico> turnos = servicio.verMisTurnos(id);
+
+			model.put("lista", turnos);
+
+			return new ModelAndView("paginaPrincipal", model);
 		} else {
 			return new ModelAndView("index");
 
 		}
 	}
 
-	@RequestMapping(path = "paginaPrincipalMedicos", method = RequestMethod.GET)
-	public ModelAndView getPaginaPrincipalMedicos(HttpServletRequest req) {
-
-		if (req.getSession().getAttribute("idUsuario") != null) {
-
-			return new ModelAndView("paginaPrincipalMedicos");
-		} else {
-			return new ModelAndView("index");
-
-		}
-	}
+	
 
 	@RequestMapping(path = "paginaPrincipalAdmin", method = RequestMethod.GET)
 	public ModelAndView getPaginaPrincipalAdmin(HttpServletRequest req) {
@@ -241,35 +236,40 @@ public class ControladorUsuarioLogueado {
 
 	@RequestMapping(path = "cancelarTurno", method = RequestMethod.GET)
 	public ModelAndView cancelarTurno(@RequestParam("idTurno") Integer idTurno, HttpServletRequest req) {
+		
+		if (req.getSession().getAttribute("idUsuario") != null) {
 		ModelMap model = new ModelMap();
-		TurnoMedico turno = servicio.getTurnoByOnlyID(idTurno);
 
-		Integer idUser = turno.getClienteAsignado().getIdUsuario();
 
-		Pagos pago = servicioPagos.getPagoByIDTurnoandIdUser(turno.getId(), idUser);
+		servicio.cancelarTurno(idTurno);
+		Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+		List<TurnoMedico> turnos = servicio.verMisTurnos(id);
 
-		if (turno.getPagado() == null) {
-			servicio.cancelarTurno(idTurno);
-			servicioPagos.actualizarEstadoPago(pago, "cancelado");
-			return verMisTurnos(req);
+		model.put("lista", turnos);
+		return new ModelAndView("paginaPrincipal", model);
 		} else {
-			model.put("turno", turno);
-			return new ModelAndView("devolucionDinero", model);
-		}
+			return new ModelAndView("index");
+		} 
+
 	}
 
-	@RequestMapping(path = "calificar", method = RequestMethod.POST)
-	public ModelAndView calificarTurnoMedico(@ModelAttribute("Calificacion") Calificacion calificacion,
-			HttpServletRequest req) {
+	@RequestMapping(path = "calificar", method = RequestMethod.GET)
+	public ModelAndView calificarTurnoMedico(@RequestParam("calificar") Integer calificacion,
+			@RequestParam("idTurno") Integer idTurno, HttpServletRequest req) {
 
 		if (req.getSession().getAttribute("idUsuario") != null) {
 
-			servicio.calificarTurno(calificacion);
+			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+			servicio.calificarTurno(calificacion, idTurno);
 
-			return verMisTurnos(req);
+			ModelMap model = new ModelMap();
+			List<TurnoMedico> turnos = servicio.verMisTurnos(id);
+
+			model.put("lista", turnos);
+			return new ModelAndView("paginaPrincipal", model);
 		} else {
 			return new ModelAndView("index");
-		}
+		} 
 
 	}
 

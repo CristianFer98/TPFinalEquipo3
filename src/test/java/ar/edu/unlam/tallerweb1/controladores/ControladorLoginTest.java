@@ -137,7 +137,7 @@ public class ControladorLoginTest {
 	}
 
 	private void thenInicioSesionConUsuarioInexistente(ModelAndView mav2) {
-		assertThat(mav2.getViewName()).isEqualTo("index");
+		assertThat(mav2.getViewName()).isEqualTo("registro");
 
 	}
 }

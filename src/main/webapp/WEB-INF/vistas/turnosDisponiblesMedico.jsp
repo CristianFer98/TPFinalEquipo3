@@ -41,10 +41,10 @@
 
 		
 		<div class="card card-margin" style="width:50%; height:auto; margin:20px">
-			<div class="card-header no-border">
-				<h5 class="card-title">Perfil</h5>
+			<div class="card-header no-border" style="background-color:#EBE9E8;">
+				<h5 class="card-title" >Perfil</h5>
 			</div>
-			<div class="card-body pt-0">
+			<div class="card-body pt-0" style="background-color:#FCFAF9;">
 				<div class="widget-49">
 					<div class="widget-49-title-wrapper">
 						<div class="widget-49-date-primary">

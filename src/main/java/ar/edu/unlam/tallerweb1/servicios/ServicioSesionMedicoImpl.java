@@ -148,4 +148,6 @@ public class ServicioSesionMedicoImpl implements ServicioSesionMedico {
 		return calificacionFinal;
 	}
 
+	
+
 }

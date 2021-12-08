@@ -1,81 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/estilo.css">
-	<link rel="stylesheet" href="css/cardsPerfil.css">	
-    
-    <script src="https://kit.fontawesome.com/f44bbf66b4.js" crossorigin="anonymous"></script>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-    <title>Document</title>
+<head>
+<meta charset="UTF">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/cardsPerfil.css">
+ <script src="https://kit.fontawesome.com/a45b9a7436.js" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="css/shadow.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+	integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"/>
+<link href="css/css/mobiscroll.javascript.min.css" rel="stylesheet"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="css/styleHomeUser.css">
+<link rel="stylesheet" href="css/headerSessionComun.css">
+
+
+<title>Home Hospital</title>
 </head>
 
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
-
-*{
-	padding:0;
-	margin:0;
-	font-family: 'Poppins', sans-serif;
-}
 
 
-body{
-background-color:#C2E4EB;
-height:auto;
-}
-
-.header_nombre h2{
-	font-weight: 600;
-	margin: 0;
-}
-
-#barra-resposive{
-	display: none;
-}
-
-@media (max-width:670px){
-    .header_titulo{
-        font-size: 15px;
-    }
-	
-	.header_nombre h2{
-		display:none;
-	}
-	
-	#barra-resposive{
-		display:block;
-		    font-size: 35px
-	}
-	
-	nav{
-		display: none;
-	}
-	
-</style>
-
-
-<body>
-        <header>
-            <div class="header_titulo">
-            <img src="css/hospital.png" alt="logoHospital" id="logo"> 
-            </div>  
-            
-            <div class="header_nombre">
-            	<h2>Hospital Florencia Martin </h2>
-            	<i class="fas fa-bars" id="barra-resposive"></i>
-            </div>                 
-        </header>
-
-        <nav>
-            <a href="index" class="linkNav">Principal</a>
-            <a href="showFormNewMedic" class="linkNav">Medicos</a>
-            <a href="formGestionAmbulancia" class="linkNav">Ambulancia</a>
-        </nav>
+<nav>
+    <div class="logo">
+        <h3>HF</h3>
+    </div>
+    
+        <div class="secciones">
+            <a href="paginaPrincipalAdmin">HOME</a>
+            <a href="showFormNewMedic">Cargar Nuevo Medico</a>
+            <a href="formGestionAmbulancia">Gestion de Ambulancia</a>
+            <a href="cerrarSesion" class="logout"> Cerrar sesion <i class="fas fa-sign-out-alt"> </i> </a>
+        </div>
+    
+       
+  
+</nav>

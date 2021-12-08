@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.web.servlet.ModelAndView;
 
 
 import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
@@ -17,7 +16,7 @@ import ar.edu.unlam.tallerweb1.repositorios.RepositorioPlanSalud;
 
 public class ServicioPlanSaludTest {
 
-	private ModelAndView mav;
+	
 	private ServicioPlanSaludImpl servicio;
 	private RepositorioPlanSalud repositorio;
 	

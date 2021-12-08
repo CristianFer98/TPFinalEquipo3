@@ -14,7 +14,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.springframework.web.servlet.ModelAndView;
 
-import ar.edu.unlam.tallerweb1.modelo.Calificacion;
 import ar.edu.unlam.tallerweb1.modelo.Pagos;
 import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
@@ -82,8 +81,7 @@ public class ControladorUsuarioLogueadoTest {
 	@Test
 	public void testQueMeListeTurnosDeUnMedico() {
 
-		List<TurnoMedico> turnos = null;
-		Integer id = 1;
+		
 		HttpSession http = mock(HttpSession.class);
 		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
 		when(mockedRequest.getSession()).thenReturn(http);
@@ -163,7 +161,7 @@ public class ControladorUsuarioLogueadoTest {
 		when(servicioUsuario.getTurnoByOnlyID(idTurno)).thenReturn(turno);
 		mav = controladorUsuarioLogueado.cancelarTurno(1, mockedRequest);
 
-		assertThat(mav.getViewName()).isEqualTo("misTurnos");
+		assertThat(mav.getViewName()).isEqualTo("paginaPrincipal");
 
 	} 
 	
@@ -176,13 +174,12 @@ public class ControladorUsuarioLogueadoTest {
 		when(mockedRequest.getSession()).thenReturn(http);
 		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(1);
 		
-		Calificacion calificacion = new Calificacion();
-		calificacion.setCalificacion("4");
+		Integer calificacion = 4;
+		Integer idTurno =1;
 		
-		
-		mav = controladorUsuarioLogueado.calificarTurnoMedico(calificacion, mockedRequest);
+		mav = controladorUsuarioLogueado.calificarTurnoMedico(calificacion,idTurno, mockedRequest);
 				
-		assertThat(mav.getViewName()).isEqualTo("misTurnos");
+		assertThat(mav.getViewName()).isEqualTo("paginaPrincipal");
 		
 	}
 }

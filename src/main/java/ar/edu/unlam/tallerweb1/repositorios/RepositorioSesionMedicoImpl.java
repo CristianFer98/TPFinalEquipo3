@@ -84,7 +84,7 @@ public class RepositorioSesionMedicoImpl implements RepositorioSesionMedico {
 
 	}
 
-	@SuppressWarnings({ "unchecked", "deprecation" })
+	
 	@Override
 	public List<TurnoMedico> verCompromisos(Integer id) {
 

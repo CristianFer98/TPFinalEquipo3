@@ -1,103 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
 
- <jsp:include page="header.jsp"></jsp:include>
- 
- 
-<style>
-main{
-	min-height: 90vh;
-	display: flex;
-	align-items: center;
-    justify-content: center;
-}
-
-.svg{
-	width: 60%;
-	display: flex;
-	align-items: center;
-    justify-content: center;
-}
-
-.svg img{
-	width: 80%;
-}
-
-
-.inicioSesion{
-	width: 40%;
-    height: 400px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-	
-
-}
-
-.registro{
-  
-
-}
-
-.formulario{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-	background: lightgrey;
-	    padding: 20px;
-    border-radius: 2px;
-}
-
-
-.inicioSesion_inputs{
-    margin-bottom: 10px;
-    border-style: none;
-    padding: 5px 10px;
-    background: lightgray;
-    border-bottom: solid grey;
-}
-
-.inicioSesion_inputs:focus{
-	border-bottom: solid #6C63FF;
-}
-
-
-.boton_unputs{
-    background: #6C63FF;
-    color: white;
-    padding: 5px 20px;
-    margin-top: 25px;
-    border-radius: 25px;
-    border-style: none;
-}
-
-
-.seccionEspecialidades{
-
-}
-	
-</style>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styleIndex.css">
+    <link rel="stylesheet" href="css/styleIndex.css">
+    <title>Hospital Florencia</title>
+</head>
 
 <body>
+    <div class="section">
+        <img src="img/hosp4k.png" class="img_hosp">
+        <nav>
+            <a href="#" class="logo">Hospital Florencia</a>
+            <ul>
+                <li><a href="" style="--i:1;">HOME</a></li>
+                <li><a href="#" style="--i:2;">CONTACTO</a></li>
+                <li><a href="#" style="--i:3;">SERVICIOS</a></li>
+                <li><a href="registro" style="--i:4;" class="active">LOGIN</a></li>
+            </ul>
+        </nav>
 
-
-        <main>
-        	<div class="svg">
-        		<img alt="" src="css/medicina.svg">
-        	</div>
-        
-            <div class="inicioSesion">             
-                    <form action="loguearse" method="POST" class="formulario"  modelAttribute="datosDeInicioSesion">
-                        <input type="text" path="email" name="email" id="email" placeholder="Ingrese Usuario" class="inicioSesion_inputs" required>
-                        <input type="password" path ="contrasenia" name="contrasenia" id="contrasenia" placeholder="Ingrese Clave" class="inicioSesion_inputs" required>
-
-                        <input type="submit"  class="boton_unputs" value="Iniciar Sesion" >
-                        <a href="registro" style="color: black; text-decoration: none;">Registrarse</a>
-                        ${error}
-                    </form>
+        <div class="content">
+            <div class="content_text">
+                <h2>Tu salud,
+                    <h2 class="auto-input"></h2>
+                </h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vitae eaque facilis a. Dolorum maiores ut saepe veritatis quisquam consequatur quaerat aliquam, quod labore! A consequatur cupiditate dolore odit, exercitationem cum.</p>
+                <a href="registro">INGRESAR</a>
             </div>
-        </main>
-        
-        
-        
+        </div>
+    </div>
 
- <jsp:include page="footer.jsp"></jsp:include>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        var typed = new Typed(".auto-input", {
+            strings: ["Nuestra Prioridad", "Nos IMPORTA", "Con los mejores profesionales", "En el hospital Nº1 De Argentina"],
+            typeSpeed: 100,
+            backSpeed: 70,
+            loop: true,
+            showCursor: false
+        });
+    </script>
+</body>
+
+</html>

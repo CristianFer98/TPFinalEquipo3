@@ -6,7 +6,7 @@
 
 	<div style="display: flex; justify-content: center">
 		<div class="card card-margin"
-			style="width: 50%; height: auto; margin: 20px">
+			style="width: 50%; height: auto; margin: 20px;">
 			<div class="card-header no-border">
 				<h5 class="card-title">Checkout de Su reserva</h5>
 			</div>
@@ -50,19 +50,27 @@
 			</c:if>
 
 
+			<div style="display: flex">
+
+				<div
+					style="height: 20px; width: 100px; margin-left: 10px; margin-bottom: 30px">
+					<script
+						src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
+						data-preference-id="${preference.id}">
+						
+					</script>
+				</div>
 
 
-			<script
-				src="https://www.mercadopago.com.ar/integrations/v1/web-payment-checkout.js"
-				data-preference-id="${preference.id}">
-				
-			</script>
 
+				<div style="heigth: 20px">
+					<a
+						href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no&payment_id=0"><button
+							type="button" class="btn btn-secondary">Pagar en la
+							clinica</button></a>
 
-			<div class="btn btn-secondary">
-				<a
-					href="pagoExitoso?idTurno=${turno.id}&idUsuario=${turno.clienteAsignado.idUsuario}&status=no&payment_id=0"
-					style="color: white">Pagar en la clinica</a>
+				</div>
+
 			</div>
 
 		</div>
@@ -75,6 +83,22 @@
 
 
 	<script src="https://sdk.mercadopago.com/js/v2"></script>
+	<script>
+		// Agrega credenciales de SDK
+		const mp = new MercadoPago('TEST-734025de-7dce-4565-ae60-d940bcca5b07', {
+			locale : 'es-AR'
+		});
+		// Inicializa el checkout
+		mp.checkout({
+			preference : {
+				id : '${preferenceId}'
+			},
+			render : {
+				container : '.cho-container', // Indica el nombre de la clase donde se mostrará el botón de pago
+				label : 'Pagar', // Cambia el texto del botón de pago (opcional)
+			}
+		});
+	</script>
 
 
 </main>

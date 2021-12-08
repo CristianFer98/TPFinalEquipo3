@@ -16,7 +16,7 @@
 
 			<c:forEach var="lista" items="${lista}">
 				
-				<div class="card-group" style="width:30%; margin:15px">
+				<div class="card-group" style="width:30%; margin:15px; box-shadow: 0px 8px 20px -7px rgba(0,0,0,0.75);">
 				
 					<div class="card">
 						<img src="img/${lista.fotoEspecialidad}.jpg" style="height:250px" alt="${lista.fotoEspecialidad}">
@@ -38,8 +38,5 @@
 	</c:if>
 
 
-
-
 </main>
 
-<jsp:include page="footer.jsp"></jsp:include>

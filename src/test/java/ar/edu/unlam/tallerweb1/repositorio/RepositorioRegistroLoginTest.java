@@ -31,7 +31,7 @@ public class RepositorioRegistroLoginTest extends SpringTest { // levanto el ent
 	public void testQueMePermitaRegistrarUnUsuarioNuevo() {
 
 		Usuario usuario = givenTengoUnUsuario(email, clave);// creo un usuario
-		Integer id =whereRegistroUnUsuario(usuario);// registro un usuario. me devuelve un boolean
+		whereRegistroUnUsuario(usuario);// registro un usuario. me devuelve un boolean
 		thenMePermiteRegistrar(usuario.getIdUsuario());
 		// ver como chequear esto
 	}

@@ -3,6 +3,7 @@ package ar.edu.unlam.tallerweb1.servicios;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import ar.edu.unlam.tallerweb1.controladores.UsuarioInexistenteException;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
 import ar.edu.unlam.tallerweb1.modelo.DatosRegistroUsuario;
+import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.repositorios.RepositorioRegistroLogin;
 import ar.edu.unlam.tallerweb1.repositorios.emailExistenteException;
 
@@ -99,6 +101,23 @@ public class ServicioRegistroLoginImpl implements ServicioRegistroLogin {
 	@Override
 	public Usuario obtenerUsuarioPorId(Integer id) {
 		return repositorioRegistroLogin.obtenerUsuarioPorID(id);
+	}
+
+	@Override
+	public List<TurnoMedico> verMisTurnos(Integer id) {
+		return repositorioRegistroLogin.verMisTurnos(id);
+	}
+	
+	@Override
+	public Double obtenerCalificacion(Integer id) {
+		List<TurnoMedico> turnosCalificados= repositorioRegistroLogin.obtenerCalificacionDeMedico(id);
+		Double sumaDeCalificaciones=0.0;
+		for (TurnoMedico turnoMedico : turnosCalificados) {
+			sumaDeCalificaciones+=turnoMedico.getCalificacion();
+		}
+		
+		Double calificacionFinal = sumaDeCalificaciones/turnosCalificados.size();
+		return calificacionFinal;
 	}
 
 }

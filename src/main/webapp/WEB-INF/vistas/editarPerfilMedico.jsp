@@ -1,4 +1,4 @@
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="headerMedico.jsp"></jsp:include>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <style>
@@ -83,7 +83,7 @@
 	     <input type="text" path="paginaPersonal" name="paginaPersonal" id="PaginaPersonal" placeholder="Ingrese su sitio web" class="inicioSesion_inputs" value="${medico.paginaPersonal}"> 
 	     
 	     <input type="submit" style="background-color: rgb(16, 11, 37); color: aliceblue;" class="boton_unputs" value="Cargar datos"> 
-	     <a href="MyPerfil">Ira mi perfil</a>
+	     <a href="paginaPrincipalMedicos">Regresar</a>
 	${mensaje}
 	</form>
 

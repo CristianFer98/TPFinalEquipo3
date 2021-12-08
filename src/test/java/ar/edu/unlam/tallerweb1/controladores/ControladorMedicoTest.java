@@ -9,7 +9,6 @@ import ar.edu.unlam.tallerweb1.modelo.DatosAgendaMesMedico;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeActualizacionPerfilMedico;
 import ar.edu.unlam.tallerweb1.modelo.Dias;
 import ar.edu.unlam.tallerweb1.modelo.Especialidad;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.servicios.ServicioSesionMedico;
 
 import static org.mockito.Mockito.mock;
@@ -90,7 +89,7 @@ public void testQueMeCargaDatosDeUnMedico() throws IOException {
 
 	mav = controladorMedico.CargarDatosMedico(datosActualizacion, mockedRequest);
 
-	assertThat(mav.getViewName()).isEqualTo("perfilMedico");
+	assertThat(mav.getViewName()).isEqualTo("paginaPrincipalMedicos");
 }
 
 	@Test
@@ -119,26 +118,7 @@ public void testQueMeCargaDatosDeUnMedico() throws IOException {
 
 //_________________________________________________________________________________________________________//
 
-	@Test
-	public void testQueMePermitaVerElPerfilDeUnMedico() throws IOException {
 
-		Integer id = 1;
-		Usuario usuario = new Usuario();
-		usuario.setPaginaPersonal("Cris.com");
-
-		HttpSession http = mock(HttpSession.class);
-		HttpServletRequest mockedRequest = mock(HttpServletRequest.class);
-		when(mockedRequest.getSession()).thenReturn(http);
-		when(mockedRequest.getSession()).thenReturn(http);
-		when(mockedRequest.getSession().getAttribute("idUsuario")).thenReturn(id);
-		when(servicioUsuario.obtenerInformacion(id)).thenReturn(usuario);
-
-		
-		mav = controladorMedico.verPerfilMedico(mockedRequest);
-
-		assertThat(mav.getViewName()).isEqualTo("perfilMedico");
-		assertThat(mav.getModel().get("usuario")).isEqualTo(usuario);
-	}
 
 //__________________________________________________________________________________________________________//
 

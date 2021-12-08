@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.time.LocalDate;
 
 import ar.edu.unlam.tallerweb1.modelo.PlanSalud;
 import ar.edu.unlam.tallerweb1.modelo.Usuario;

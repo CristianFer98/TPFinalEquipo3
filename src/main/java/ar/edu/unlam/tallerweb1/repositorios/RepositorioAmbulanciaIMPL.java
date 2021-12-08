@@ -1,6 +1,5 @@
 package ar.edu.unlam.tallerweb1.repositorios;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
@@ -63,7 +62,8 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 	public void actualizarEstadoAmbulancia(Ambulancia ambulancia, Boolean bol) {
 		Ambulancia miAmb=sessionFactory.getCurrentSession().get(Ambulancia.class, ambulancia.getIdAmbulancia());
 		miAmb.setDisponible(bol);
-		sessionFactory.getCurrentSession().save(miAmb);	 
+		
+		sessionFactory.getCurrentSession().update(miAmb);	 
 	}
 
 
@@ -91,12 +91,17 @@ public class RepositorioAmbulanciaIMPL implements RepositorioAmbulancia {
 
 	@Override
 	public void actualizarRegistro(SolicitudUsuarioAmbulancia soli, Boolean bol) {
-		SolicitudUsuarioAmbulancia solicitud= sessionFactory.getCurrentSession().get(SolicitudUsuarioAmbulancia.class, soli.getIdSolicitud());
-		solicitud.setAtendido(bol);
-		sessionFactory.getCurrentSession().save(soli);
+		SolicitudUsuarioAmbulancia solicitud= obtenerSolicitudDeAmbulanciaPORID(soli.getIdSolicitud());
+		
+		solicitud.setDireccion(null);
+		solicitud.setAtendido(true);
+		solicitud.setUsuarioSolicitante(null);
+		
+		sessionFactory.getCurrentSession().update(solicitud); 
 	}
 
 
+	@SuppressWarnings({ "unchecked", "deprecation" })
 	@Override
 	public List<Ambulancia> obtenerTodasLasAmbulancias() {
 		return sessionFactory

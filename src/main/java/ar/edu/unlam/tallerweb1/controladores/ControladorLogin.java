@@ -1,5 +1,7 @@
 package ar.edu.unlam.tallerweb1.controladores;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.unlam.tallerweb1.modelo.Usuario;
 import ar.edu.unlam.tallerweb1.modelo.DatosDeInicioDeSesion;
+import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
 import ar.edu.unlam.tallerweb1.servicios.ServicioRegistroLogin;
 
 @Controller
@@ -52,8 +55,8 @@ public class ControladorLogin {
 		} catch (UsuarioInexistenteException e) { // valido que exista
 			mensaje = "Usuario Inexistente";
 			model.put("error", mensaje);
-			return new ModelAndView("index", model);
-		}
+			return new ModelAndView("registro", model);
+		} 
 
 		return comprobarTipoUsuario(usuario, req);// devuelvo el modelAndView dependiendo el tipo de Usuario.
 
@@ -66,9 +69,23 @@ public class ControladorLogin {
 		req.getSession().setAttribute("nombre", usuario.getNombre());
 
 		if (usuario.getNumeroDeTipoDeUsuario() == 1) {
+			Integer id = usuario.getIdUsuario();
+
+			List<TurnoMedico> turnos = servicio.verMisTurnos(id);
+			
+			model.put("lista", turnos);
+			
 			model.put("usuario", usuario);
 			return new ModelAndView("paginaPrincipal", model);
 		} else if (usuario.getNumeroDeTipoDeUsuario() == 2) {
+			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+
+			Double calificacion = servicio.obtenerCalificacion(id);
+			Double calificacionDos = calificacion;
+			Long calificacionSinPuntos = Math.round(calificacionDos);
+
+			model.put("calificacionSP", calificacionSinPuntos);
+			model.put("calificacion", calificacion);
 			model.put("usuario", usuario);
 
 			return new ModelAndView("paginaPrincipalMedicos", model);
@@ -78,14 +95,14 @@ public class ControladorLogin {
 			return new ModelAndView("paginaPrincipalAdmin", model);
 		}
 
-		return new ModelAndView("index");
+		return new ModelAndView("registro");
 	}
 	
 	
 	@RequestMapping(path="cerrarSesion")
 	public ModelAndView cerrarSesion (HttpServletRequest req) {
 		req.getSession().invalidate();
-		return new ModelAndView ("SesionFinalizada");
+		return new ModelAndView ("registro");
 	}
 
 }

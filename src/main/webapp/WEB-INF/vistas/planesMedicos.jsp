@@ -9,9 +9,9 @@
 
 
 
-		<div class="card">
-			<img src="img/basic.jpg" style="height: 250px">
-			<div class="card-body">
+		<div class="card" style="box-shadow: 0px 8px 20px -7px rgba(0,0,0,0.75);">
+			<img src="img/basic.jpg" style="height: 250px" >
+			<div class="card-body" >
 				<h5 class="card-title">Plan Basic</h5>
 				<h6 class="card-subtitle mb-2 text-muted">$1000</h6>
 				<p class="card-text">Solicita el plan Basico para obtener un 30%
@@ -46,7 +46,7 @@
 
 
 
-		<div class="card">
+		<div class="card" style="box-shadow: 0px 8px 20px -7px rgba(0,0,0,0.75);">
 			<img src="img/silver.jpg" style="height: 250px">
 			<div class="card-body">
 				<h5 class="card-title">Plan Silver</h5>
@@ -81,7 +81,7 @@
 
 
 
-		<div class="card">
+		<div class="card" style="box-shadow: 0px 8px 20px -7px rgba(0,0,0,0.75);">
 			<img src="img/golden.jpg" style="height: 250px">
 			<div class="card-body">
 				<h5 class="card-title">Plan Gold</h5>

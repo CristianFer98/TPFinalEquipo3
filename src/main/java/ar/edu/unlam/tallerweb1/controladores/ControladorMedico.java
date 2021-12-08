@@ -69,8 +69,18 @@ public class ControladorMedico {
 			cargaExitosa = servicio.cargarDatos(datos, id);
 
 			if (cargaExitosa == true) {
-				ModelAndView MAV = verPerfilMedico(req);
-				return MAV.addAllObjects(model);
+				Usuario usuario =servicio.obtenerInformacion(id);
+				
+				Double calificacion = servicio.obtenerCalificacion(id);
+				Double calificacionDos = calificacion;
+				Long calificacionSinPuntos = Math.round(calificacionDos);
+
+				model.put("calificacionSP", calificacionSinPuntos);
+				model.put("calificacion", calificacion);
+				model.put("usuario", usuario);
+
+				return new ModelAndView("paginaPrincipalMedicos", model);
+				
 			} else {
 				String mensajeError = "hubo un error";
 
@@ -85,28 +95,7 @@ public class ControladorMedico {
 
 	}
 
-	@RequestMapping(path = "MyPerfil", method = RequestMethod.GET)
-	public ModelAndView verPerfilMedico(HttpServletRequest req) throws IOException {
-		// tengo que recorrer la informacion que me traiga del medico
-
-		if (req.getSession().getAttribute("idUsuario") != null) {
-
-			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
-			ModelMap model = new ModelMap();
-			Usuario Medico = servicio.obtenerInformacion(id);
-			Double calificacion = servicio.obtenerCalificacion(id);
-			Double calificacionDos = calificacion;
-			Long calificacionSinPuntos = Math.round(calificacionDos);
-
-			model.put("calificacionSP", calificacionSinPuntos);
-			model.put("calificacion", calificacion);
-			model.put("usuario", Medico);
-			return new ModelAndView("perfilMedico", model);
-		} else {
-			return new ModelAndView("index");
-		}
-
-	}
+	
 
 	@RequestMapping(path = "FormAgenda", method = RequestMethod.GET)
 	public ModelAndView mostrarFormularioAgendaMedica(HttpServletRequest req) {
@@ -180,6 +169,32 @@ public class ControladorMedico {
 			servicio.darDeBaja(idTurno);
 
 			return verCompromiso(req);
+		} else {
+			return new ModelAndView("index");
+
+		}
+	}
+	
+	@RequestMapping(path = "paginaPrincipalMedicos", method = RequestMethod.GET)
+	public ModelAndView getPaginaPrincipalMedicos(HttpServletRequest req) {
+
+		if (req.getSession().getAttribute("idUsuario") != null) {
+			
+			ModelMap model = new ModelMap();
+			Integer id = (Integer) req.getSession().getAttribute("idUsuario");
+			Usuario usuario =servicio.obtenerInformacion(id);
+			
+			Double calificacion = servicio.obtenerCalificacion(id);
+			Double calificacionDos = calificacion;
+			Long calificacionSinPuntos = Math.round(calificacionDos);
+
+			model.put("calificacionSP", calificacionSinPuntos);
+			model.put("calificacion", calificacion);
+			model.put("usuario", usuario);
+			
+			
+			
+			return new ModelAndView("paginaPrincipalMedicos", model);
 		} else {
 			return new ModelAndView("index");
 

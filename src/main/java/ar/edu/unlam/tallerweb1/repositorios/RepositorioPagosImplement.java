@@ -5,11 +5,9 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import ar.edu.unlam.tallerweb1.modelo.Ambulancia;
-import ar.edu.unlam.tallerweb1.modelo.Especialidad;
+
 import ar.edu.unlam.tallerweb1.modelo.Pagos;
-import ar.edu.unlam.tallerweb1.modelo.TurnoMedico;
-import ar.edu.unlam.tallerweb1.modelo.Usuario;
+
 
 @Repository
 public class RepositorioPagosImplement implements RepositorioPagos {
@@ -26,6 +24,7 @@ public class RepositorioPagosImplement implements RepositorioPagos {
 
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public Pagos getPagoByIDTurnoandIdUser(Integer idTurno, Integer idUser) {
 		return (Pagos) session.getCurrentSession()

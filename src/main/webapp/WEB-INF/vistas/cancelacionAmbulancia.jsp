@@ -6,7 +6,7 @@
 	<div
 		style="display: flex; justify-content: center; height: 400px; align-items: center">
 		<div
-			style="height: auto; width: 80%; display: flex; flex-direction: column; justify-content: center; background-color: beige; border-radius: 15px">
+			style="height: auto; width: 80%; display: flex; flex-direction: column; justify-content: center; background-color: gray; border-radius: 15px">
 			<h2 style="text-align: center">${sessionScope.get("nombre")} 
 				Cancelaste correctamente la ambulancia de patente: ${patente}</h2>
 
